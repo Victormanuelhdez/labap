@@ -1,0 +1,426 @@
+html
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Prepárate para APX: temario, tarjetas y simulador de 58 preguntas. Aprobación del 80%, mínimo 47 aciertos." name="description"/>
+<title>APX · Study Lab</title>
+<link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="noise"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+<div class="bg-orb orb-c"></div>
+<header class="site-header">
+<button aria-label="Ir al inicio" class="brand" data-route="home" type="button">
+<span class="brand-mark">A</span>
+<span class="brand-copy">
+<strong>APX · Java</strong>
+<small>Study Lab</small>
+</span>
+</button>
+<nav class="site-nav">
+<button class="nav-link is-active" data-route="home">Inicio</button>
+<button class="nav-link" data-route="study">Estudio</button>
+<button class="nav-link" data-route="materials">Guía rápida</button>
+<button class="nav-link" data-route="flashcards">Tarjetas</button>
+<button class="nav-link" data-route="configure">Exámenes</button>
+<button class="nav-link" data-route="progress">Progreso</button>
+</nav>
+<div class="header-tools">
+<button class="ghost-btn small-btn" id="themeToggle" type="button">Tema</button>
+<button class="ghost-btn mobile-menu" id="menuToggle" type="button">Menú</button>
+</div>
+</header>
+<aside class="mobile-panel" id="mobilePanel">
+<button data-route="home">Inicio</button>
+<button data-route="study">Estudio</button>
+<button data-route="materials">Guía rápida</button>
+<button data-route="flashcards">Tarjetas</button>
+<button data-route="configure">Exámenes</button>
+<button data-route="mistakes">Errores</button>
+<button data-route="progress">Progreso</button>
+</aside>
+<main class="main-shell">
+<section class="screen is-visible" id="screen-home">
+<section class="home-hero">
+<div class="home-copy">
+<span class="home-badge">CERTIFICACIÓN · APX · JAVA · EXAMEN REAL: 58 PREGUNTAS</span>
+<div class="headline-wrap">
+<svg aria-hidden="true" class="color-ribbon" preserveaspectratio="none" viewbox="0 0 920 360">
+<defs>
+<lineargradient id="asoRibbon" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#ff2d55"></stop>
+<stop offset="18%" stop-color="#ff8a00"></stop>
+<stop offset="36%" stop-color="#ffd600"></stop>
+<stop offset="54%" stop-color="#33d17a"></stop>
+<stop offset="72%" stop-color="#3478f6"></stop>
+<stop offset="100%" stop-color="#8e44ff"></stop>
+</lineargradient>
+</defs>
+<path d="M8 244 C 92 137, 154 311, 238 186 S 381 274 478 139 S 631 258 732 126 S 846 188 912 56" fill="none" stroke="url(#asoRibbon)" stroke-linecap="round" stroke-linejoin="round" stroke-width="64"></path>
+<path d="M8 244 C 92 137, 154 311, 238 186 S 381 274 478 139 S 631 258 732 126 S 846 188 912 56" fill="none" stroke="rgba(255,255,255,.38)" stroke-linecap="round" stroke-width="9"></path>
+</svg>
+<h1><span>Domina APX.</span><span>Practica con</span><span class="accent-word">confianza.</span></h1>
+</div>
+<p class="home-intro">Prepárate con APX Online y Batch, Java, Maven, OSGi, patrones y pruebas. Estudia por conceptos y practica con preguntas adaptadas de los exámenes que compartiste. Simula el formato indicado: 58 preguntas y 80% para aprobar.</p>
+<div class="home-actions">
+<button class="home-btn home-btn-primary" data-route="study">Explorar temario</button>
+<button class="home-btn home-btn-secondary" data-route="configure">Iniciar quiz</button>
+</div>
+<div aria-label="Temas disponibles" class="home-topic-row"><button data-topic-shortcut="online">ONLINE</button><button data-topic-shortcut="batch">BATCH</button><button data-topic-shortcut="java">JAVA</button><button data-topic-shortcut="cli">MAVEN</button><button data-topic-shortcut="patrones">PATRONES</button><button data-topic-shortcut="pruebas">PRUEBAS</button></div>
+</div>
+<aside aria-label="58 preguntas, 80% mínimo, 47 aciertos para aprobar" class="hero-type-art">
+<span class="type-score">58</span>
+<span class="type-aso">APX</span>
+<span class="type-percent">80%</span>
+<span class="type-equivalent">≥</span>
+<span class="type-rest">47</span>
+<span class="type-java">JAVA</span>
+<span class="type-formula">47 aciertos · hasta 11 errores</span>
+</aside>
+</section>
+<section aria-label="Resumen de progreso" class="home-metrics">
+<article><small>Intentos</small><strong id="statAttempts">0</strong></article>
+<article><small>Promedio</small><strong id="statAverage">0%</strong></article>
+<article><small>Mejor resultado</small><strong id="statBest">0%</strong></article>
+<article><small>Errores por reforzar</small><strong id="statMistakes">0</strong></article>
+<article class="metric-message"><small>Formato real indicado</small><strong>58 preguntas</strong><span>mínimo 47 aciertos · 80%</span></article>
+</section>
+<section class="home-path">
+<div class="path-intro">
+<span class="home-badge">RUTA DE ESTUDIO</span>
+<h2>Estudiar menos tiempo, pero con mejor orden.</h2>
+<p>La página te lleva de comprensión a simulación. Cada bloque abre directamente la herramienta correspondiente.</p>
+</div>
+<div class="path-list">
+<button class="path-item" data-route="study">
+<span class="path-number">01</span>
+<span class="path-copy"><strong>Comprender</strong><small>Temario visual, reglas mentales y trampas frecuentes.</small></span>
+<span class="path-arrow">↗</span>
+</button>
+<button class="path-item" data-route="flashcards">
+<span class="path-number">02</span>
+<span class="path-copy"><strong>Recordar</strong><small>Tarjetas amplias con respuesta, regla mental y seguimiento.</small></span>
+<span class="path-arrow">↗</span>
+</button>
+<button class="path-item" data-quick="10">
+<span class="path-number">03</span>
+<span class="path-copy"><strong>Detectar huecos</strong><small>Reto rápido de 10 preguntas con explicación inmediata.</small></span>
+<span class="path-arrow">↗</span>
+</button>
+<button class="path-item" data-quick="58">
+<span class="path-number">04</span>
+<span class="path-copy"><strong>Simular</strong><small>Simulacro de 58 preguntas; respuestas y aprobación al finalizar.</small></span>
+<span class="path-arrow">↗</span>
+</button>
+</div>
+</section>
+<section class="home-countdown">
+<div>
+<span class="home-badge">FECHA DEL EXAMEN</span>
+<h2>Define tu fecha y mide cuánto tiempo te queda para repasar.</h2>
+</div>
+<div class="countdown-box" id="countdownBox"></div>
+<label class="date-field">
+<span>Cambiar fecha</span>
+<input id="examDateInput" type="date"/>
+</label>
+</section>
+</section>
+<section class="screen" id="screen-study">
+<section class="inner-hero inner-hero-study">
+<div class="inner-hero-copy">
+<span class="home-badge">ESTUDIO · 7 BLOQUES · 37 CONCEPTOS</span>
+<div class="inner-title-wrap">
+<span aria-hidden="true" class="inner-ribbon"></span>
+<h1>Entiende primero.<br/><strong>Memoriza después.</strong></h1>
+</div>
+<p>Cambia de bloque desde la columna izquierda. Cada concepto incluye explicación, regla mental, trampa típica y datos rápidos para repasar sin leer los PDFs de principio a fin.</p>
+<label class="editorial-control">
+<span>Buscar concepto</span>
+<input id="studySearch" placeholder="Ej. DTO, setSeverity, OSGi, chunk, Mockito…" type="search"/>
+</label>
+</div>
+<div aria-hidden="true" class="inner-type-art">
+<span class="inner-ghost-main">TEMARIO</span>
+<span class="inner-ghost-number">07</span>
+<span class="inner-ghost-side">CONCEPTOS</span>
+<span class="inner-ghost-small">ONLINE · BATCH · JAVA</span>
+</div>
+</section>
+<div class="study-layout editorial-study">
+<aside class="study-sidebar reveal" id="topicSidebar"></aside>
+<div class="study-stage reveal" id="studyStage"></div>
+</div>
+</section>
+<section class="screen" id="screen-materials"><section class="inner-hero"><div class="inner-hero-copy"><span class="home-badge">GUÍA RÁPIDA · APX / JAVA</span><h1>Las claves.<br/><strong>Antes del examen.</strong></h1><p>Repasa diferencias y trampas de los materiales adjuntos. La guía y los reactivos son de preparación; no constituyen un examen oficial.</p></div></section><div class="materials-layout materials-layout-html"><aside class="materials-index"><button class="material-item is-active" data-material-target="material-online" type="button">01 · APX Online</button><button class="material-item" data-material-target="material-cli" type="button">02 · APX CLI, Maven y OSGi</button><button class="material-item" data-material-target="material-batch" type="button">03 · APX Batch y Spring Batch</button><button class="material-item" data-material-target="material-java" type="button">04 · Java y orientación a objetos</button><button class="material-item" data-material-target="material-colecciones" type="button">05 · Colecciones, Streams y lambdas</button><button class="material-item" data-material-target="material-patrones" type="button">06 · Patrones y arquitectura</button><button class="material-item" data-material-target="material-pruebas" type="button">07 · Pruebas, datos y transacciones</button></aside><section class="material-html-stage"><article class="material-panel is-active" data-material-panel="" id="material-online"><h2>APX Online</h2><section class="material-block"><h3>Transacción y librería</h3><p>La transacción es el punto de entrada de la operación Online y coordina el flujo. La librería contiene operaciones de negocio reutilizables y acceso a datos, expuestas mediante una interfaz.</p><p>Recuerda: Transacción coordina; librería ejecuta.</p><p>Evita confundir: No concentres todo el negocio en un DTO ni dupliques una consulta en cada transacción.</p></section><section class="material-block"><h3>DTO</h3><p>Un Data Transfer Object representa y transporta los datos de la operación entre componentes. En el ejemplo APX aparece como un Bean de entidad comercial.</p><p>Recuerda: DTO = datos que viajan.</p><p>Evita confundir: DTO no equivale a tabla, conexión ni servicio de negocio.</p></section><section class="material-block"><h3>Clase abstracta y parámetros</h3><p>La clase abstracta de la transacción separa las operaciones de parámetros de entrada y salida de la lógica implementada por la transacción.</p><p>Recuerda: Parámetros separados del flujo.</p><p>Evita confundir: No confundas la generación de acceso a parámetros con implementar reglas de negocio.</p></section><section class="material-block"><h3>setSeverity</h3><p>setSeverity establece la gravedad de la notificación generada por una transacción.</p><p>Recuerda: Severity = gravedad.</p><p>Evita confundir: No establece el país, el tipo de transacción ni los datos de entrada.</p></section><section class="material-block"><h3>Online frente a Batch</h3><p>Online se apoya en transacciones, librerías y DTOs. Batch utiliza Jobs, librerías y DTOs. Ambos son capacidades del entorno APX.</p><p>Recuerda: Online: transacción. Batch: Job.</p><p>Evita confundir: Un Job no es una transacción Online.</p></section></article><article class="material-panel" data-material-panel="" hidden="" id="material-cli"><h2>APX CLI, Maven y OSGi</h2><section class="material-block"><h3>APX CLI y entorno local</h3><p>CLI es una herramienta de línea de comandos para crear y operar componentes. El entorno local permite probar y depurar transacciones y Jobs antes de producción.</p><p>Recuerda: CLI = comandos; local = pruebas.</p><p>Evita confundir: Local no significa entorno productivo.</p></section><section class="material-block"><h3>Comandos de práctica</h3><p>apx init du-lib inicializa una unidad de despliegue de librería. apx send req envía una solicitud. En apx deploy local --runtime=online --country=ESP -y, ESP es el país España.</p><p>Recuerda: init crea; send envía; deploy despliega.</p><p>Evita confundir: ESP es país, no idioma. Los argumentos completos dependen del componente y versión de CLI.</p></section><section class="material-block"><h3>JDBC Utility</h3><p>La dependencia se declara en pom.xml. El ejemplo corregido identifica library-arc-osgi.xml, library-arc.xml y pom.xml como archivos configurados al añadir JDBC Utility.</p><p>Recuerda: JDBC conecta; pom declara dependencia.</p><p>Evita confundir: No cambies pom.xml por settings.xml en una pregunta de dependencias de la aplicación.</p></section><section class="material-block"><h3>Ciclo Maven</h3><p>compile compila; test ejecuta pruebas; package genera el artefacto; install además lo instala en el repositorio local. clean elimina normalmente target.</p><p>Recuerda: package genera; install instala.</p><p>Evita confundir: package no equivale a despliegue productivo.</p></section><section class="material-block"><h3>OSGi y consola</h3><p>OSGi administra módulos Java y su ciclo de vida. Import-Package declara paquetes requeridos. APX Operation Console es la herramienta web para operación, configuración y consulta de componentes y Jobs.</p><p>Recuerda: OSGi módulos; Console operación.</p><p>Evita confundir: La consola de operación no es el compilador ni la CLI.</p></section></article><article class="material-panel" data-material-panel="" hidden="" id="material-batch"><h2>APX Batch y Spring Batch</h2><section class="material-block"><h3>Job y Step</h3><p>Un Job representa el proceso por lotes completo. Un Step representa una etapa de ese proceso. Puede implementarse orientado a chunks o con un Tasklet.</p><p>Recuerda: Job = proceso; Step = etapa.</p><p>Evita confundir: JobRepository no es un tipo de Step.</p></section><section class="material-block"><h3>Reader, Processor y Writer</h3><p>Reader lee elementos. Processor transforma, valida o filtra. Writer escribe los resultados del bloque. Reader devuelve null al terminar; Processor puede devolver null para filtrar.</p><p>Recuerda: Leer → procesar → escribir.</p><p>Evita confundir: null de Reader termina la entrada; null de Processor filtra un elemento.</p></section><section class="material-block"><h3>Chunk y consistencia</h3><p>Un chunk agrupa elementos en un bloque transaccional. Si la escritura falla, la configuración transaccional gobierna la reversión del bloque; chunks ya confirmados no se revierten automáticamente.</p><p>Recuerda: Chunk = bloque de confirmación.</p><p>Evita confundir: No asumas un único rollback para todo el histórico del Job.</p></section><section class="material-block"><h3>Tasklet</h3><p>Tasklet permite ejecutar una tarea concreta dentro de un Step, por ejemplo una preparación o limpieza.</p><p>Recuerda: Tasklet = tarea específica.</p><p>Evita confundir: No obliga a seguir Reader → Processor → Writer.</p></section><section class="material-block"><h3>JobRepository y JobLauncher</h3><p>JobRepository guarda metadatos de ejecuciones y estados. JobLauncher inicia un Job con parámetros. Una JobInstance se identifica por el Job y sus parámetros identificadores.</p><p>Recuerda: Repository registra; Launcher lanza.</p><p>Evita confundir: Los metadatos del proceso no son los datos comerciales procesados.</p></section></article><article class="material-panel" data-material-panel="" hidden="" id="material-java"><h2>Java y orientación a objetos</h2><section class="material-block"><h3>JDK, JRE y JVM</h3><p>JDK agrupa herramientas de desarrollo y ejecución. JRE es el entorno de ejecución y bibliotecas. JVM ejecuta el bytecode. javac convierte fuente .java en .class. La distribución concreta del JRE depende del proveedor y versión.</p><p>Recuerda: JDK desarrolla; JRE ejecuta; JVM interpreta bytecode.</p><p>Evita confundir: No uses javac como nombre de la máquina virtual.</p></section><section class="material-block"><h3>Promoción numérica</h3><p>byte y short se promocionan a int en operaciones aritméticas. Si interviene double, los operandos se promocionan a double. La división entre enteros descarta la parte fraccionaria.</p><p>Recuerda: Tipos pequeños → int; double domina.</p><p>Evita confundir: byte + byte no produce automáticamente byte.</p></section><section class="material-block"><h3>String e igualdad</h3><p>String es inmutable. Métodos como toUpperCase devuelven un nuevo valor. == compara referencias y equals compara contenido cuando la clase lo implementa de ese modo.</p><p>Recuerda: == referencia; equals contenido.</p><p>Evita confundir: No ignores la asignación del resultado de un método que devuelve String.</p></section><section class="material-block"><h3>Herencia y polimorfismo</h3><p>Una clase extiende una sola clase y puede implementar varias interfaces. La sobrescritura de métodos de instancia permite ejecutar la implementación del objeto real. No se puede reducir visibilidad al sobrescribir.</p><p>Recuerda: Tipo real elige el método sobrescrito.</p><p>Evita confundir: protected no puede reducirse a acceso de paquete en una sobrescritura.</p></section><section class="material-block"><h3>Constructores</h3><p>En Java 11, this(...) llama a otro constructor de la misma clase y super(...) al padre, como primera instrucción. El compilador genera un constructor por defecto únicamente si no declaras ningún constructor.</p><p>Recuerda: this mismo; super padre.</p><p>Evita confundir: Declarar un constructor con parámetros elimina el constructor automático sin parámetros.</p></section><section class="material-block"><h3>Excepciones</h3><p>Checked exige capturar o declarar. RuntimeException es unchecked. throw lanza y throws declara. finally normalmente se ejecuta al salir del bloque; devolver desde finally puede ocultar un retorno o error.</p><p>Recuerda: throw dispara; throws avisa.</p><p>Evita confundir: finally no es final. No trates salidas de System.out y System.err como un orden visual garantizado.</p></section><section class="material-block"><h3>Interfaces funcionales y Optional</h3><p>Una interfaz funcional tiene un único método abstracto. Predicate devuelve boolean; Function transforma; Consumer consume; Supplier produce. Optional representa presencia o ausencia; get sobre empty lanza una excepción.</p><p>Recuerda: Predicate pregunta; Function transforma.</p><p>Evita confundir: Optional no elimina automáticamente todos los NullPointerException.</p></section></article><article class="material-panel" data-material-panel="" hidden="" id="material-colecciones"><h2>Colecciones, Streams y lambdas</h2><section class="material-block"><h3>List, Set y Map</h3><p>List guarda una secuencia y admite duplicados. Set evita duplicados. Map asocia claves únicas a valores. ArrayList mantiene orden de inserción y admite cambios; no ordena por valor automáticamente.</p><p>Recuerda: List secuencia; Set únicos; Map clave-valor.</p><p>Evita confundir: Orden de inserción no equivale a orden alfabético.</p></section><section class="material-block"><h3>Comparable y Comparator</h3><p>Comparable define compareTo y el orden natural en la clase. Comparator permite comparaciones externas distintas. TreeSet utiliza orden natural o un comparador.</p><p>Recuerda: Comparable dentro; Comparator fuera.</p><p>Evita confundir: No asumas que HashSet itera en orden de inserción.</p></section><section class="material-block"><h3>equals y hashCode</h3><p>Si dos objetos son iguales según equals, deben devolver el mismo hashCode. Un mismo hash puede corresponder a objetos diferentes.</p><p>Recuerda: Iguales → mismo hash.</p><p>Evita confundir: Mismo hash no implica igualdad.</p></section><section class="material-block"><h3>Streams</h3><p>filter selecciona; map transforma; distinct elimina duplicados. Son operaciones intermedias. collect, count y reduce consumen el flujo. Los Streams se evalúan de forma perezosa y no se reutilizan tras consumirlos.</p><p>Recuerda: Intermedias preparan; terminal consume.</p><p>Evita confundir: Stream.toList() no está disponible en Java 11; usa collect(Collectors.toList()).</p></section><section class="material-block"><h3>Arrays.asList</h3><p>Devuelve una lista de tamaño fijo respaldada por el arreglo. Puedes cambiar elementos con set, pero add o remove no están soportados.</p><p>Recuerda: Tamaño fijo ≠ totalmente inmutable.</p><p>Evita confundir: ArrayList y Arrays.asList no tienen la misma capacidad de modificar tamaño.</p></section></article><article class="material-panel" data-material-panel="" hidden="" id="material-patrones"><h2>Patrones y arquitectura</h2><section class="material-block"><h3>Singleton, Strategy y State</h3><p>Singleton controla una única instancia. Strategy representa algoritmos intercambiables. State permite cambiar el comportamiento según el estado interno.</p><p>Recuerda: Singleton uno; Strategy algoritmo; State estado.</p><p>Evita confundir: Cambiar algoritmo y cambiar estado son necesidades distintas.</p></section><section class="material-block"><h3>Observer, Composite y Adapter</h3><p>Observer notifica suscriptores. Composite representa jerarquías parte-todo. Adapter hace compatible una interfaz existente con otra requerida.</p><p>Recuerda: Observer avisa; Composite árbol; Adapter conecta.</p><p>Evita confundir: No confundir jerarquía de objetos con herencia de clases.</p></section><section class="material-block"><h3>Command y Builder</h3><p>Command encapsula una solicitud como objeto. Builder permite construir objetos complejos por pasos.</p><p>Recuerda: Command acción; Builder construcción.</p><p>Evita confundir: Crear objetos por etapas no es notificar eventos.</p></section><section class="material-block"><h3>The Blob</h3><p>El antipatrón concentra demasiadas responsabilidades en una clase o librería. El ejemplo propone redistribuir comportamiento según las entidades y responsabilidades para reducir acoplamiento y facilitar pruebas.</p><p>Recuerda: Blob = demasiado en uno.</p><p>Evita confundir: No confundir el antipatrón con el tipo de dato binario BLOB.</p></section><section class="material-block"><h3>ASO y APX</h3><p>En la arquitectura estudiada, ASO invoca APX y APX gobierna la operación y su acceso a datos. Un acceso directo de ASO que salta esa capa puede duplicar caminos y omitir reglas y controles.</p><p>Recuerda: Respeta al responsable de la operación.</p><p>Evita confundir: Aclara primero si las flechas de un diagrama representan llamadas, dependencias o respuestas.</p></section></article><article class="material-panel" data-material-panel="" hidden="" id="material-pruebas"><h2>Pruebas, datos y transacciones</h2><section class="material-block"><h3>Arrange, Act, Assert</h3><p>Prepara datos y dependencias; ejecuta la unidad; verifica resultados, errores y efectos. Incluye casos positivos, negativos y límites relevantes.</p><p>Recuerda: Preparar → ejecutar → verificar.</p><p>Evita confundir: Nombrar JUnit y Mockito no explica las etapas de una prueba.</p></section><section class="material-block"><h3>JUnit y Mockito</h3><p>JUnit organiza pruebas y aserciones: assertEquals compara valores, assertSame identidad. Mockito simula dependencias: when/thenReturn prepara respuestas y verify comprueba interacciones.</p><p>Recuerda: JUnit verifica; Mockito aísla.</p><p>Evita confundir: Un mock no demuestra que la integración real con base de datos funcione.</p></section><section class="material-block"><h3>ACID, commit y rollback</h3><p>Atomicidad: todo o nada; consistencia: invariantes válidas; aislamiento: control de concurrencia; durabilidad: persistencia tras confirmación. COMMIT confirma y ROLLBACK revierte cambios no confirmados de su ámbito.</p><p>Recuerda: ACID protege la transacción.</p><p>Evita confundir: Un rollback local no deshace automáticamente un abono en un sistema externo.</p></section><section class="material-block"><h3>Timeout e idempotencia</h3><p>Un timeout no demuestra que la operación falló: pudo ejecutarse sin respuesta. Consulta el estado y usa la misma clave de idempotencia para reintentar sin duplicar el efecto.</p><p>Recuerda: Misma operación, misma clave.</p><p>Evita confundir: Crear un ID nuevo en cada reintento impide detectar duplicados.</p></section><section class="material-block"><h3>JDBC, claves y HTTP</h3><p>PreparedStatement parametriza valores SQL. Clave primaria identifica filas y clave foránea referencia otra clave. HTTP 401 indica ausencia de autenticación válida y 403 acceso prohibido.</p><p>Recuerda: 401 identidad; 403 permiso.</p><p>Evita confundir: Parametrizar valores no permite aceptar cualquier nombre dinámico de tabla.</p></section></article></section></div></section>
+<section class="screen" id="screen-flashcards">
+<section class="inner-hero inner-hero-cards">
+<div class="inner-hero-copy">
+<span class="home-badge">RECUERDO ACTIVO · FLIP CARDS</span>
+<div class="inner-title-wrap">
+<span aria-hidden="true" class="inner-ribbon"></span>
+<h1>No leas dos veces.<br/><strong>Intenta recordarlo.</strong></h1>
+</div>
+<p>Haz clic para voltear la tarjeta. Después marca si la dominaste o si debe volver a tu lista de repaso.</p>
+<label class="editorial-control compact-control">
+<span>Filtrar por tema</span>
+<select id="flashTopicSelect"></select>
+</label>
+</div>
+<div aria-hidden="true" class="inner-type-art">
+<span class="inner-ghost-main">CARDS</span>
+<span class="inner-ghost-number">01/88</span>
+<span class="inner-ghost-side">MEMORIA</span>
+<span class="inner-ghost-small">CONCEPTO · REGLA · TRAMPA</span>
+</div>
+</section>
+<div class="flash-stage reveal editorial-flash">
+<div class="flash-card-shell" id="flashCard">
+<div class="flash-card-inner">
+<article class="flash-face front-face">
+<span class="flash-badge" id="flashTopicLabel"></span>
+<h2 id="flashQuestion"></h2>
+<p class="flash-hint">Haz clic para ver la respuesta</p>
+</article>
+<article class="flash-face back-face">
+<span class="flash-badge alt">Respuesta</span>
+<p id="flashAnswer"></p>
+<small id="flashMemory"></small>
+</article>
+</div>
+</div>
+<div class="flash-toolbar">
+<button class="ghost-btn" id="flashPrev">Anterior</button>
+<div class="flash-meta">
+<strong id="flashCounter">1 / 1</strong>
+<small id="flashStatus">Estado: sin evaluar</small>
+</div>
+<button class="ghost-btn" id="flashNext">Siguiente</button>
+</div>
+<div class="flash-actions">
+<button class="secondary-btn danger-soft" id="flashReview">Necesito repaso</button>
+<button class="primary-btn success-soft" id="flashKnown">La recordé</button>
+</div>
+</div>
+</section>
+<section class="screen" id="screen-configure">
+<section class="inner-hero inner-hero-quiz">
+<div class="inner-hero-copy">
+<span class="home-badge">QUIZ · 5 / 10 / 20 / 58 PREGUNTAS</span>
+<div class="inner-title-wrap">
+<span aria-hidden="true" class="inner-ribbon"></span>
+<h1>Configura el reto.<br/><strong>Mide lo que sabes.</strong></h1>
+</div>
+<p>Practica con explicación inmediata o elige Como el real: 58 preguntas de todos los temas, 80% de aprobación y respuestas ocultas hasta terminar. El tiempo es configurable porque no se ha indicado la duración oficial.</p>
+</div>
+<div aria-hidden="true" class="inner-type-art">
+<span class="inner-ghost-main">QUIZ</span>
+<span class="inner-ghost-number">58Q</span>
+<span class="inner-ghost-side">SIMULADOR</span>
+<span class="inner-ghost-small">PRÁCTICA · EXAMEN · REPASO</span>
+</div>
+</section>
+<form class="config-layout reveal editorial-config" id="quizConfig">
+<article class="config-card" data-step="01">
+<h3>Modalidad</h3>
+<label class="choice-block">
+<input checked="" name="mode" type="radio" value="practice"/>
+<span><strong>Práctica</strong><small>Retroalimentación inmediata después de cada pregunta.</small></span>
+</label>
+<label class="choice-block">
+<input name="mode" type="radio" value="simulation"/>
+<span><strong>Simulación</strong><small>Resultados y explicaciones hasta el final.</small></span>
+</label>
+<label class="choice-block"><input name="mode" type="radio" value="real"/><span><strong>Como el real · 58 preguntas</strong><small>Todos los temas · 47 aciertos para aprobar · sin pistas hasta finalizar.</small></span></label></article>
+<article class="config-card" data-step="02">
+<h3>Número de preguntas</h3>
+<div class="chip-row"><label class="pill-choice"><input name="count" type="radio" value="5"/><span>5</span></label><label class="pill-choice"><input checked="" name="count" type="radio" value="10"/><span>10</span></label><label class="pill-choice"><input name="count" type="radio" value="20"/><span>20</span></label><label class="pill-choice"><input name="count" type="radio" value="58"/><span>58</span></label></div>
+<p class="muted">Formato indicado: 58 preguntas, 80% mínimo (47 aciertos). Cada reactivo vale un punto; en multirrespuesta debes marcar todas las correctas y ninguna incorrecta.</p>
+</article>
+<article class="config-card" data-step="03">
+<h3>Enfoque</h3>
+<label class="input-stack">
+<span>Filtro de preguntas</span>
+<select id="quizTopic" name="topic">
+<option value="all">Todos los temas</option>
+<option value="weak">Mis temas más débiles</option>
+<option value="mistakes">Solo errores guardados</option>
+</select>
+</label>
+<label class="switch-row">
+<input id="timerCheck" type="checkbox"/>
+<span><strong>Activar temporizador</strong><small>Práctica: 75 segundos por pregunta. Simulación: reloj global configurable; no es una duración oficial.</small></span>
+</label>
+<label class="input-stack"><span>Minutos de simulación (opcional)</span><input id="examMinutes" max="300" min="1" type="number" value="90"/><small>90 es un valor de práctica editable. Activa el reloj si quieres usarlo.</small></label></article>
+<aside class="config-summary-box">
+<span class="section-kicker">Resumen</span>
+<h2 id="configTitle">Práctica de 10 preguntas</h2>
+<p id="configText">Todos los temas · explicación inmediata</p>
+<div class="goal-pill" id="configGoal">Práctica corta: 10 preguntas</div>
+<button class="primary-btn wide" type="submit">Comenzar</button>
+</aside>
+</form>
+<section class="exact-quiz-section">
+<div class="exact-quiz-heading">
+<span class="home-badge">SIMULACROS · 58 PREGUNTAS</span>
+<h2>Simulacros completos</h2>
+<p>Dos combinaciones fijas para comparar intentos. Como el real genera una selección nueva. La distribución por temas es de práctica, no una ponderación oficial.</p>
+</div>
+<div class="exact-quiz-grid">
+<article class="exact-quiz-card">
+<span class="exact-quiz-number">01</span><div><small>58 PREGUNTAS · EQUILIBRADO</small><h3>Simulacro APX A</h3><p>APX Online y Batch, Java, herramientas, patrones y pruebas.</p></div>
+<button class="home-btn home-btn-primary" data-exact-quiz="simulacro-general-a" type="button">Iniciar</button>
+</article>
+<article class="exact-quiz-card">
+<span class="exact-quiz-number">02</span><div><small>58 PREGUNTAS · EQUILIBRADO</small><h3>Simulacro APX B</h3><p>APX Online y Batch, Java, herramientas, patrones y pruebas.</p></div>
+<button class="home-btn home-btn-primary" data-exact-quiz="simulacro-general-b" type="button">Iniciar</button>
+</article>
+
+
+</div>
+</section>
+</section>
+<section class="screen" id="screen-exam">
+<div class="exam-shell reveal">
+<header class="exam-head">
+<div>
+<span class="hero-pill soft" id="examModeBadge">Práctica</span>
+<strong id="examProgressText">Pregunta 1 de 58</strong>
+</div>
+<div class="exam-tools">
+<button class="ghost-btn danger-soft" id="leaveExam">Salir</button>
+</div>
+</header>
+<div class="progress-line"><span id="examProgressBar"></span></div>
+<article class="question-card">
+<div class="question-topline">
+<span class="tag-badge" id="questionTopic"></span>
+<span class="muted-strong" id="questionDifficulty"></span>
+<span class="muted-strong" id="questionType"></span>
+</div>
+<h1 id="questionText"></h1>
+<p class="muted">En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java 11), salvo que la pregunta evalúe explícitamente la compilación.</p><pre class="question-code hidden" id="questionCode"><code></code></pre>
+<form class="answer-grid" id="answerForm"></form>
+<div aria-live="polite" class="timer-box exam-timer-inline hidden" id="examTimer">01:15</div>
+<div class="feedback-box hidden" id="feedbackBox">
+<strong id="feedbackTitle"></strong>
+<p id="feedbackText"></p>
+<small id="feedbackSource"></small>
+</div>
+<div class="question-actions">
+<button class="ghost-btn" id="flagQuestion" type="button">Marcar para revisar</button><button class="ghost-btn" id="finishExam" type="button">Entregar examen</button><button class="ghost-btn" id="prevQuestion" type="button">Anterior</button>
+<button class="primary-btn" id="mainQuestionAction" type="button">Comprobar</button>
+</div>
+</article>
+<section class="question-navigator-section">
+<div class="question-navigator-heading">
+<span class="home-badge">ÍNDICE DEL CUESTIONARIO</span>
+<p>Salta entre preguntas. Azul: respondida. Borde ámbar: marcada para revisar. En modo examen puedes modificar respuestas hasta entregar.</p>
+</div>
+<nav aria-label="Índice de preguntas" class="question-navigator" id="questionNavigator"></nav>
+</section>
+</div>
+</section>
+<section class="screen" id="screen-results">
+<div class="results-stage reveal">
+<section class="results-hero">
+<div class="score-disc">
+<strong id="resultScore">0%</strong>
+<span id="resultStatus">Pendiente</span>
+</div>
+<div class="result-copy">
+<span class="hero-pill soft">RESULTADO</span>
+<h1 id="resultTitle">Resumen del intento</h1>
+<p id="resultSummary"></p>
+<div class="hero-actions">
+<button class="primary-btn" id="retryQuiz">Reintentar</button>
+<button class="ghost-btn" data-route="mistakes">Ver errores</button>
+</div>
+</div>
+</section>
+<section class="results-grid">
+<article class="feature-panel">
+<div class="section-kicker">Desglose</div>
+<h3>Rendimiento por tema</h3>
+<div id="topicBreakdown"></div>
+</article>
+<article class="feature-panel">
+<div class="section-kicker">Siguiente paso</div>
+<h3 id="resultAdviceTitle">Sigue reforzando</h3>
+<p id="resultAdviceText"></p>
+</article>
+</section>
+<section class="review-panel">
+<div class="section-kicker">Revisión pregunta por pregunta</div>
+<div id="answerReview"></div>
+</section>
+</div>
+</section>
+<section class="screen" id="screen-mistakes">
+<section class="inner-hero inner-hero-errors">
+<div class="inner-hero-copy">
+<span class="home-badge">ERRORES · REPASO DIRIGIDO</span>
+<div class="inner-title-wrap">
+<span aria-hidden="true" class="inner-ribbon"></span>
+<h1>Fallar sirve.<br/><strong>Si vuelves al error.</strong></h1>
+</div>
+<p>Las preguntas que fallas quedan guardadas en este navegador para volver a practicarlas de forma dirigida.</p>
+<button class="home-btn home-btn-primary" id="practiceMistakes">Practicar errores</button>
+</div>
+<div aria-hidden="true" class="inner-type-art">
+<span class="inner-ghost-main">ERROR</span>
+<span class="inner-ghost-number">↻</span>
+<span class="inner-ghost-side">REPASO</span>
+<span class="inner-ghost-small">FALLA · ENTIENDE · REPITE</span>
+</div>
+</section>
+<div class="mistakes-layout reveal editorial-mistakes" id="mistakesList"></div>
+</section>
+<section class="screen" id="screen-progress">
+<section class="inner-hero inner-hero-progress">
+<div class="inner-hero-copy">
+<span class="home-badge">PROGRESO · HISTORIAL PERSONAL</span>
+<div class="inner-title-wrap">
+<span aria-hidden="true" class="inner-ribbon"></span>
+<h1>Mide el avance.<br/><strong>No la sensación.</strong></h1>
+</div>
+<p>Consulta tu historial, promedio, tarjetas dominadas y rendimiento por tema. Los datos se guardan en este navegador.</p>
+<button class="home-btn home-btn-secondary danger-soft" id="clearProgress">Borrar progreso</button>
+</div>
+<div aria-hidden="true" class="inner-type-art">
+<span class="inner-ghost-main">DATA</span>
+<span class="inner-ghost-number">58Q</span>
+<span class="inner-ghost-side">PROGRESO</span>
+<span class="inner-ghost-small">INTENTOS · TEMAS · ERRORES</span>
+</div>
+</section>
+<section class="stats-wall reveal editorial-stats">
+<article><small>Intentos</small><strong id="progressAttempts">0</strong></article>
+<article><small>Promedio</small><strong id="progressAverage">0%</strong></article>
+<article><small>Mejor</small><strong id="progressBest">0%</strong></article>
+<article><small>Tarjetas dominadas</small><strong id="progressCards">0</strong></article>
+</section>
+<section class="results-grid reveal">
+<article class="feature-panel">
+<div class="section-kicker">Temas</div>
+<h3>Dominio por tema</h3>
+<div id="progressTopics"></div>
+</article>
+<article class="feature-panel">
+<div class="section-kicker">Historial</div>
+<h3>Últimos intentos</h3>
+<div id="historyList"></div>
+</article>
+</section>
+</section>
+<footer class="source-footer"><strong>APX · Study Lab</strong><p>Preparación basada en APX.pdf, MiGuiaAPX 2.pdf, Java.pdf y el README de contexto. Banco adaptado al estilo de los ejemplos; no es un examen oficial ni garantiza que aparezcan estos reactivos.</p><p>Formato y umbral indicados por ti: 58 preguntas · 80%. Regla del simulador: un punto por reactivo, multirrespuesta exacta. Duración y ponderaciones oficiales pendientes de confirmar.</p><a href="sources/APX.pdf" rel="noopener" target="_blank">Ejemplo APX</a> · <a href="sources/Java.pdf" rel="noopener" target="_blank">Ejemplo Java</a> · <a href="sources/MiGuiaAPX.pdf" rel="noopener" target="_blank">Guía APX</a></footer></main>
+<div class="toast" id="toast"></div>
+<script src="data/topics.js"></script>
+<script src="data/questions.js"></script>
+<script src="data/exam-sets.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
