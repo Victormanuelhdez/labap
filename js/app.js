@@ -350,7 +350,9 @@
 
   function pickQuestionPool(topicMode) {
     let pool = [...QUESTIONS];
-    if (topicMode === 'guia2') {
+    if (topicMode === 'code-guide' || topicMode === 'code-general') {
+      pool = QUESTIONS.filter(q => typeof q.code === 'string' && q.code.trim() && (topicMode === 'code-guide' ? q.origin === 'guia2' : q.origin !== 'guia2'));
+    } else if (topicMode === 'guia2') {
       pool = QUESTIONS.filter(q => q.origin === 'guia2');
     } else if (topicMode === 'mistakes') {
       pool = state.mistakes.map(id => questionById[id]).filter(Boolean);
@@ -362,7 +364,7 @@
         .map(x => x.topicId);
       pool = topicStats.length ? QUESTIONS.filter(q => topicStats.includes(q.topic)) : [...QUESTIONS];
     }
-    if (!pool.length && topicMode !== 'guia2') pool = [...QUESTIONS];
+    if (!pool.length && !['guia2', 'code-guide', 'code-general'].includes(topicMode)) pool = [...QUESTIONS];
     return shuffle(uniqueQuestionPool(pool));
   }
 
@@ -813,6 +815,13 @@
       if (guideButton) {
         const practice = guideButton.dataset.guideQuiz === 'practice';
         startQuiz({ mode: practice ? 'practice' : 'simulation', count: Number(document.getElementById('guideQuestionCount').value), topicMode: 'guia2', withTimer: false });
+      }
+
+      const codeButton = e.target.closest('[data-code-source]');
+      if (codeButton) {
+        const guide = codeButton.dataset.codeSource === 'guide';
+        const count = Number(document.getElementById(guide ? 'guideCodeCount' : 'generalCodeCount').value);
+        startQuiz({ mode: codeButton.dataset.codeMode === 'practice' ? 'practice' : 'simulation', count, topicMode: guide ? 'code-guide' : 'code-general', withTimer: false });
       }
 
       const exactQuizButton = e.target.closest('[data-exact-quiz]');
