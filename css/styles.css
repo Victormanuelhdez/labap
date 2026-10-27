@@ -3452,3 +3452,14 @@ body.dark .material-mini-review {
 [hidden]{display:none!important}.question-code{overflow:auto;max-width:100%}.answer-option input{flex-shrink:0}
 @media(max-width:600px){.question-actions button{flex:1 1 44%;font-size:13px}.source-footer{padding:18px}.hero-type-art{overflow:hidden}.study-layout{min-width:0}.study-stage{min-width:0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Vista ampliada del código de la pregunta. */
+.code-expand-controls { display: flex; justify-content: flex-end; margin: 0 0 12px; }
+.code-dialog { width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 0; border: 0; border-radius: 20px; background: #11141d; color: #f4f5f8; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
+.code-dialog::backdrop { background: rgba(0,0,0,.72); }
+.code-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1px solid #3f4655; }
+.code-dialog-heading h2 { margin: 0; color: #fff; font-size: 1.1rem; }
+.code-dialog-close { flex-shrink: 0; padding: 9px 14px; border: 1px solid #8b94a8; border-radius: 10px; background: #202737; color: #fff; cursor: pointer; font: inherit; }
+.code-dialog-close:focus-visible { outline: 3px solid #9fb5ff; outline-offset: 3px; }
+.code-dialog-content { margin: 0; padding: 22px; max-height: calc(100dvh - 120px); overflow: auto; white-space: pre; word-break: normal; color: #fff; font: 500 1rem/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; tab-size: 4; }
+@media (max-width: 600px) { .code-dialog-heading { padding: 14px 16px; } .code-dialog-content { padding: 16px; font-size: .95rem; } }

@@ -318,7 +318,7 @@ html
 <span class="muted-strong" id="questionType"></span>
 </div>
 <h1 id="questionText"></h1>
-<p class="muted">En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java 11), salvo que la pregunta evalúe explícitamente la compilación.</p><pre class="question-code hidden" id="questionCode"><code></code></pre>
+<p class="muted">En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java 11), salvo que la pregunta evalúe explícitamente la compilación.</p><div class="code-expand-controls" id="codeExpandControls" hidden><button class="ghost-btn" id="openCodeDialog" type="button" aria-haspopup="dialog" aria-controls="codeDialog">Ampliar código ↗</button></div><pre class="question-code hidden" id="questionCode"><code></code></pre>
 <form class="answer-grid" id="answerForm"></form>
 <div aria-live="polite" class="timer-box exam-timer-inline hidden" id="examTimer">01:15</div>
 <div class="feedback-box hidden" id="feedbackBox">
@@ -433,6 +433,10 @@ html
 </section>
 </section>
 <footer class="source-footer"><strong>APX · Study Lab</strong><p>Preparación basada en APX.pdf, MiGuiaAPX 2.pdf, Java.pdf y el README de contexto. Banco adaptado al estilo de los ejemplos; no es un examen oficial ni garantiza que aparezcan estos reactivos.</p><p>Formato y umbral indicados por ti: 58 preguntas · 80%. Regla del simulador: un punto por reactivo, multirrespuesta exacta. Duración y ponderaciones oficiales pendientes de confirmar.</p><a href="sources/APX.pdf" rel="noopener" target="_blank">Ejemplo APX</a> · <a href="sources/Java.pdf" rel="noopener" target="_blank">Ejemplo Java</a> · <a href="sources/MiGuiaAPX.pdf" rel="noopener" target="_blank">Guía APX</a> · <a href="sources/MiGuiaAPX-2.pdf" rel="noopener" target="_blank">MiGuiaAPX 2 (1)</a></footer></main>
+<dialog class="code-dialog" id="codeDialog" aria-labelledby="codeDialogTitle">
+<div class="code-dialog-heading"><h2 id="codeDialogTitle">Código de la pregunta</h2><button class="code-dialog-close" id="closeCodeDialog" type="button" aria-label="Cerrar vista ampliada">Cerrar ✕</button></div>
+<pre class="code-dialog-content"><code id="dialogCode"></code></pre>
+</dialog>
 <div class="toast" id="toast"></div>
 <script src="data/topics.js"></script>
 <script src="data/questions.js"></script>

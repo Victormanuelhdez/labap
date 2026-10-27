@@ -461,6 +461,7 @@
     document.getElementById('flagQuestion').textContent = response.flagged ? 'Quitar marca' : 'Marcar para revisar';
     document.getElementById('finishExam').hidden = currentQuiz.mode === 'practice';
     refs.questionText.textContent = q.question;
+    document.getElementById('codeExpandControls').hidden = !q.code;
     if (q.code) {
       refs.questionCode.querySelector('code').textContent = q.code;
       refs.questionCode.classList.remove('hidden');
@@ -911,6 +912,16 @@
         withTimer: refs.timerCheck.checked
       });
     });
+
+    const codeDialog = document.getElementById('codeDialog');
+    document.getElementById('openCodeDialog').addEventListener('click', () => {
+      if (!currentQuiz) return;
+      const code = currentQuiz.questions[currentQuiz.index].code;
+      if (!code) return;
+      document.getElementById('dialogCode').textContent = code;
+      codeDialog.showModal();
+    });
+    document.getElementById('closeCodeDialog').addEventListener('click', () => codeDialog.close());
 
     document.getElementById('flagQuestion').addEventListener('click', () => {
       if (!currentQuiz) return;
