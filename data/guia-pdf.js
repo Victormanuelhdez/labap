@@ -181,7 +181,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "public class Test {\nint [] array = {1, 2, 3, 4, 5};\npublic static void main(String[] args) {\nnew Test().go(1);\n}\nvoid go( int x) {\narray[x % 5] = x++;\ngo(x);\n}\n}",
+    "code": "public class Test {\n  int [] array = {1, 2, 3, 4, 5};\n  public static void main(String[] args) {\n     new Test().go(1);\n  }\n  void go( int x) {\n     array[x % 5] = x++;\n     go(x);\n  }\n}",
     "options": [
       "A. A java.lang.ArrayIndexOutOfBoundsException is thrown.",
       "B. A java.lang.IllegalStateException is thrown.",
@@ -203,7 +203,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "class Parent {\nprivate void display() {\nSystem.out.println(\"Parent\");\n}\n}\nclass Child extends Parent {\npublic void display() {\nSystem.out.println(\"Child\");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nParent obj = new Child();\n((Child) obj).display();\n}\n}",
+    "code": "class Parent {\n  private void display() {\n    System.out.println(\"Parent\");\n  }\n}\nclass Child extends Parent {\n  public void display() {\n    System.out.println(\"Child\");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Parent obj = new Child();\n    ((Child) obj).display();\n  }\n}",
     "options": [
       "A. Child",
       "B. Parent",
@@ -245,7 +245,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the result of the following code execution involving streams?",
-    "code": "import java.util.Arrays;\nimport java.util.List;\npublic class Test {\npublic static void main(String[] args) {\nList<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);\nlong count = numbers.stream()\n.map(n -> n * 2)\n.filter(n -> n > 5)\n.count();\nSystem.out.println(count);\n}\n}",
+    "code": "import java.util.Arrays;\nimport java.util.List;\npublic class Test {\n  public static void main(String[] args) {\n    List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);\n    long count = numbers.stream()\n                              .map(n -> n * 2)\n                              .filter(n -> n > 5)\n                              .count();\n    System.out.println(count);\n  }\n}",
     "options": [
       "A. 0",
       "B. 2",
@@ -288,7 +288,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "public class Test {\npublic static void main(String... arguments) {\nfinal char a = ’A’, d = ’D’;\nchar grade = ’B’;\nswitch (grade) {\ncase a:\ncase ’B’: System.out.print(\"B\");\ncase ’C’: System.out.print(\"C\");\ncase d:\ncase ’F’: System.out.print(\"F\");\n}\n}\n}",
+    "code": "public class Test {\n  public static void main(String... arguments) {\n    final char a = ’A’, d = ’D’;\n    char grade = ’B’;\n    switch (grade) {\n      case a:\n      case ’B’: System.out.print(\"B\");\n      case ’C’: System.out.print(\"C\");\n      case d:\n      case ’F’: System.out.print(\"F\");\n    }\n  }\n}",
     "options": [
       "A. A",
       "B. BF",
@@ -312,7 +312,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the following code snippet?",
-    "code": "class StaticNonStaticBlockTest {\nstatic {\nSystem.out.println(\"Static block\");\n}\n{\nSystem.out.println(\"Instance block\");\n}\nStaticNonStaticBlockTest() {\nSystem.out.println(\"Constructor\");\n}\npublic static void staticMethod() {\nSystem.out.println(\"Static method\");\n}\npublic static void main(String[] args) {\nStaticNonStaticBlockTest.staticMethod();\nnew StaticNonStaticBlockTest();\n}\n}",
+    "code": "class StaticNonStaticBlockTest {\n  static {\n    System.out.println(\"Static block\");\n  }\n  {\n    System.out.println(\"Instance block\");\n  }\n  StaticNonStaticBlockTest() {\n    System.out.println(\"Constructor\");\n  }\n  public static void staticMethod() {\n    System.out.println(\"Static method\");\n  }\n  public static void main(String[] args) {\n    StaticNonStaticBlockTest.staticMethod();\n    new StaticNonStaticBlockTest();\n  }\n}",
     "options": [
       "A. Static method Static block Instance block Constructor",
       "B. Static block Instance block Constructor Static method",
@@ -355,7 +355,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "public class StringInternExample {\npublic static void main(String[] args) {\nString str1 = new String(\"example\");\nString str2 = \"example\";\nString str3 = str1.intern();\nSystem.out.println(str1 == str2);\nSystem.out.println(str2 == str3);\nSystem.out.println(str1 == str3);\n}\n}",
+    "code": "public class StringInternExample {\n  public static void main(String[] args) {\n    String str1 = new String(\"example\");\n    String str2 = \"example\";\n    String str3 = str1.intern();\n    System.out.println(str1 == str2);\n    System.out.println(str2 == str3);\n    System.out.println(str1 == str3);\n  }\n}",
     "options": [
       "A. false, true, false",
       "B. true, true, true",
@@ -397,7 +397,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "public class Test {\npublic static void op1(String s) {\ns += new String(\"Java\");\n}\npublic static void stringTest() {\nString msg = new String(\"Hello\");\nop1(msg);\nSystem.out.println(msg);\n}\npublic static void main(String... String) {\nstringTest();\n}\n}",
+    "code": "public class Test {\n  public static void op1(String s) {\n    s += new String(\"Java\");\n  }\n  public static void stringTest() {\n    String msg = new String(\"Hello\");\n    op1(msg);\n    System.out.println(msg);\n  }\n  public static void main(String... String) {\n    stringTest();\n  }\n}",
     "options": [
       "A. HelloJava",
       "B. Hello",
@@ -420,7 +420,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the given program’s output?",
-    "code": "import java.util.List;\nimport java.util.function.Predicate;\nclass Person {\nString name;\npublic Person(String name) {\nthis .name = name;\n}\n@Override\npublic String toString() {\nreturn name;\n}\n}\npublic class Test {\nstatic List<Person> filter(List<Person> input,\nPredicate<Person> predicate) {\nreturn input.stream().filter(predicate).toList();\n}\npublic static void main(String[] args) {\nvar a = new Person(\"John\");\nvar b = new Person(\"Jane\");\nvar c = new Person(\"Mark\");\nvar input = List.of(a, b, c);\nvar output = filter(input, p -> !p.name.startsWith(\"J\"));\nSystem.out.println(output);\n}\n}",
+    "code": "import java.util.List;\nimport java.util.function.Predicate;\nclass Person {\n  String name;\n  public Person(String name) {\n    this .name = name;\n  }\n  @Override\n  public String toString() {\n    return name;\n  }\n}\npublic class Test {\n  static List<Person> filter(List<Person> input,\n                                  Predicate<Person> predicate) {\n    return input.stream().filter(predicate).toList();\n  }\n  public static void main(String[] args) {\n    var a = new Person(\"John\");\n    var b = new Person(\"Jane\");\n    var c = new Person(\"Mark\");\n    var input = List.of(a, b, c);\n    var output = filter(input, p -> !p.name.startsWith(\"J\"));\n    System.out.println(output);\n  }\n}",
     "options": [
       "A. [John, Jane, Mark]",
       "B. null",
@@ -444,7 +444,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál será el resultado de ejecutar el siguiente código?",
-    "code": "class Parent {\npublic void display() {\nSystem.out.println(\"Parent\");\n}\n}\nclass Child extends Parent {\npublic void display() {\nSystem.out.println(\"Child\");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nParent obj = new Child();\nobj.display();\n}\n}",
+    "code": "class Parent {\n  public void display() {\n    System.out.println(\"Parent\");\n  }\n}\nclass Child extends Parent {\n  public void display() {\n    System.out.println(\"Child\");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Parent obj = new Child();\n    obj.display();\n  }\n}",
     "options": [
       "A. Parent",
       "B. Error de ejecución",
@@ -465,7 +465,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What will be the output of the following code snippet?",
-    "code": "public class OverloadedMethods {\npublic OverloadedMethods() {\nthis (10);\nSystem.out.println(\"No-argument constructor\");\n}\npublic OverloadedMethods( int x) {\nSystem.out.println(\"Constructor with int argument: \" + x);\n}\npublic void calculate() {\nSystem.out.println(\"No-argument calculate method\");\n}\npublic void calculate( int x) {\nSystem.out.println(\"Calculate method with int argument: \" + x);\n}\npublic static void main(String[] args) {\nOverloadedMethods obj1 = new OverloadedMethods();\nobj1.calculate();\nobj1.calculate(5);\nOverloadedMethods obj2 = new OverloadedMethods(20);\nobj2.calculate();\nobj2.calculate(15);\n}\n}",
+    "code": "public class OverloadedMethods {\n  public OverloadedMethods() {\n    this (10);\n    System.out.println(\"No-argument constructor\");\n  }\n  public OverloadedMethods( int x) {\n    System.out.println(\"Constructor with int argument: \" + x);\n  }\n  public void calculate() {\n    System.out.println(\"No-argument calculate method\");\n  }\n  public void calculate( int x) {\n    System.out.println(\"Calculate method with int argument: \" + x);\n  }\n  public static void main(String[] args) {\n    OverloadedMethods obj1 = new OverloadedMethods();\n    obj1.calculate();\n    obj1.calculate(5);\n    OverloadedMethods obj2 = new OverloadedMethods(20);\n    obj2.calculate();\n    obj2.calculate(15);\n  }\n}",
     "options": [
       "A. No-argument constructor Constructor with int argument: 10 No-argument calculate method Calculate method with int argument: 5 Constructor with int argument: 20 Calculate method with int argument: 15 No-argument calculate method",
       "B. No-argument constructor Constructor with int argument: 10 Calculate method with int argument: 5 No-argument calculate method Constructor with int argument: 20 No-argument calculate method Calculate method with int argument: 15",
@@ -550,7 +550,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "public class Test {\nstatic boolean b;\npublic static void main(String[] args) {\nint x = 0;\nif (b) {\nx = 1;\n} else if (b = false ) {\nx = 2;\n} else if (b) {\nx = 3;\n} else {\nx = 4;\n}\nSystem.out.println(\"x = \" + x);\n}\n}",
+    "code": "public class Test {\n  static boolean b;\n  public static void main(String[] args) {\n    int x = 0;\n    if (b) {\n      x = 1;\n    } else if (b = false ) {\n      x = 2;\n    } else if (b) {\n      x = 3;\n    } else {\n      x = 4;\n    }\n    System.out.println(\"x = \" + x);\n  }\n}",
     "options": [
       "A. x = 3",
       "B. x = 0",
@@ -594,7 +594,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Qué puede suceder al intentar ejecutar el siguiente código para establecer una conexión a una base de datos?",
-    "code": "public class TestJDBC {\npublic static void main(String[] args) {\nString url = \"jdbc:mysql://localhost:3306/mydb\";\nString user = \"user\";\nString password = \"password\";\ntry {\nConnection conn = DriverManager.getConnection(url, user, password);\nSystem.out.println(\"Connection established successfully.\");\n} catch (SQLException e) {\nSystem.out.println(\"Failed to establish connection.\");\ne.printStackTrace();\n}\n}\n}",
+    "code": "public class TestJDBC {\n  public static void main(String[] args) {\n    String url = \"jdbc:mysql://localhost:3306/mydb\";\n    String user = \"user\";\n    String password = \"password\";\n    try {\n      Connection conn = DriverManager.getConnection(url, user, password);\n      System.out.println(\"Connection established successfully.\");\n    } catch (SQLException e) {\n      System.out.println(\"Failed to establish connection.\");\n      e.printStackTrace();\n    }\n  }\n}",
     "options": [
       "A. Establece la conexión exitosamente e imprime \"Connection established successfully\"",
       "B. Lanza una ClassNotFoundException.",
@@ -615,7 +615,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What will be the output of the following code snippet?",
-    "code": "public class OverloadedExample {\nprivate String name;\npublic OverloadedExample() {\nthis (\"Default\");\nSystem.out.println(\"No-argument constructor called\");\n}\npublic OverloadedExample(String name) {\nthis .name = name;\nSystem.out.println(\"Constructor with argument called: \" + name);\n}\npublic void display() {\nSystem.out.println(\"Name: \" + name);\n}\npublic void display(String prefix) {\nSystem.out.println(prefix + \":\" + name);\n}\npublic static void main(String[] args) {\nOverloadedExample obj1 = new OverloadedExample();\nobj1.display();\nobj1.display(\"Hello\");\nOverloadedExample obj2 = new OverloadedExample(\"John\");\nobj2.display();\nobj2.display(\"Hi\");\n}\n}",
+    "code": "public class OverloadedExample {\n  private String name;\n  public OverloadedExample() {\n    this (\"Default\");\n    System.out.println(\"No-argument constructor called\");\n  }\n  public OverloadedExample(String name) {\n    this .name = name;\n    System.out.println(\"Constructor with argument called: \" + name);\n  }\n  public void display() {\n    System.out.println(\"Name: \" + name);\n  }\n  public void display(String prefix) {\n    System.out.println(prefix + \":\" + name);\n  }\n  public static void main(String[] args) {\n    OverloadedExample obj1 = new OverloadedExample();\n    obj1.display();\n    obj1.display(\"Hello\");\n    OverloadedExample obj2 = new OverloadedExample(\"John\");\n    obj2.display();\n    obj2.display(\"Hi\");\n  }\n}",
     "options": [
       "A. No-argument constructor called Constructor with argument called: Default Name: Default Hello:Default Constructor with argument called: John Name: John Hi:John",
       "B. No-argument constructor called Constructor with argument called: Default Name: Default Hello: Default Constructor with argument called: John Hi: John Name: John",
@@ -680,7 +680,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Which statement about the following code is correct?",
-    "code": "class Base {\npublic Base() {\nSystem.out.println(\"Base constructor\");\n}\npublic Base(String message) {\nSystem.out.println(\"Base constructor with message: \" + message);\n}\n}\nclass Derived extends Base {\npublic Derived() {\nsuper (\"Hello\");\nSystem.out.println(\"Derived constructor\");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nDerived derived = new Derived();\n}\n}",
+    "code": "class Base {\n  public Base() {\n    System.out.println(\"Base constructor\");\n  }\n  public Base(String message) {\n    System.out.println(\"Base constructor with message: \" + message);\n  }\n}\nclass Derived extends Base {\n  public Derived() {\n    super (\"Hello\");\n    System.out.println(\"Derived constructor\");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Derived derived = new Derived();\n  }\n}",
     "options": [
       "A. It will print \"Base constructor\" followed by \"Derived constructor\".",
       "B. It will print \"Base constructor with message: Hello\" followed by \"Derived constructor\".",
@@ -855,7 +855,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class LoopQuestion {\npublic static void main(String[] args) {\nint count = 0;\nfor ( int i = 0; i < 10; i++) {\nif (i % 2 == 0) {\ncount++;\n}\n}\nSystem.out.println(\"Count: \" + count);\n}\n}",
+    "code": "public class LoopQuestion {\n  public static void main(String[] args) {\n    int count = 0;\n    for ( int i = 0; i < 10; i++) {\n      if (i % 2 == 0) {\n        count++;\n      }\n    }\n    System.out.println(\"Count: \" + count);\n  }\n}",
     "options": [
       "A. Compilation fails.",
       "B. Count: 5",
@@ -877,7 +877,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the output of the following program?",
-    "code": "public class Test {\npublic static void main(String[] args) {\nint x = 0;\nwhile (x++ < 5) {\n// Empty loop body\n}\nString message = x > 5 ? \"greater than\" : false ;\nSystem.out.println(message + \" - \" + x);\n}\n}",
+    "code": "public class Test {\n  public static void main(String[] args) {\n    int x = 0;\n    while (x++ < 5) {\n      // Empty loop body\n    }\n    String message = x > 5 ? \"greater than\" : false ;\n    System.out.println(message + \" - \" + x);\n  }\n}",
     "options": [
       "A. false than - 6",
       "B. greater than - 6",
@@ -1092,7 +1092,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "import java.util.*;\npublic class Test {\npublic static void main(String[] args) {\nList<Item> items = new ArrayList<>();\nitems.add( new Item(\"Apple\", 3));\nitems.add( new Item(\"Banana\", 2));\nitems.add( new Item(\"Cherry\", 1));\nCollections.sort(items);\nfor (Item item : items) {\nSystem.out.println(item.getName() + \": \" + item.getPrice());\n}}}\nclass Item implements Comparable<Item> {\nprivate String name;\nprivate Integer price;\npublic Item(String name, int price) {\nthis .name = name;\nthis .price = price;\n}\npublic String getName() { return name; }\npublic int getPrice() { return price; }\n@Override\npublic int compareTo(Item other) {\nreturn this .price.compareTo(other.price);\n}\n}",
+    "code": "import java.util.*;\npublic class Test {\n  public static void main(String[] args) {\n    List<Item> items = new ArrayList<>();\n    items.add( new Item(\"Apple\", 3));\n    items.add( new Item(\"Banana\", 2));\n    items.add( new Item(\"Cherry\", 1));\n    Collections.sort(items);\n    for (Item item : items) {\n      System.out.println(item.getName() + \": \" + item.getPrice());\n}}}\nclass Item implements Comparable<Item> {\n  private String name;\n  private Integer price;\n  public Item(String name, int price) {\n    this .name = name;\n    this .price = price;\n  }\n  public String getName() { return name; }\n  public int getPrice() { return price; }\n  @Override\n  public int compareTo(Item other) {\n    return this .price.compareTo(other.price);\n  }\n}",
     "options": [
       "A. Error de compilación debido a una implementación incorrecta de Comparable.",
       "B. Imprimirá los artículos ordenados por precio.",
@@ -1113,7 +1113,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Dado el siguiente código: ¿Cuál es el tipo de retorno válido de punto flotante más restringido para el método?",
-    "code": "public class Test {\ndoMath( long l, short s) {\nreturn s / (l * 10);\n}\n}",
+    "code": "public class Test {\n  doMath( long l, short s) {\n    return s / (l * 10);\n  }\n}",
     "options": [
       "A. long",
       "B. float",
@@ -1158,7 +1158,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "import java.util.ArrayList;\npublic class Test {\npublic static void main(String[] args) {\nString v = new String();\nStringBuffer sb = new StringBuffer();\nclass MyList extends ArrayList {}\nSystem.out.println((v instanceof String) &&\n(sb instanceof Object) && ( new MyList() instanceof ArrayList));\n}\n}",
+    "code": "import java.util.ArrayList;\npublic class Test {\n  public static void main(String[] args) {\n    String v = new String();\n    StringBuffer sb = new StringBuffer();\n    class MyList extends ArrayList {}\n    System.out.println((v instanceof String) &&\n      (sb instanceof Object) && ( new MyList() instanceof ArrayList));\n  }\n}",
     "options": [
       "A. false",
       "B. true",
@@ -1181,7 +1181,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál de las siguientes sentencias compila dentro del métodotest()? 2 4 6 11 13",
-    "code": "class Animal {\nAnimal() { }\nAnimal(String name) { }\nvoid sound() {\nSystem.out.println(\"Animal\");\n}\n}\nclass Dog extends Animal {\nvoid test() {\n// Insert Code\n}\n}",
+    "code": "class Animal {\n    Animal() { }\n    Animal(String name) { }\n    void sound() {\n      System.out.println(\"Animal\");\n    }\n}\nclass Dog extends Animal {\n    void test() {\n      // Insert Code\n    }\n}",
     "options": [
       "A. super();",
       "B. super(\"Dog\");",
@@ -1202,7 +1202,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\npublic static void main(String[] args) {\nString str = \"a1b2c3d4e5f6\";\nString[] parts = str.split(\"\\\\D\");\nfor (String part : parts) {\nSystem.out.print(part + \" \");\n}\n}\n}",
+    "code": "public class Test {\n  public static void main(String[] args) {\n    String str = \"a1b2c3d4e5f6\";\n    String[] parts = str.split(\"\\\\D\");\n    for (String part : parts) {\n      System.out.print(part + \" \");\n    }\n  }\n}",
     "options": [
       "A. 1 2 3 4 5 6",
       "B. Compilation fails.",
@@ -1225,7 +1225,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\nstatic int co = 0;\npublic static void main(String[] args) {\nint x = 1;\nfor (test(’1’); test(’2’) && (x <= 2); test(’3’)) {\nx++;\ntest(’4’);\n}\nSystem.out.println(\" The co value = \" + co);\n}\nstatic boolean test( char num) {\nSystem.out.print(\"\" + num);\nco++;\nreturn true ;\n}\n}",
+    "code": "public class Test {\n  static int co = 0;\n  public static void main(String[] args) {\n    int x = 1;\n    for (test(’1’); test(’2’) && (x <= 2); test(’3’)) {\n       x++;\n       test(’4’);\n    }\n    System.out.println(\" The co value = \" + co);\n  }\n  static boolean test( char num) {\n    System.out.print(\"\" + num);\n    co++;\n    return true ;\n  }\n}",
     "options": [
       "A. 12432432 The co value = 8",
       "B. 1234 The co value = 4",
@@ -1269,7 +1269,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "import java.time.LocalDateTime;\nimport java.time.Period;\nimport java.time.format.DateTimeFormatter;\nimport java.time.format.FormatStyle;\npublic class Test {\npublic static void main(String[] argv) {\nLocalDateTime d = LocalDateTime.of(1997, 5, 15, 23, 55, 30);\nPeriod p = Period.of(1, 2, 3);\nd = d.minus(p);\nDateTimeFormatter f =\nDateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);\nSystem.out.println(d.format(f));\n}\n}",
+    "code": "import java.time.LocalDateTime;\nimport java.time.Period;\nimport java.time.format.DateTimeFormatter;\nimport java.time.format.FormatStyle;\npublic class Test {\n  public static void main(String[] argv) {\n    LocalDateTime d = LocalDateTime.of(1997, 5, 15, 23, 55, 30);\n    Period p = Period.of(1, 2, 3);\n    d = d.minus(p);\n    DateTimeFormatter f =\n      DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);\n    System.out.println(d.format(f));\n  }\n}",
     "options": [
       "A. 15/05/1997",
       "B. The code does not compile",
@@ -1358,7 +1358,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the given code fragment’s output?",
-    "code": "import java.util.Arrays;\npublic class Test {\npublic static void main(String[] args) {\nString[] strings = { \"2\", \"3\", \"1\", \"4\" };\nArrays.sort(strings, 1, 4);\nSystem.out.println(Arrays.toString(strings));\n}\n}",
+    "code": "import java.util.Arrays;\npublic class Test {\n  public static void main(String[] args) {\n    String[] strings = { \"2\", \"3\", \"1\", \"4\" };\n    Arrays.sort(strings, 1, 4);\n    System.out.println(Arrays.toString(strings));\n  }\n}",
     "options": [
       "A. [2, 3, 1, 4]",
       "B. [2, 1, 3, 4]",
@@ -1380,7 +1380,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "class Exc1 extends Exception {}\nclass Exc2 extends Exception {}\npublic class Test {\nstatic void a() throws Exc1 {\ntry {\nSystem.out.print(\"Try \");\n} catch (Exc1 e) {\nSystem.out.print(\"Catch \");\n} finally {\nSystem.out.println(\"Finally \");\n}\n}\nstatic void b() throws Exc1, Exc2 {\nthrow new Exc2();\n}\npublic static void main(String args[]) {\ntry {\na();\nb();\n} catch (Exc1 e) {\nSystem.out.println(\"Caught1\");\n} catch (Exc2 ex) {\nSystem.out.print(\"Caught2\");\n}\n}\n}",
+    "code": "class Exc1 extends Exception {}\nclass Exc2 extends Exception {}\npublic class Test {\n  static void a() throws Exc1 {\n    try {\n      System.out.print(\"Try \");\n    } catch (Exc1 e) {\n      System.out.print(\"Catch \");\n    } finally {\n      System.out.println(\"Finally \");\n    }\n  }\n  static void b() throws Exc1, Exc2 {\n    throw new Exc2();\n  }\n  public static void main(String args[]) {\n    try {\n      a();\n      b();\n    } catch (Exc1 e) {\n      System.out.println(\"Caught1\");\n    } catch (Exc2 ex) {\n      System.out.print(\"Caught2\");\n    }\n  }\n}",
     "options": [
       "A. Try Finally Caught2",
       "B. La compilación falla",
@@ -1448,7 +1448,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the following code snippet?",
-    "code": "import java.io.Closeable;\nimport java.io.IOException;\nclass Resource implements AutoCloseable {\n@Override\npublic void close() {\nSystem.out.print(\"Resource closed \");\n}\npublic void use() {\nSystem.out.print(\"Resource used \");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\ntry (Resource resource = new Resource()) {\nresource.use();\n} catch (Exception e) {\ne.printStackTrace();\n}\n}\n}",
+    "code": "import java.io.Closeable;\nimport java.io.IOException;\nclass Resource implements AutoCloseable {\n  @Override\n  public void close() {\n    System.out.print(\"Resource closed \");\n  }\n  public void use() {\n    System.out.print(\"Resource used \");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    try (Resource resource = new Resource()) {\n      resource.use();\n    } catch (Exception e) {\n      e.printStackTrace();\n    }\n  }\n}",
     "options": [
       "A. Compilation error.",
       "B. Resource used Resource closed.",
@@ -1511,7 +1511,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class NestedLoopTest {\npublic static void main(String[] args) {\nfor ( int i = 1; i <= 3; i++) {\nfor ( int j = 1; j <= 2; j++) {\nSystem.out.println(\"i.\"+i + \",\" + \"j.\"+j);\n}}}}",
+    "code": "public class NestedLoopTest {\n  public static void main(String[] args) {\n     for ( int i = 1; i <= 3; i++) {\n       for ( int j = 1; j <= 2; j++) {\n         System.out.println(\"i.\"+i + \",\" + \"j.\"+j);\n}}}}",
     "options": [
       "A. i.1,j.1 i.1,j.2 i.2,j.1 i.2,j.2 i.3,j.1 i.3,j.2",
       "B. i.1,j.1 i.2,j.2 i.3,j.3",
@@ -1532,7 +1532,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál es la salida del siguiente código?",
-    "code": "import java.time.LocalDate;\nimport java.time.Month;\npublic class Test {\npublic static void main(String[] argv) {\nLocalDate date = LocalDate.of(1997, Month.MAY, 50);\nSystem.out.println(date.getYear() + \"-\" + date.getMonth()\n+ \"-\" + date.getDayOfMonth());\n}\n}",
+    "code": "import java.time.LocalDate;\nimport java.time.Month;\npublic class Test {\n  public static void main(String[] argv) {\n    LocalDate date = LocalDate.of(1997, Month.MAY, 50);\n    System.out.println(date.getYear() + \"-\" + date.getMonth()\n     + \"-\" + date.getDayOfMonth());\n  }\n}",
     "options": [
       "A. 1997-MAY-15",
       "B. 1997-JUN-15",
@@ -1576,7 +1576,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Consider the following Java Code: What will be the output of the above code?",
-    "code": "class Animal {\npublic void makeSound() {\nSystem.out.println(\"Sound\");\n}\npublic void makeSound(String sound) {\nSystem.out.println(sound);\n}\n}\nclass Dog extends Animal {\n@Override\npublic void makeSound() {\nSystem.out.println(\"Bark\");\n}\npublic void makeSound( int times) {\nfor ( int i = 0; i < times; i++) {\nSystem.out.println(\"Bark\");\n}\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nAnimal animal = new Animal();\nAnimal dog = new Dog();\nanimal.makeSound();\nanimal.makeSound(\"Roar\");\ndog.makeSound();\ndog.makeSound(\"Growl\");\n}\n}",
+    "code": "class Animal {\n  public void makeSound() {\n    System.out.println(\"Sound\");\n  }\n  public void makeSound(String sound) {\n    System.out.println(sound);\n  }\n}\nclass Dog extends Animal {\n  @Override\n  public void makeSound() {\n    System.out.println(\"Bark\");\n  }\n  public void makeSound( int times) {\n    for ( int i = 0; i < times; i++) {\n      System.out.println(\"Bark\");\n    }\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Animal animal = new Animal();\n    Animal dog = new Dog();\n    animal.makeSound();\n    animal.makeSound(\"Roar\");\n    dog.makeSound();\n    dog.makeSound(\"Growl\");\n  }\n}",
     "options": [
       "A. Sound Roar Bark Roard",
       "B. Sound Roar Bark Growl",
@@ -1682,7 +1682,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\npublic static void main(String[] args) {\ntry {\nmf();\nSystem.out.print(\"A\");\n} catch (Exception e) {\nSystem.out.print(\"B\");\n} finally {\nSystem.out.print(\"C\");\n}\nSystem.out.print(\"D\");\n}\nstatic void mf() {\n}\n}",
+    "code": "public class Test {\n  public static void main(String[] args) {\n    try {\n      mf();\n      System.out.print(\"A\");\n    } catch (Exception e) {\n      System.out.print(\"B\");\n    } finally {\n      System.out.print(\"C\");\n    }\n    System.out.print(\"D\");\n  }\n  static void mf() {\n  }\n}",
     "options": [
       "A. ABCD",
       "B. ACD",
@@ -1748,7 +1748,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "public class Test {\npublic static void main(String[] args) {\nfloat f = 3.14f;\nnew Test().doIt(f);\n}\nvoid doIt(Float f) {\nSystem.out.println(\"Float\");\n}\nvoid doIt( double d) {\nSystem.out.println(\"double\");\n}\nvoid doIt( float ... fs) {\nSystem.out.println(\"varargs\");\n}\n}",
+    "code": "public class Test {\n  public static void main(String[] args) {\n    float f = 3.14f;\n    new Test().doIt(f);\n  }\n  void doIt(Float f) {\n    System.out.println(\"Float\");\n  }\n  void doIt( double d) {\n    System.out.println(\"double\");\n  }\n  void doIt( float ... fs) {\n    System.out.println(\"varargs\");\n  }\n}",
     "options": [
       "A. Compilations fails.",
       "B. An exception is thrown at runtime.",
@@ -1816,7 +1816,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result? 3 6 8",
-    "code": "public class Test {\npublic static void main(String[] args) {\ntry (AutoCloseable resource =\n() -> System.out.print(\"Resource closed \")) {\nSystem.out.print(\"Resource used \");\n} catch (Exception e) {\ne.printStackTrace();\n}\n}\n}",
+    "code": "public class Test {\n    public static void main(String[] args) {\n         try (AutoCloseable resource =\n                  () -> System.out.print(\"Resource closed \")) {\n              System.out.print(\"Resource used \");\n         } catch (Exception e) {\n             e.printStackTrace();\n         }\n    }\n}",
     "options": [
       "A. Compilation error.",
       "B. Resource used Resource closed.",
@@ -1884,7 +1884,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "import java.util.*;\npublic class ComparableTest {\npublic static void main(String[] args) {\nList<Item> items = new ArrayList<>();\nitems.add( new Item(\"Apple\", 3));\nitems.add( new Item(\"Banana\", 2));\nitems.add( new Item(\"Cherry\", 1));\nCollections.sort(items);\nfor (Item item : items) {\nSystem.out.println(item.getName() + \": \" + item.getPrice());\n}}}\nclass Item implements Comparable<Item> {\nprivate String name;\nprivate int price;\npublic Item(String name, int price) {\nthis .name = name;\nthis .price = price;\n}\npublic String getName() { return name; }\npublic int getPrice() { return price; }\n@Override\npublic int compareTo(Item other) {\nreturn this .name.compareTo(other.name);\n}\n}",
+    "code": "import java.util.*;\npublic class ComparableTest {\n  public static void main(String[] args) {\n    List<Item> items = new ArrayList<>();\n    items.add( new Item(\"Apple\", 3));\n    items.add( new Item(\"Banana\", 2));\n    items.add( new Item(\"Cherry\", 1));\n    Collections.sort(items);\n    for (Item item : items) {\n      System.out.println(item.getName() + \": \" + item.getPrice());\n}}}\nclass Item implements Comparable<Item> {\n  private String name;\n  private int price;\n  public Item(String name, int price) {\n    this .name = name;\n    this .price = price;\n  }\n  public String getName() { return name; }\n  public int getPrice() { return price; }\n  @Override\n  public int compareTo(Item other) {\n    return this .name.compareTo(other.name);\n  }\n}",
     "options": [
       "A. Apple: 3 Banana: 2 Cherry: 1",
       "B. Compilation error",
@@ -1905,7 +1905,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the following code snippet?",
-    "code": "class A {\npublic A() {System.out.println(\"A’s constructor\");\n}}\nclass B extends A {\npublic B() {\nsuper ();\nSystem.out.println(\"B’s constructor\");\n}}\nclass C extends B {\npublic C() {System.out.println(\"C’s constructor\");\n}}\npublic class Test {\npublic static void main(String[] args) {\nC c = new C();\n}\n}",
+    "code": "class A {\n  public A() {System.out.println(\"A’s constructor\");\n  }}\n class B extends A {\n   public B() {\n      super ();\n      System.out.println(\"B’s constructor\");\n      }}\n class C extends B {\n   public C() {System.out.println(\"C’s constructor\");\n   }}\n public class Test {\n   public static void main(String[] args) {\n      C c = new C();\n   }\n }",
     "options": [
       "A. A’s constructor B’s constructor C’s constructor",
       "B. C’s constructor A’s constructor B’s constructor",
@@ -1925,7 +1925,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the following code snippet? str2).toString();",
-    "code": "public class StringConcatenationTest {\npublic static void main(String[] args) {\nString str1 = \"Hello\";\nString str2 = \"World\";\nString str3 = str1 + \" \" + str2;\nString str4 = str1.concat(\" \").concat(str2);\nString str5 = new StringBuilder().append(str1).append(\" \").append(\nSystem.out.print(str3.equals(str4) + \" \");\nSystem.out.print(str4.equals(str5) + \" \");\nSystem.out.print((str3 == str4) + \" \");\nSystem.out.println(str4 == str5);\n}\n}",
+    "code": "public class StringConcatenationTest {\n  public static void main(String[] args) {\n    String str1 = \"Hello\";\n    String str2 = \"World\";\n    String str3 = str1 + \" \" + str2;\n    String str4 = str1.concat(\" \").concat(str2);\n    String str5 = new StringBuilder().append(str1).append(\" \").append(\n    System.out.print(str3.equals(str4) + \" \");\n    System.out.print(str4.equals(str5) + \" \");\n    System.out.print((str3 == str4) + \" \");\n    System.out.println(str4 == str5);\n  }\n}",
     "options": [
       "A. true true true true",
       "B. Compilation fails.",
@@ -1948,7 +1948,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result? 1\");",
-    "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\npublic class TestJDBC {\npublic static void main(String[] args) {\nString url = \"jdbc:mysql://localhost:3306/testdb\";\nString user = \"testuser\";\nString password = \"testpassword\";\ntry {\nConnection conn = DriverManager.getConnection(url, user, password);\nStatement stmt = conn.createStatement();\nResultSet rs = stmt.executeQuery(\"SELECT name FROM users WHERE id =\nwhile (rs.next()) {\nSystem.out.println(rs.getString(\"name\"));\n}\n} catch (SQLException e) {\ne.printStackTrace();\n}\n}\n}",
+    "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\npublic class TestJDBC {\n  public static void main(String[] args) {\n    String url = \"jdbc:mysql://localhost:3306/testdb\";\n    String user = \"testuser\";\n    String password = \"testpassword\";\n    try {\n      Connection conn = DriverManager.getConnection(url, user, password);\n      Statement stmt = conn.createStatement();\n      ResultSet rs = stmt.executeQuery(\"SELECT name FROM users WHERE id =\n      while (rs.next()) {\n          System.out.println(rs.getString(\"name\"));\n      }\n    } catch (SQLException e) {\n      e.printStackTrace();\n    }\n  }\n}",
     "options": [
       "A. It will throw a NullPointerException.",
       "B. It will print the name of the user with id 1.",
@@ -1993,7 +1993,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\npublic void op2(String s) {\ns.toUpperCase();\n}\npublic void op3() {\nString msg = new String(\"message\");\nop2(msg);\nSystem.out.println(msg);\n}\npublic static void main(String[] args) {\nnew Test().op3();\n}\n}",
+    "code": "public class Test {\n  public void op2(String s) {\n    s.toUpperCase();\n  }\n  public void op3() {\n    String msg = new String(\"message\");\n    op2(msg);\n    System.out.println(msg);\n  }\n  public static void main(String[] args) {\n    new Test().op3();\n  }\n}",
     "options": [
       "A. MESSAGE",
       "B. An exception is thrown at runtime.",
@@ -2015,7 +2015,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál de las siguientes afirmaciones confirma correctamente los paquetes que usa el siguiente código?",
-    "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\npublic class TestJDBC {\npublic static void main(String[] args) {\nString url = \"jdbc:mysql://localhost:3306/mydb\";\nString user = \"user\";\nString password = \"password\";\nConnection conn = null ;\nStatement stmt = null ;\nResultSet rs = null ;\ntry {\nconn = DriverManager.getConnection(url, user, password);\nstmt = conn.createStatement();\nrs = stmt.executeQuery(\"SELECT name FROM users WHERE id = 1\");\nwhile (rs.next()) {\nSystem.out.println(rs.getString(\"name\"));\n}\n} catch (SQLException e) {\ne.printStackTrace();\n} finally {\n// Close resources here\n}\n}\n}",
+    "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\npublic class TestJDBC {\n  public static void main(String[] args) {\n    String url = \"jdbc:mysql://localhost:3306/mydb\";\n    String user = \"user\";\n    String password = \"password\";\n    Connection conn = null ;\n    Statement stmt = null ;\n    ResultSet rs = null ;\n    try {\n      conn = DriverManager.getConnection(url, user, password);\n      stmt = conn.createStatement();\n      rs = stmt.executeQuery(\"SELECT name FROM users WHERE id = 1\");\n      while (rs.next()) {\n          System.out.println(rs.getString(\"name\"));\n      }\n    } catch (SQLException e) {\n      e.printStackTrace();\n    } finally {\n      // Close resources here\n    }\n  }\n}",
     "options": [
       "A. rs.close(); stmt.close(); conn.close();",
       "B. if (rs != null) rs.close(); if (conn != null) conn.close(); if (stmt != null) stmt.close();",
@@ -2036,7 +2036,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál es la respuesta verdadera?",
-    "code": "public class Test implements Runnable {\nprivate int i;\n@Override\npublic void run() {\nif (i % 10 == 0) {\ni++;\n}\nfor ( int x = 0; x < 10; x++, i++) {\nif (x == 4) {\nThread.yield();\n}\nSystem.out.println(i + \" \");\n}\n}\npublic static void main(String[] args) {\nTest n = new Test();\nfor ( int x = 0; x < 100; x++) {\nnew Thread(n).start();\n}\n}\n}",
+    "code": "public class Test implements Runnable {\n  private int i;\n  @Override\n  public void run() {\n    if (i % 10 == 0) {\n      i++;\n    }\n    for ( int x = 0; x < 10; x++, i++) {\n      if (x == 4) {\n         Thread.yield();\n      }\n      System.out.println(i + \" \");\n    }\n  }\n  public static void main(String[] args) {\n    Test n = new Test();\n    for ( int x = 0; x < 100; x++) {\n      new Thread(n).start();\n    }\n  }\n}",
     "options": [
       "A. La salida nunca puede contener el valor 297.",
       "B. La salida nunca puede contener el valor 1020.",
@@ -2057,7 +2057,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class OverloadedStaticMethods {\npublic static void display() {\nSystem.out.println(\"Display with no arguments\");\n}\npublic static void display( int num) {\nSystem.out.println(\"Display with integer: \" + num);\n}\npublic static void display(String str) {\nSystem.out.println(\"Display with string: \" + str);\n}\npublic static void main(String[] args) {\nOverloadedStaticMethods.display();\nOverloadedStaticMethods.display(5);\nOverloadedStaticMethods.display(\"Hello\");\n}\n}",
+    "code": "public class OverloadedStaticMethods {\n  public static void display() {\n    System.out.println(\"Display with no arguments\");\n  }\n  public static void display( int num) {\n    System.out.println(\"Display with integer: \" + num);\n  }\n  public static void display(String str) {\n    System.out.println(\"Display with string: \" + str);\n  }\n  public static void main(String[] args) {\n    OverloadedStaticMethods.display();\n    OverloadedStaticMethods.display(5);\n    OverloadedStaticMethods.display(\"Hello\");\n  }\n}",
     "options": [
       "A. Display with no arguments Display with string: Display with integer: Hello",
       "B. Error en compilación",
@@ -2100,7 +2100,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "import java.util.ArrayList;\nimport java.util.List;\npublic class Test {\npublic static void main(String[] args) {\nList<String> list = new ArrayList<>();\nlist.add(\"Apple\");\nlist.add(\"Banana\");\nlist.add(\"Cherry\");\nprintList(list);\nSystem.out.println(\"Size: \" + list.size());\nSystem.out.println(\"Contains ’Banana’: \" + list.contains(\"Banana\"));\nSystem.out.println(\"Element at index 1: \" + list.get(1));\n}\nprivate static void printList(List<String> list) {\nfor (String element : list) {\nSystem.out.println(element);\n}\n}\n}",
+    "code": "import java.util.ArrayList;\nimport java.util.List;\npublic class Test {\n  public static void main(String[] args) {\n    List<String> list = new ArrayList<>();\n    list.add(\"Apple\");\n    list.add(\"Banana\");\n    list.add(\"Cherry\");\n    printList(list);\n    System.out.println(\"Size: \" + list.size());\n    System.out.println(\"Contains ’Banana’: \" + list.contains(\"Banana\"));\n    System.out.println(\"Element at index 1: \" + list.get(1));\n  }\n  private static void printList(List<String> list) {\n    for (String element : list) {\n      System.out.println(element);\n    }\n  }\n}",
     "options": [
       "A. Apple Banana Cherry Size: 3 Contains ’Banana’: true Element at index 1: Banana",
       "B. Apple Banana Size: 2 Contains ’Banana’: false Element at index 1: Banana",
@@ -2140,7 +2140,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What will be the output of the above code?",
-    "code": "interface IFun {\nint calculate( int i1, int i2);\n}\npublic class Test {\npublic static void main(String[] args) {\nIFun f = (i1, i2) -> i1 + i2; // line 1\nint i1=1, i2 = 2; // line 2\nIFun g = (i1, i2) -> i1 * i2; // line 3\nSystem.out.println(g.calculate(i1, i2)); // line 4\n}\n}",
+    "code": "interface IFun {\n  int calculate( int i1, int i2);\n}\npublic class Test {\n  public static void main(String[] args) {\n    IFun f = (i1, i2) -> i1 + i2; // line 1\n    int i1=1, i2 = 2; // line 2\n    IFun g = (i1, i2) -> i1 * i2; // line 3\n    System.out.println(g.calculate(i1, i2)); // line 4\n  }\n}",
     "options": [
       "A. Compilation fails on line 4.",
       "B. Compilation fails on line 2.",
@@ -2185,7 +2185,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result? date\"); ).collect(Collectors.toList());",
-    "code": "import java.util.Arrays;\nimport java.util.List;\nimport java.util.stream.Collectors;\npublic class StreamTest {\npublic static void main(String[] args) {\nList<String> items = Arrays.asList(\"apple\", \"banana\", \"cherry\", \"\nList<String> result = items.stream().filter(s ->s.startsWith(\"a\")\nSystem.out.println(result);\n}\n}",
+    "code": "import java.util.Arrays;\nimport java.util.List;\nimport java.util.stream.Collectors;\npublic class StreamTest {\n    public static void main(String[] args) {\n        List<String> items = Arrays.asList(\"apple\", \"banana\", \"cherry\", \"\n        List<String> result = items.stream().filter(s ->s.startsWith(\"a\")\n        System.out.println(result);\n        }\n    }",
     "options": [
       "A. [apple, banana]",
       "B. [banana, cherry]",
@@ -2206,7 +2206,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Which line of code, when inserted at the commented line, causes the compiler to fail?",
-    "code": "class ABC {\npublic String met() {\nreturn \"snippet 1\";\n}\n}\npublic class ABCD extends ABC {\n// Insert code here\n}",
+    "code": "class ABC {\n    public String met() {\n        return \"snippet 1\";\n    }\n}\n    public class ABCD extends ABC {\n  // Insert code here\n}",
     "options": [
       "A. public String met() { return \"4\"; }",
       "B. public char met(int i) { return ’3’; }",
@@ -2227,7 +2227,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "class CA {\nCA() {\nSystem.out.print(\"middle\");\n}\nCA(String s) {\nSystem.out.print(s);\n}\n}\nclass CB extends CA {\n}\npublic class Test {\npublic static void main(String[] args) {\nnew CA(\"message \");\nnew CB();\nSystem.out.print(\" end\");\n}\n}",
+    "code": "class CA {\n  CA() {\n     System.out.print(\"middle\");\n  }\n  CA(String s) {\n     System.out.print(s);\n  }\n}\nclass CB extends CA {\n}\npublic class Test {\n  public static void main(String[] args) {\n     new CA(\"message \");\n     new CB();\n     System.out.print(\" end\");\n  }\n}",
     "options": [
       "A. message middle end",
       "B. An exception is thrown at runtime.",
@@ -2310,7 +2310,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the above code?",
-    "code": "import java.util.function.*;\npublic class Test {\npublic static void main(String[] args) {\nPredicate<String> p = (s) -> s.length() > 5;\nFunction<String, Integer> f = String::length;\nConsumer<String> c = (s) -> System.out.println(s.toUpperCase());\nSupplier<String> s = () -> \"Hello, world!\";\nString testString = \"functional\";\nSystem.out.println(p.test(testString));\nSystem.out.println(f.apply(testString));\nc.accept(testString);\nSystem.out.println(s.get());\n}\n}",
+    "code": "import java.util.function.*;\npublic class Test {\n    public static void main(String[] args) {\n        Predicate<String> p = (s) -> s.length() > 5;\n        Function<String, Integer> f = String::length;\n        Consumer<String> c = (s) -> System.out.println(s.toUpperCase());\n        Supplier<String> s = () -> \"Hello, world!\";\n        String testString = \"functional\";\n        System.out.println(p.test(testString));\n        System.out.println(f.apply(testString));\n        c.accept(testString);\n        System.out.println(s.get());\n    }\n}",
     "options": [
       "A. false 9 FUNCTIONAL Hello, World!",
       "B. A runtime exception is thrown.",
@@ -2332,7 +2332,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\npublic static void main(String[] args) {\nString a = \"tic\";\nString b = \"tac\";\na.substring(0, 2);\na.concat(\"toc\");\nSystem.out.println(a += \"game\" + b.toUpperCase());\n}\n}",
+    "code": "public class Test {\n  public static void main(String[] args) {\n    String a = \"tic\";\n    String b = \"tac\";\n    a.substring(0, 2);\n    a.concat(\"toc\");\n    System.out.println(a += \"game\" + b.toUpperCase());\n  }\n}",
     "options": [
       "A. ticgameTAC",
       "B. titocTAC",
@@ -2399,7 +2399,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the following code snippet?",
-    "code": "public class EnumTest {\nenum Day {\nMONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY\n}\npublic static void main(String[] args) {\nfor (Day day : Day.values()) {\nSystem.out.print(day + \" \");\n}\n}\n}",
+    "code": "public class EnumTest {\n  enum Day {\n    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY\n  }\n  public static void main(String[] args) {\n    for (Day day : Day.values()) {\n      System.out.print(day + \" \");\n    }\n  }\n}",
     "options": [
       "A. Compilation error.",
       "B. MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY",
@@ -2420,7 +2420,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "enum Days {\nMONDAY, TUESDAY, WEDNESDAY, THURSDAY\n}\npublic class Test {\npublic static void main(String[] args) {\nint y = 1;\nDays d = Days.TUESDAY;\nswitch (d) {\ncase MONDAY:\ny++;\ncase TUESDAY:\ny += 10;\ncase WEDNESDAY:\ny += 100;\ncase THURSDAY:\ny += 1000;\n}\nSystem.out.println(y);\n}\n}",
+    "code": "enum Days {\n  MONDAY, TUESDAY, WEDNESDAY, THURSDAY\n}\npublic class Test {\n  public static void main(String[] args) {\n    int y = 1;\n    Days d = Days.TUESDAY;\n    switch (d) {\n      case MONDAY:\n         y++;\n      case TUESDAY:\n         y += 10;\n      case WEDNESDAY:\n         y += 100;\n      case THURSDAY:\n         y += 1000;\n    }\n    System.out.println(y);\n  }\n}",
     "options": [
       "A. 11",
       "B. 111",
@@ -2464,7 +2464,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Dado: ¿Cuál es el resultado?",
-    "code": "class Test {\nstatic void m( int a) {\na += 10;\n}\npublic static void main(String[] args) {\nint a = 20;\nm(a);\nTest.m(a);\nSystem.out.println(a);\n}\n}",
+    "code": "class Test {\n  static void m( int a) {\n    a += 10;\n  }\n  public static void main(String[] args) {\n    int a = 20;\n    m(a);\n    Test.m(a);\n    System.out.println(a);\n  }\n}",
     "options": [
       "A. 10",
       "B. 40",
@@ -2487,7 +2487,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "abstract class Animal {\nprivate void speak() {\nSystem.out.println(\"Animals make noise\");\n}\npublic static void main(String[] args) {\nDog animal = new Dog();\nanimal.speak();\n}\n}\nclass Dog extends Animal {\nprotected void speak() {\nSystem.out.println(\"The Dog barks\");\n}\n}\npublic class Test {\npublic static void main(String... strings) {\nAnimal.main(strings);\n}\n}",
+    "code": "abstract class Animal {\n  private void speak() {\n    System.out.println(\"Animals make noise\");\n  }\n  public static void main(String[] args) {\n    Dog animal = new Dog();\n    animal.speak();\n  }\n}\nclass Dog extends Animal {\n  protected void speak() {\n    System.out.println(\"The Dog barks\");\n  }\n}\npublic class Test {\n  public static void main(String... strings) {\n    Animal.main(strings);\n  }\n}",
     "options": [
       "A. The Dog barks",
       "B. Compilation fails.",
@@ -2508,7 +2508,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\npublic static void main(String[] args) {\nString str = \"Hello\";\nmodify(str);\nSystem.out.println(str);\nStringBuffer sbf = new StringBuffer(\"Hello\");\nmodify(sbf);\nSystem.out.println(sbf.replace(2, sbf.length(), \"o\"));\nStringBuilder sbd = new StringBuilder(\"Hello\");\nmodify(sbd);\nSystem.out.println(sbd.reverse());\n}\nprivate static void modify(String s) {\ns = s.concat(\" World\");\n}\nprivate static void modify(StringBuffer sb) {\nsb.append(\" World\");\n}\nprivate static void modify(StringBuilder sb) {\nsb.append(\" World\");\n}\n}",
+    "code": "public class Test {\n  public static void main(String[] args) {\n    String str = \"Hello\";\n    modify(str);\n    System.out.println(str);\n    StringBuffer sbf = new StringBuffer(\"Hello\");\n    modify(sbf);\n    System.out.println(sbf.replace(2, sbf.length(), \"o\"));\n    StringBuilder sbd = new StringBuilder(\"Hello\");\n    modify(sbd);\n    System.out.println(sbd.reverse());\n  }\n  private static void modify(String s) {\n    s = s.concat(\" World\");\n  }\n  private static void modify(StringBuffer sb) {\n    sb.append(\" World\");\n  }\n  private static void modify(StringBuilder sb) {\n    sb.append(\" World\");\n  }\n}",
     "options": [
       "A. Hello Hello World Hello World",
       "B. Hello Hello Hello",
@@ -2530,7 +2530,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál es la salida del siguiente código?",
-    "code": "public class Test {\npublic void run() {\ntry {\nSystem.out.print(\"Running \");\nthrow new Exception();\n} catch (Exception e) {\nSystem.err.print(\"Problem\");\n} finally {\nSystem.out.print(\"Stopping\");\n} }\npublic static void main(String[] args) {\nnew Test().run();\n}}",
+    "code": "public class Test {\n  public void run() {\n     try {\n       System.out.print(\"Running \");\n       throw new Exception();\n     } catch (Exception e) {\n       System.err.print(\"Problem\");\n     } finally {\n       System.out.print(\"Stopping\");\n     } }\n  public static void main(String[] args) {\n     new Test().run();\n  }}",
     "options": [
       "A. Running Stopping Problem",
       "B. Running Problem Stopping",
@@ -2659,7 +2659,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "multiple",
     "difficulty": "Media",
     "question": "Given the following classes, which line of code correctly creates an instance of the Dog class?",
-    "code": "class Animal {\n// ...\n}\nclass Dog extends Animal {\n// ...\n}",
+    "code": "class Animal {\n  // ...\n}\nclass Dog extends Animal {\n  // ...\n}",
     "options": [
       "A. Dog dog = new Dog();",
       "B. Animal dog = new Dog();",
@@ -2771,7 +2771,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "multiple",
     "difficulty": "Media",
     "question": "¿Qué métodos de anulación (Override) son válidos para las siguientes clases?",
-    "code": "class Parent {\nvoid display() {\nSystem.out.println(\"Parent\");\n}\n}\nclass Child extends Parent {\n// Override here\n}",
+    "code": "class Parent {\n  void display() {\n    System.out.println(\"Parent\");\n  }\n}\nclass Child extends Parent {\n  // Override here\n}",
     "options": [
       "A. static void display() { System.out.println(\"Child\"); }",
       "B. private void display() { System.out.println(\"Child\"); }",
@@ -2858,7 +2858,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál será el resultado de compilar y ejecutar el siguiente fragmento de código en Java?",
-    "code": "public class StaticBlockTest {\nstatic {\nSystem.out.println(\"Static block 1\");\n}\n{\nSystem.out.println(\"Instance block 1\");\n}\npublic StaticBlockTest() {\nSystem.out.println(\"Constructor\");\n}\nstatic {\nSystem.out.println(\"Static block 2\");\n}\n{\nSystem.out.println(\"Instance block 2\");\n}\npublic static void main(String[] args) {\nnew StaticBlockTest();\nnew StaticBlockTest();\n}\n}",
+    "code": "public class StaticBlockTest {\n  static {\n    System.out.println(\"Static block 1\");\n  }\n  {\n    System.out.println(\"Instance block 1\");\n  }\n  public StaticBlockTest() {\n    System.out.println(\"Constructor\");\n  }\n  static {\n    System.out.println(\"Static block 2\");\n  }\n  {\n    System.out.println(\"Instance block 2\");\n  }\n  public static void main(String[] args) {\n    new StaticBlockTest();\n    new StaticBlockTest();\n  }\n}",
     "options": [
       "A. Static block 1, Static block 2, Instance block 1, Constructor, Instance block 2, Instance block 1, Constructor, Instance block 2",
       "B. Error de compilación.",
@@ -2947,7 +2947,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuántas veces se ejecutará la instrucción println más interna en el siguiente código?",
-    "code": "public class NestedForLoopTest {\npublic static void main(String[] args) {\nfor ( int i = 0; i < 4; i++) {\nfor ( int j = 0; j < 3; j++) {\nfor ( int k = 0; k < 2; k++) {\nSystem.out.println(\"Hello\");\n}\n}\n}\n}\n}",
+    "code": "public class NestedForLoopTest {\n  public static void main(String[] args) {\n    for ( int i = 0; i < 4; i++) {\n      for ( int j = 0; j < 3; j++) {\n        for ( int k = 0; k < 2; k++) {\n           System.out.println(\"Hello\");\n        }\n      }\n    }\n  }\n}",
     "options": [
       "A. 6 veces",
       "B. 12 veces",
@@ -2968,7 +2968,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: Which method can be declared within the C class to make it compile?",
-    "code": "interface I {\nvoid method();\n}\npublic class C implements I {\n// method declarations\n}",
+    "code": "interface I {\n  void method();\n}\npublic class C implements I {\n  // method declarations\n}",
     "options": [
       "A. public abstract void method();",
       "B. protected abstract void method() { }",
@@ -3012,7 +3012,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Dado el siguiente código: ¿Cuál será la salida del código anterior?",
-    "code": "import java.util.function.Predicate;\nclass Foo {\nint i;\nFoo( int i) {\nthis .i = i;\n}\n}\npublic class Test {\nstatic boolean compare(Foo foo, Predicate<Foo> predicate) {\nreturn predicate.test(foo);\n}\npublic static void main(String[] args) {\nPredicate<Foo> p = f -> f.i > 0; // line 1\np = p.or(f -> f.i > 0).and(f -> f.i < 0); // line 2\nboolean b = compare( new Foo(1), p); // line 3\nSystem.out.println(b);\n}\n}",
+    "code": "import java.util.function.Predicate;\nclass Foo {\n  int i;\n  Foo( int i) {\n    this .i = i;\n  }\n}\npublic class Test {\n  static boolean compare(Foo foo, Predicate<Foo> predicate) {\n    return predicate.test(foo);\n  }\n  public static void main(String[] args) {\n    Predicate<Foo> p = f -> f.i > 0; // line 1\n    p = p.or(f -> f.i > 0).and(f -> f.i < 0); // line 2\n    boolean b = compare( new Foo(1), p); // line 3\n    System.out.println(b);\n  }\n}",
     "options": [
       "A. Compilación falla en la línea 1.",
       "B. Compilación falla en la línea 3.",
@@ -3034,7 +3034,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\npublic static void main(String... arguments) {\nfinal char a = ’A’, d = ’D’;\nchar grade = ’B’;\nswitch (grade) {\ncase a:\ncase ’B’:\nSystem.out.print(\"B\");\ncase ’C’:\nSystem.out.print(\"C\");\nbreak ;\ncase d:\ncase ’F’:\nSystem.out.print(\"F\");\n}\n}\n}",
+    "code": "public class Test {\n  public static void main(String... arguments) {\n    final char a = ’A’, d = ’D’;\n    char grade = ’B’;\n    switch (grade) {\n      case a:\n      case ’B’:\n        System.out.print(\"B\");\n      case ’C’:\n        System.out.print(\"C\");\n        break ;\n      case d:\n      case ’F’:\n        System.out.print(\"F\");\n    }\n  }\n}",
     "options": [
       "A. B",
       "B. Compilation fails",
@@ -3057,7 +3057,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\nString value = \"A\";\n{\nvalue += \"B\";\n}\n{\nvalue += \"C\";\n}\npublic Test() {\nvalue += \"x\";\n}\npublic Test(String s) {\nvalue += s;\n}\npublic static void main(String[] args) {\nTest m = new Test(\"M\");\nm = new Test();\nSystem.out.println(m.value);\n}\n}",
+    "code": "public class Test {\n  String value = \"A\";\n  {\n    value += \"B\";\n  }\n  {\n    value += \"C\";\n  }\n  public Test() {\n    value += \"x\";\n  }\n  public Test(String s) {\n    value += s;\n  }\n  public static void main(String[] args) {\n    Test m = new Test(\"M\");\n    m = new Test();\n    System.out.println(m.value);\n  }\n}",
     "options": [
       "A. ABCxM",
       "B. ABCMABCB",
@@ -3080,7 +3080,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Which statement is true about the following code?",
-    "code": "abstract class Shape {\npublic abstract void draw();\npublic void printShape() {\nSystem.out.println(\"This is a shape\");\n}\n}\nclass Circle extends Shape {\n@Override\npublic void draw() {\nSystem.out.println(\"Drawing a circle\");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nCircle circle = new Circle();\ncircle.draw();\ncircle.printShape();\n}\n}",
+    "code": "abstract class Shape {\n  public abstract void draw();\n  public void printShape() {\n    System.out.println(\"This is a shape\");\n  }\n}\nclass Circle extends Shape {\n  @Override\n  public void draw() {\n    System.out.println(\"Drawing a circle\");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Circle circle = new Circle();\n    circle.draw();\n    circle.printShape();\n  }\n}",
     "options": [
       "A. The program will print \"Drawing a circle\" followed by \"This is a shape\".",
       "B. Compilation error because the Shape class is abstract.",
@@ -3123,7 +3123,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Which of the following code snippets will result in a compilation error when implementing the Vehicle interface?",
-    "code": "interface Vehicle {\nvoid start();\nvoid stop();\n}",
+    "code": "interface Vehicle {\n  void start();\n  void stop();\n}",
     "options": [
       "A. public class Scooter implements Vehicle { public void start() { } public void stop() { } }",
       "B. public class Bike implements Vehicle { public void start() { } void stop() { } }",
@@ -3144,7 +3144,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál opción compara edades en orden ascendente evitando desbordamiento de enteros?",
-    "code": "import java.util.Comparator;\nclass Person {\nprivate String name;\nprivate int age;\npublic Person(String name, int age) {\nthis .name = name;\nthis .age = age;\n}\npublic int getAge() { return age; }\npublic String getName() { return name; }\n}",
+    "code": "import java.util.Comparator;\nclass Person {\n  private String name;\n  private int age;\n  public Person(String name, int age) {\n    this .name = name;\n    this .age = age;\n  }\n  public int getAge() { return age; }\n  public String getName() { return name; }\n}",
     "options": [
       "A. public int compare(Person p1, Person p2) { return p1.getAge() - p2.getAge(); }",
       "B. public int compare(Person p1, Person p2) { return p1.getName().compareTo(p2.getName()); }",
@@ -3165,7 +3165,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the narrowest valid return type for the calculate Method?",
-    "code": "public class Test {\n___ doMath ( long l, short s) {\nreturn s / (l * 10);\n}\n}",
+    "code": "public class Test {\n  ___ doMath ( long l, short s) {\n    return s / (l * 10);\n  }\n}",
     "options": [
       "A. float",
       "B. short",
@@ -3250,7 +3250,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "abstract class Animal {\nvoid speak() {\nSystem.out.println(\"Animals make noise\");\n}\npublic static void main(String[] args) {\nAnimal animal = new Dog();\nanimal.speak();\n}\n}\nclass Dog extends Animal {\nprotected void speak() {\nSystem.out.println(\"The Dog barks\");\n}\n}\npublic class Test {\npublic static void main(String... strings) {\nAnimal.main(strings);\n}\n}",
+    "code": "abstract class Animal {\n  void speak() {\n    System.out.println(\"Animals make noise\");\n  }\n  public static void main(String[] args) {\n    Animal animal = new Dog();\n    animal.speak();\n  }\n}\nclass Dog extends Animal {\n  protected void speak() {\n    System.out.println(\"The Dog barks\");\n  }\n}\npublic class Test {\n  public static void main(String... strings) {\n    Animal.main(strings);\n  }\n}",
     "options": [
       "A. Animals make noise",
       "B. A runtime exception is thrown",
@@ -3271,7 +3271,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál será el resultado del siguiente fragmento de código? (); \"Alice\"); \"Bob\", 30);",
-    "code": "public class OverloadedConstructorsTest {\nprivate String name;\nprivate int age;\npublic OverloadedConstructorsTest() {\nthis (\"Unknown\", 0);\nSystem.out.println(\"Default constructor called\");\n}\npublic OverloadedConstructorsTest(String name) {\nthis (name, 0);\nSystem.out.println(\"Constructor with name called\");\n}\npublic OverloadedConstructorsTest(String name, int age) {\nthis .name = name;\nthis .age = age;\nSystem.out.println(\"Constructor with name and age called\");\n}\npublic static void main(String[] args) {\nOverloadedConstructorsTest obj1 = new OverloadedConstructorsTest\nOverloadedConstructorsTest obj2 = new OverloadedConstructorsTest(\nOverloadedConstructorsTest obj3 = new OverloadedConstructorsTest(\n}\n}",
+    "code": "public class OverloadedConstructorsTest {\n  private String name;\n  private int age;\n  public OverloadedConstructorsTest() {\n    this (\"Unknown\", 0);\n    System.out.println(\"Default constructor called\");\n  }\n  public OverloadedConstructorsTest(String name) {\n    this (name, 0);\n    System.out.println(\"Constructor with name called\");\n  }\n  public OverloadedConstructorsTest(String name, int age) {\n    this .name = name;\n    this .age = age;\n    System.out.println(\"Constructor with name and age called\");\n  }\n  public static void main(String[] args) {\n    OverloadedConstructorsTest obj1 = new OverloadedConstructorsTest\n    OverloadedConstructorsTest obj2 = new OverloadedConstructorsTest(\n    OverloadedConstructorsTest obj3 = new OverloadedConstructorsTest(\n  }\n}",
     "options": [
       "A. Default constructor called Constructor with name and age called Constructor with name called Constructor with name and age called Constructor with name and age called",
       "B. Constructor with name and age called Default constructor called Constructor with name called Constructor with name and age called",
@@ -3314,7 +3314,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "import java.util.Arrays;\nimport java.util.Comparator;\nclass SortLongs implements Comparator<Long> {\n@Override\npublic int compare(Long a, Long b) {\nreturn b.compareTo(a);\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nLong[] values = {20L, 70L, 50L, 30L};\nSortLongs sort = new SortLongs();\nArrays.sort(values, sort);\nSystem.out.println(Arrays.toString(values));\n}\n}",
+    "code": "import java.util.Arrays;\nimport java.util.Comparator;\nclass SortLongs implements Comparator<Long> {\n  @Override\n  public int compare(Long a, Long b) {\n    return b.compareTo(a);\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Long[] values = {20L, 70L, 50L, 30L};\n    SortLongs sort = new SortLongs();\n    Arrays.sort(values, sort);\n    System.out.println(Arrays.toString(values));\n  }\n}",
     "options": [
       "A. An ArrayIndexOutOfBoundsException is thrown.",
       "B. [20, 70, 50, 30]",
@@ -3336,7 +3336,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class NestedForLoopTest {\npublic static void main(String[] args) {\nint [][] matrix = {\n{1, 2, 3},\n{4, 5, 6},\n{7, 8, 9}\n};\nfor ( int i = 0; i < matrix.length; i++) {\nfor ( int j = 0; j < matrix[i].length; j++) {\nif (i == j) {\nSystem.out.print(matrix[i][j] + \" \");\n}\n}\n}\n}\n}",
+    "code": "public class NestedForLoopTest {\n  public static void main(String[] args) {\n    int [][] matrix = {\n       {1, 2, 3},\n       {4, 5, 6},\n       {7, 8, 9}\n    };\n    for ( int i = 0; i < matrix.length; i++) {\n       for ( int j = 0; j < matrix[i].length; j++) {\n          if (i == j) {\n            System.out.print(matrix[i][j] + \" \");\n          }\n       }\n    }\n  }\n}",
     "options": [
       "A. 147",
       "B. 123456789",
@@ -3379,7 +3379,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "abstract class Animal {\nprivate void speak() {\nSystem.out.println(\"Animals make noise\");\n}\npublic static void main(String[] args) {\nAnimal animal = new Dog();\nanimal.speak();\n}\n}\nclass Dog extends Animal {\nprotected void speak() {\nSystem.out.println(\"The Dog barks\");\n}\n}\npublic class Test {\npublic static void main(String... strings) {\nAnimal.main(strings);\n}\n}",
+    "code": "abstract class Animal {\n  private void speak() {\n    System.out.println(\"Animals make noise\");\n  }\n  public static void main(String[] args) {\n    Animal animal = new Dog();\n    animal.speak();\n  }\n}\nclass Dog extends Animal {\n  protected void speak() {\n    System.out.println(\"The Dog barks\");\n  }\n}\npublic class Test {\n  public static void main(String... strings) {\n    Animal.main(strings);\n  }\n}",
     "options": [
       "A. Animals make noise",
       "B. Compilation fails.",
@@ -3421,7 +3421,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál de las siguientes anotaciones es verdadera acerca de la siguiente jerarquía de clases?",
-    "code": "class Vehicle {\nString type = \"Vehicle\";\n}\nclass Car extends Vehicle {\nString type = \"Car\";\n}\nclass ElectricCar extends Car {\nString type = \"ElectricCar\";\n}",
+    "code": "class Vehicle {\n  String type = \"Vehicle\";\n}\nclass Car extends Vehicle {\n  String type = \"Car\";\n}\nclass ElectricCar extends Car {\n  String type = \"ElectricCar\";\n}",
     "options": [
       "A. ElectricCar myCar = new ElectricCar(); System.out.println(myCar.type); // Salida: ElectricCar",
       "B. Car myCar = new ElectricCar(); System.out.println(myCar.type); // Salida: Vehicle",
@@ -3509,7 +3509,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the output of the following program?",
-    "code": "public class Test {\npublic static void main(String[] args) {\nint x = 0;\nwhile (x++ < 5) {\n}\nString message = x > 5 ? \"greater than\" : \"smaller than\";\nSystem.out.println(message + \" - \" + x);\n}\n}",
+    "code": "public class Test {\n  public static void main(String[] args) {\n    int x = 0;\n    while (x++ < 5) {\n    }\n    String message = x > 5 ? \"greater than\" : \"smaller than\";\n    System.out.println(message + \" - \" + x);\n  }\n}",
     "options": [
       "A. smaller than - 6",
       "B. greater than - 6",
@@ -3531,7 +3531,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Which of the following will be the output?",
-    "code": "public class Test implements Runnable {\nboolean flag = true ;\n@Override\npublic synchronized void run() {\nif (flag) {\nflag = false ;\nSystem.out.print(\"1 \");\ntry {\nthis .wait();\n} catch (Exception e) {\n}\nSystem.out.print(\"2 \");\n} else {\nflag = true ;\nSystem.out.print(\"3 \");\ntry {\nThread.sleep(2000);\n} catch (Exception e) {\n}\nSystem.out.print(\"4 \");\nnotify();\n}\n}\npublic static void main(String[] args) {\nTest w = new Test();\nnew Thread(w).start();\nnew Thread(w).start();\n}\n}",
+    "code": "public class Test implements Runnable {\n  boolean flag = true ;\n  @Override\n  public synchronized void run() {\n    if (flag) {\n      flag = false ;\n      System.out.print(\"1 \");\n      try {\n         this .wait();\n      } catch (Exception e) {\n      }\n      System.out.print(\"2 \");\n    } else {\n      flag = true ;\n      System.out.print(\"3 \");\n      try {\n         Thread.sleep(2000);\n      } catch (Exception e) {\n      }\n      System.out.print(\"4 \");\n      notify();\n    }\n  }\n  public static void main(String[] args) {\n    Test w = new Test();\n    new Thread(w).start();\n    new Thread(w).start();\n  }\n}",
     "options": [
       "A. The code outputs 1 3 4.",
       "B. The code outputs 1 2 3 4.",
@@ -3619,7 +3619,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will happen when you try to compile the following code?",
-    "code": "class Parent {\nprotected void show() {\nSystem.out.println(\"Parent show\");\n}\n}\nclass Child extends Parent {\n@Override\nvoid show() {\nSystem.out.println(\"Child show\");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nChild child = new Child();\nchild.show();\n}\n}",
+    "code": "class Parent {\n  protected void show() {\n    System.out.println(\"Parent show\");\n  }\n}\nclass Child extends Parent {\n  @Override\n  void show() {\n    System.out.println(\"Child show\");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Child child = new Child();\n    child.show();\n  }\n}",
     "options": [
       "A. It will print \"Parent show\".",
       "B. It will print \"Child show\".",
@@ -3810,7 +3810,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "class Ot {\nenum Colors {\nRED, GREEN, BLUE, YELLOW, BLACK\n};\n}\npublic class Test {\npublic static void main(String[] String) {\nfor (Ot.Colors c : Ot.Colors.values()) {\nif (Ot.Colors.RED.equals(c)) {\nSystem.out.print(\"red \");\n}\nif (c == Ot.Colors.GREEN) {\nSystem.out.print(\"green \");\n}\nif (c.equals(\"BLUE\")) {\nSystem.out.print(\"blue \");\n}\n}\n}\n}",
+    "code": "class Ot {\n  enum Colors {\n     RED, GREEN, BLUE, YELLOW, BLACK\n  };\n}\npublic class Test {\n  public static void main(String[] String) {\n     for (Ot.Colors c : Ot.Colors.values()) {\n       if (Ot.Colors.RED.equals(c)) {\n          System.out.print(\"red \");\n       }\n       if (c == Ot.Colors.GREEN) {\n          System.out.print(\"green \");\n       }\n       if (c.equals(\"BLUE\")) {\n          System.out.print(\"blue \");\n       }\n     }\n  }\n}",
     "options": [
       "A. red blue",
       "B. green blue",
@@ -3940,7 +3940,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Dado el siguiente código: ¿Cuál es el resultado de la ejecución del programa?",
-    "code": "interface Omega {}\nclass Gamma {}\nclass Epsilon extends Gamma implements Omega {}\npublic class Test {\npublic static void main(String[] args) {\nGamma g = new Epsilon();\nOmega o = (Omega) g;\nEpsilon e = (Epsilon) g;\nOmega m = e;\n}\n}",
+    "code": "interface Omega {}\nclass Gamma {}\nclass Epsilon extends Gamma implements Omega {}\npublic class Test {\n  public static void main(String[] args) {\n    Gamma g = new Epsilon();\n    Omega o = (Omega) g;\n    Epsilon e = (Epsilon) g;\n    Omega m = e;\n  }\n}",
     "options": [
       "A. An exception is thrown at runtime.",
       "B. No option is correct.",
@@ -4072,7 +4072,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Dado el siguiente código: ¿Qué método puede ser declarado dentro de la clase C para que compile?",
-    "code": "interface I {\nvoid method();\n}\npublic class C implements I {\n// declaraciones de metodos\n}",
+    "code": "interface I {\n  void method();\n}\npublic class C implements I {\n  // declaraciones de metodos\n}",
     "options": [
       "A. protected abstract void method() { }",
       "B. private void method() { }",
@@ -4116,7 +4116,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "abstract class Animal {\npublic void speak() {\nSystem.out.println(\"Animals make noise\");\n}\npublic static void main(String[] args) {\nAnimal animal = new Dog();\nanimal.speak();\n}\n}\nclass Dog extends Animal {\nprotected void speak() {\nSystem.out.println(\"The Dog barks\");\n}\n}\npublic class Test {\npublic static void main(String... strings) {\nAnimal.main(strings);\n}\n}",
+    "code": "abstract class Animal {\n  public void speak() {\n    System.out.println(\"Animals make noise\");\n  }\n  public static void main(String[] args) {\n    Animal animal = new Dog();\n    animal.speak();\n  }\n}\nclass Dog extends Animal {\n  protected void speak() {\n    System.out.println(\"The Dog barks\");\n  }\n}\npublic class Test {\n  public static void main(String... strings) {\n    Animal.main(strings);\n  }\n}",
     "options": [
       "A. Compilation fails.",
       "B. The Dog barks",
@@ -4329,7 +4329,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the above code? ().count();",
-    "code": "import java.util.stream.Stream;\nimport java.util.Objects;\nclass Person {\npublic String name;\nPerson(String name) {\nthis .name = name;\n}\n@Override\npublic int hashCode() {\nreturn Objects.hash(name);\n}\n@Override\npublic boolean equals(Object obj) {\nif ( this == obj)\nreturn true ;\nif (obj == null )\nreturn false ;\nif (getClass() != obj.getClass())\nreturn false ;\nPerson other = (Person) obj;\nreturn Objects.equals(name, other.name);\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nPerson p1 = new Person(\"John\");\nPerson p2 = new Person(\"Jane\");\nPerson p3 = new Person(\"Jane\");\nPerson p4 = new Person(\"Mark\");\nStream<Person> stream = Stream.of(p1, p2, p3, p4);\nlong count = stream.filter(p -> p.name.startsWith(\"J\")).distinct\nSystem.out.println(count);}}",
+    "code": "import java.util.stream.Stream;\nimport java.util.Objects;\nclass Person {\n  public String name;\n  Person(String name) {\n    this .name = name;\n  }\n  @Override\n  public int hashCode() {\n    return Objects.hash(name);\n  }\n  @Override\n  public boolean equals(Object obj) {\n    if ( this == obj)\n      return true ;\n    if (obj == null )\n      return false ;\n    if (getClass() != obj.getClass())\n      return false ;\n    Person other = (Person) obj;\n    return Objects.equals(name, other.name);\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Person p1 = new Person(\"John\");\n    Person p2 = new Person(\"Jane\");\n    Person p3 = new Person(\"Jane\");\n    Person p4 = new Person(\"Mark\");\n    Stream<Person> stream = Stream.of(p1, p2, p3, p4);\n    long count = stream.filter(p -> p.name.startsWith(\"J\")).distinct\n    System.out.println(count);}}",
     "options": [
       "A. 2",
       "B. A runtime exception is thrown",
@@ -4396,7 +4396,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the result of attempting to compile and run the following code snippet? value);",
-    "code": "public class RecursiveConstructorTest {\nprivate int value;\npublic RecursiveConstructorTest() {\nthis (10);\nSystem.out.println(\"No-argument constructor called\");\n}\npublic RecursiveConstructorTest( int value) {\nthis ();\nthis .value = value;\nSystem.out.println(\"Constructor with int argument called: \" +\n}\npublic static void main(String[] args) {\nRecursiveConstructorTest obj = new RecursiveConstructorTest();\n}\n}",
+    "code": "public class RecursiveConstructorTest {\n  private int value;\n  public RecursiveConstructorTest() {\n    this (10);\n    System.out.println(\"No-argument constructor called\");\n  }\n  public RecursiveConstructorTest( int value) {\n    this ();\n    this .value = value;\n    System.out.println(\"Constructor with int argument called: \" +\n  }\n  public static void main(String[] args) {\n    RecursiveConstructorTest obj = new RecursiveConstructorTest();\n  }\n}",
     "options": [
       "A. Compilation error due to recursive constructor calls.",
       "B. Runtime error due to infinite recursion.",
@@ -4417,7 +4417,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What will be the output of the following code?",
-    "code": "abstract class Vehicle {\npublic abstract void start();\npublic void stop() {\nSystem.out.println(\"Vehicle stopped\");\n}\n}\nclass Car extends Vehicle {\n@Override\npublic void start() {\nSystem.out.println(\"Car started\");\n}\n}\nclass Bike extends Vehicle {\n@Override\npublic void start() {\nSystem.out.println(\"Bike started\");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nVehicle car = new Car();\nVehicle bike = new Bike();\ncar.start();\ncar.stop();\nbike.start();\nbike.stop();\n}\n}",
+    "code": "abstract class Vehicle {\n  public abstract void start();\n  public void stop() {\n    System.out.println(\"Vehicle stopped\");\n  }\n}\nclass Car extends Vehicle {\n  @Override\n  public void start() {\n    System.out.println(\"Car started\");\n  }\n}\nclass Bike extends Vehicle {\n  @Override\n  public void start() {\n    System.out.println(\"Bike started\");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Vehicle car = new Car();\n    Vehicle bike = new Bike();\n    car.start();\n    car.stop();\n    bike.start();\n    bike.stop();\n  }\n}",
     "options": [
       "A. Car started Vehicle stopped Bike started Vehicle stopped",
       "B. Vehicle stopped Car started Vehicle stopped Bike started",
@@ -4594,7 +4594,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "¿Cuál será el resultado del siguiente fragmento de código?",
-    "code": "class Animal {\npublic void makeSound() {\nSystem.out.println(\"Animal sound\");\n}\n}\nclass Dog extends Animal {\n@Override\npublic void makeSound() {\nSystem.out.println(\"Bark\");\n}\n}\npublic class Test {\npublic static void main(String[] args) {\nAnimal myDog = new Dog();\nmyDog.makeSound();\n}\n}",
+    "code": "class Animal {\n  public void makeSound() {\n    System.out.println(\"Animal sound\");\n  }\n}\nclass Dog extends Animal {\n  @Override\n  public void makeSound() {\n    System.out.println(\"Bark\");\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Animal myDog = new Dog();\n    myDog.makeSound();\n  }\n}",
     "options": [
       "A. Animal sound",
       "B. Error de ejecución",
