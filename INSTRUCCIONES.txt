@@ -1,0 +1,1 @@
+Descomprime este ZIP y copia index.html y las carpetas js y data dentro de tu carpeta APX-Study-Lab. Acepta reemplazar los archivos cuando te lo pida. Para que funcione el enlace al PDF desde la página, copia el archivo MiGuiaAPX 2 (1).pdf dentro de sources y renómbralo MiGuiaAPX-2.pdf. Abre index.html.

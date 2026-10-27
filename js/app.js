@@ -320,7 +320,7 @@
     const count = mode === 'real' ? 58 : Number(form.get('count'));
     const topic = mode === 'real' ? 'all' : refs.quizTopic.value;
     const modeLabel = mode === 'practice' ? 'Práctica' : mode === 'real' ? 'Como el real' : 'Simulación';
-    const topicLabel = topic === 'all' ? 'Todos los temas' : topic === 'weak' ? 'Temas débiles' : 'Solo errores';
+    const topicLabel = topic === 'all' ? 'Todos los temas' : topic === 'weak' ? 'Temas débiles' : topic === 'guia2' ? 'Solo MiGuiaAPX 2' : 'Solo errores';
     refs.configTitle.textContent = `${modeLabel} de ${count} preguntas`;
     refs.configText.textContent = `${topicLabel} · ${mode === 'practice' ? 'explicación inmediata' : 'sin retroalimentación hasta el final'}`;
     refs.configGoal.textContent = `Meta: ${Math.ceil(count * .8)} de ${count} · 80%`;
@@ -329,6 +329,7 @@
   }
 
   function normalizeQuestionKey(question) {
+    if (question.origin === 'guia2') return `guia2:${question.id}`;
     return `${String(question.question || '')} ${String(question.code || '')}`
       .toLowerCase()
       .normalize('NFD')
@@ -349,7 +350,9 @@
 
   function pickQuestionPool(topicMode) {
     let pool = [...QUESTIONS];
-    if (topicMode === 'mistakes') {
+    if (topicMode === 'guia2') {
+      pool = QUESTIONS.filter(q => q.origin === 'guia2');
+    } else if (topicMode === 'mistakes') {
       pool = state.mistakes.map(id => questionById[id]).filter(Boolean);
     } else if (topicMode === 'weak') {
       const topicStats = Object.entries(state.topicStats)
@@ -359,7 +362,7 @@
         .map(x => x.topicId);
       pool = topicStats.length ? QUESTIONS.filter(q => topicStats.includes(q.topic)) : [...QUESTIONS];
     }
-    if (!pool.length) pool = [...QUESTIONS];
+    if (!pool.length && topicMode !== 'guia2') pool = [...QUESTIONS];
     return shuffle(uniqueQuestionPool(pool));
   }
 
@@ -389,6 +392,7 @@
     }
 
     questions = questions.map(q => {
+      if (q.origin === 'guia2') return { ...q, options: [...q.options], answer: [...q.answer] };
       const order = shuffle(q.options.map((_, i) => i));
       return { ...q, options: order.map(i => q.options[i]), answer: order.map((old, index) => q.answer.includes(old) ? index : -1).filter(i => i >= 0).sort((a,b) => a-b) };
     });
@@ -803,6 +807,12 @@
       if (quick) {
         const count = Number(quick.dataset.quick);
         startQuiz({ mode: count === 58 ? 'simulation' : 'practice', count, topicMode: 'all', withTimer: false });
+      }
+
+      const guideButton = e.target.closest('[data-guide-quiz]');
+      if (guideButton) {
+        const practice = guideButton.dataset.guideQuiz === 'practice';
+        startQuiz({ mode: practice ? 'practice' : 'simulation', count: practice ? window.GUIDE2_QUESTIONS.length : 58, topicMode: 'guia2', withTimer: false });
       }
 
       const exactQuizButton = e.target.closest('[data-exact-quiz]');

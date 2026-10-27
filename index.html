@@ -237,7 +237,7 @@ html
 <label class="choice-block"><input name="mode" type="radio" value="real"/><span><strong>Como el real · 58 preguntas</strong><small>Todos los temas · 47 aciertos para aprobar · sin pistas hasta finalizar.</small></span></label></article>
 <article class="config-card" data-step="02">
 <h3>Número de preguntas</h3>
-<div class="chip-row"><label class="pill-choice"><input name="count" type="radio" value="5"/><span>5</span></label><label class="pill-choice"><input checked="" name="count" type="radio" value="10"/><span>10</span></label><label class="pill-choice"><input name="count" type="radio" value="20"/><span>20</span></label><label class="pill-choice"><input name="count" type="radio" value="58"/><span>58</span></label></div>
+<div class="chip-row"><label class="pill-choice"><input name="count" type="radio" value="5"/><span>5</span></label><label class="pill-choice"><input checked="" name="count" type="radio" value="10"/><span>10</span></label><label class="pill-choice"><input name="count" type="radio" value="20"/><span>20</span></label><label class="pill-choice"><input name="count" type="radio" value="58"/><span>58</span></label><label class="pill-choice"><input name="count" type="radio" value="213"/><span>213</span></label></div>
 <p class="muted">Formato indicado: 58 preguntas, 80% mínimo (47 aciertos). Cada reactivo vale un punto; en multirrespuesta debes marcar todas las correctas y ninguna incorrecta.</p>
 </article>
 <article class="config-card" data-step="03">
@@ -246,6 +246,7 @@ html
 <span>Filtro de preguntas</span>
 <select id="quizTopic" name="topic">
 <option value="all">Todos los temas</option>
+<option value="guia2">Solo preguntas de MiGuiaAPX 2</option>
 <option value="weak">Mis temas más débiles</option>
 <option value="mistakes">Solo errores guardados</option>
 </select>
@@ -263,6 +264,10 @@ html
 <button class="primary-btn wide" type="submit">Comenzar</button>
 </aside>
 </form>
+<section class="exact-quiz-section" aria-label="Preguntas de la segunda guía APX">
+<div class="exact-quiz-heading"><span class="home-badge">SEGUNDO PDF · 213 PREGUNTAS</span><h2>Practicar MiGuiaAPX 2</h2><p>Preguntas de la guía con su número original y justificación. Selecciona el filtro “Solo preguntas de MiGuiaAPX 2” para elegir cantidad y modalidad.</p></div>
+<div class="exact-quiz-grid"><article class="exact-quiz-card"><span class="exact-quiz-number">01</span><div><small>PRÁCTICA · 213 PREGUNTAS</small><h3>Resolver la guía completa</h3><p>Retroalimentación después de cada respuesta.</p></div><button class="home-btn home-btn-primary" data-guide-quiz="practice" type="button">Practicar guía</button></article>
+<article class="exact-quiz-card"><span class="exact-quiz-number">02</span><div><small>SIMULACIÓN · 58 PREGUNTAS</small><h3>Simulacro de la guía</h3><p>Solo preguntas de este PDF; respuestas al finalizar.</p></div><button class="home-btn home-btn-primary" data-guide-quiz="simulation" type="button">Iniciar simulacro</button></article></div></section>
 <section class="exact-quiz-section">
 <div class="exact-quiz-heading">
 <span class="home-badge">SIMULACROS · 58 PREGUNTAS</span>
@@ -416,10 +421,11 @@ html
 </article>
 </section>
 </section>
-<footer class="source-footer"><strong>APX · Study Lab</strong><p>Preparación basada en APX.pdf, MiGuiaAPX 2.pdf, Java.pdf y el README de contexto. Banco adaptado al estilo de los ejemplos; no es un examen oficial ni garantiza que aparezcan estos reactivos.</p><p>Formato y umbral indicados por ti: 58 preguntas · 80%. Regla del simulador: un punto por reactivo, multirrespuesta exacta. Duración y ponderaciones oficiales pendientes de confirmar.</p><a href="sources/APX.pdf" rel="noopener" target="_blank">Ejemplo APX</a> · <a href="sources/Java.pdf" rel="noopener" target="_blank">Ejemplo Java</a> · <a href="sources/MiGuiaAPX.pdf" rel="noopener" target="_blank">Guía APX</a></footer></main>
+<footer class="source-footer"><strong>APX · Study Lab</strong><p>Preparación basada en APX.pdf, MiGuiaAPX 2.pdf, Java.pdf y el README de contexto. Banco adaptado al estilo de los ejemplos; no es un examen oficial ni garantiza que aparezcan estos reactivos.</p><p>Formato y umbral indicados por ti: 58 preguntas · 80%. Regla del simulador: un punto por reactivo, multirrespuesta exacta. Duración y ponderaciones oficiales pendientes de confirmar.</p><a href="sources/APX.pdf" rel="noopener" target="_blank">Ejemplo APX</a> · <a href="sources/Java.pdf" rel="noopener" target="_blank">Ejemplo Java</a> · <a href="sources/MiGuiaAPX.pdf" rel="noopener" target="_blank">Guía APX</a> · <a href="sources/MiGuiaAPX-2.pdf" rel="noopener" target="_blank">MiGuiaAPX 2 (1)</a></footer></main>
 <div class="toast" id="toast"></div>
 <script src="data/topics.js"></script>
 <script src="data/questions.js"></script>
+<script src="data/guia-pdf.js"></script>
 <script src="data/exam-sets.js"></script>
 <script src="js/app.js"></script>
 </body>
