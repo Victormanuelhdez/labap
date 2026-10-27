@@ -812,7 +812,7 @@
       const guideButton = e.target.closest('[data-guide-quiz]');
       if (guideButton) {
         const practice = guideButton.dataset.guideQuiz === 'practice';
-        startQuiz({ mode: practice ? 'practice' : 'simulation', count: practice ? window.GUIDE2_QUESTIONS.length : 58, topicMode: 'guia2', withTimer: false });
+        startQuiz({ mode: practice ? 'practice' : 'simulation', count: Number(document.getElementById('guideQuestionCount').value), topicMode: 'guia2', withTimer: false });
       }
 
       const exactQuizButton = e.target.closest('[data-exact-quiz]');
