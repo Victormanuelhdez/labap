@@ -3463,3 +3463,12 @@ body.dark .material-mini-review {
 .code-dialog-close:focus-visible { outline: 3px solid #9fb5ff; outline-offset: 3px; }
 .code-dialog-content { margin: 0; padding: 22px; max-height: calc(100dvh - 120px); overflow: auto; white-space: pre; word-break: normal; color: #fff; font: 500 1rem/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; tab-size: 4; }
 @media (max-width: 600px) { .code-dialog-heading { padding: 14px 16px; } .code-dialog-content { padding: 16px; font-size: .95rem; } }
+
+/* Conservar líneas de salidas y explicaciones. */
+.answer-option > span, #feedbackText, .review-item p { white-space: pre-wrap; }
+
+/* Recuperación de examen en el mismo navegador. */
+.pending-exam { display:flex; align-items:center; justify-content:space-between; gap:20px; margin:0 0 24px; padding:22px; border:1px solid var(--line); border-radius:18px; background:var(--surface, transparent); color:inherit; }
+.pending-exam p { margin:8px 0; }.pending-exam-actions { display:flex; flex-wrap:wrap; gap:10px; flex-shrink:0; }
+#examSaveStatus { display:block; margin-top:8px; font-size:.8rem; font-weight:400; }
+@media(max-width:650px) { .pending-exam { flex-direction:column; align-items:stretch; }.pending-exam-actions { justify-content:flex-start; } }

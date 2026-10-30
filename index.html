@@ -43,6 +43,10 @@ html
 <button data-route="progress">Progreso</button>
 </aside>
 <main class="main-shell">
+<section id="pendingExam" class="pending-exam" hidden aria-label="Examen pendiente">
+<div><strong>Hay un examen pendiente</strong><p id="pendingExamSummary"></p><small>Se guarda en este navegador. Si activaste el reloj, el tiempo sigue corriendo al cerrar la pestaña.</small></div>
+<div class="pending-exam-actions"><button class="primary-btn" id="resumeExam" type="button">Continuar examen</button><button class="ghost-btn" id="discardPendingExam" type="button">Descartar</button></div>
+</section>
 <section class="screen is-visible" id="screen-home">
 <section class="home-hero">
 <div class="home-copy">
@@ -305,6 +309,7 @@ html
 <div>
 <span class="hero-pill soft" id="examModeBadge">Práctica</span>
 <strong id="examProgressText">Pregunta 1 de 58</strong>
+<small id="examSaveStatus" role="status" aria-live="polite"></small>
 </div>
 <div class="exam-tools">
 <button class="ghost-btn danger-soft" id="leaveExam">Salir</button>

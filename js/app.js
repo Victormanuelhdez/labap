@@ -1,5 +1,6 @@
 (() => {
   const STORAGE_KEY = 'apxCertificationStudyState';
+  const PENDING_QUIZ_KEY = 'apxCertificationPendingQuiz.v1';
   const screens = {
     home: document.getElementById('screen-home'),
     study: document.getElementById('screen-study'),
@@ -132,6 +133,67 @@
     }
   }
 
+  function readPendingQuiz() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(PENDING_QUIZ_KEY) || 'null');
+      const quiz = saved?.quiz;
+      if (!quiz || saved.version !== 1 || quiz.submitted ||
+          !['practice', 'simulation', 'real'].includes(quiz.mode) ||
+          !Array.isArray(quiz.questions) || !quiz.questions.length ||
+          !Array.isArray(quiz.responses) || quiz.responses.length !== quiz.questions.length ||
+          !Number.isInteger(quiz.index) || quiz.index < 0 || quiz.index >= quiz.questions.length ||
+          !Number.isFinite(quiz.timeLeft) || quiz.timeLeft < 0 ||
+          (quiz.withTimer && quiz.deadline !== null && !Number.isFinite(quiz.deadline))) return null;
+      if (!quiz.questions.every((q, i) => q && questionById[q.id] && Array.isArray(q.options) &&
+          q.options.length >= 2 && Array.isArray(q.answer) && q.answer.length &&
+          q.answer.every(n => Number.isInteger(n) && n >= 0 && n < q.options.length) &&
+          quiz.responses[i] && Array.isArray(quiz.responses[i].selected) &&
+          quiz.responses[i].selected.every(n => Number.isInteger(n) && n >= 0 && n < q.options.length))) return null;
+      return quiz;
+    } catch {
+      return null;
+    }
+  }
+
+  function updatePendingExam() {
+    const quiz = readPendingQuiz();
+    const panel = document.getElementById('pendingExam');
+    panel.hidden = !quiz || currentRoute === 'exam';
+    if (!quiz) return;
+    const answered = quiz.responses.filter(r => r.selected.length).length;
+    document.getElementById('pendingExamSummary').textContent = `${quiz.mode === 'practice' ? 'Práctica' : 'Simulación'} · ${answered} de ${quiz.questions.length} respondidas · pregunta ${quiz.index + 1}.`;
+  }
+
+  function savePendingQuiz() {
+    if (!currentQuiz || currentQuiz.submitted) return true;
+    try {
+      localStorage.setItem(PENDING_QUIZ_KEY, JSON.stringify({ version: 1, quiz: currentQuiz }));
+      document.getElementById('examSaveStatus').textContent = 'Progreso guardado automáticamente';
+      return true;
+    } catch {
+      document.getElementById('examSaveStatus').textContent = 'No se pudo guardar. Mantén esta pestaña abierta para no perder el examen.';
+      return false;
+    }
+  }
+
+  function clearPendingQuiz() {
+    try { localStorage.removeItem(PENDING_QUIZ_KEY); } catch { /* El aviso de guardado seguirá disponible. */ }
+    updatePendingExam();
+  }
+
+  function resumePendingQuiz() {
+    const quiz = readPendingQuiz();
+    if (!quiz) { updatePendingExam(); return showToast('No se encontró un examen pendiente válido'); }
+    stopTimer();
+    currentQuiz = quiz;
+    navigate('exam');
+    renderQuestion();
+    const checkedPractice = currentQuiz.mode === 'practice' && currentQuiz.responses[currentQuiz.index].checked;
+    if (currentQuiz.withTimer && !checkedPractice) startTimer(true);
+    else stopTimer();
+    if (!currentQuiz.submitted) showToast('Examen recuperado');
+  }
+
   function showToast(message) {
     refs.toast.textContent = message;
     refs.toast.classList.add('is-visible');
@@ -147,7 +209,7 @@
 
   function navigate(route) {
     if (currentRoute === 'exam' && route !== 'exam' && currentQuiz && !currentQuiz.submitted) {
-      if (!confirm('¿Descartar el examen en curso?')) return;
+      if (!savePendingQuiz()) { showToast('No se pudo guardar el examen'); return; }
       stopTimer(); currentQuiz = null;
     }
     currentRoute = route;
@@ -160,6 +222,7 @@
     if (route === 'flashcards') renderFlashcard();
     if (route === 'mistakes') renderMistakes();
     if (route === 'progress') renderProgress();
+    updatePendingExam();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -378,6 +441,7 @@
     if (mode === 'real') { count = 58; topicMode = 'all'; }
     const minutes = Number(document.getElementById('examMinutes').value);
     if (withTimer && mode !== 'practice' && (!Number.isFinite(minutes) || minutes < 1 || minutes > 300)) return showToast('Elige entre 1 y 300 minutos');
+    if (readPendingQuiz() && !confirm('Hay un examen pendiente. ¿Reemplazarlo por uno nuevo?')) return;
     const exactSet = exactSetId ? exactSetsById[exactSetId] : null;
     let questions;
 
@@ -512,6 +576,7 @@
       refs.mainQuestionAction.textContent = currentQuiz.index === currentQuiz.questions.length - 1 ? 'Finalizar' : 'Guardar y siguiente';
     }
     updateTimerUI();
+    savePendingQuiz();
   }
 
   function handleAnswerSelection() {
@@ -524,6 +589,7 @@
       option.classList.toggle('is-selected', input.checked);
     });
     renderQuestionNavigator();
+    savePendingQuiz();
   }
 
   function arraysEqual(a, b) {
@@ -538,6 +604,7 @@
     response.correct = arraysEqual(response.selected, [...q.answer].sort((a,b)=>a-b));
     response.checked = true;
     response.auto = auto;
+    savePendingQuiz();
     paintReviewedOptions(q, response);
     renderQuestionNavigator();
 
@@ -581,6 +648,7 @@
   function finishQuiz() {
     if (!currentQuiz || currentQuiz.submitted) return;
     currentQuiz.submitted = true;
+    clearPendingQuiz();
     stopTimer();
     const detailed = currentQuiz.questions.map((q, index) => {
       const response = currentQuiz.responses[index];
@@ -715,10 +783,11 @@
       : '<article class="history-item"><strong>Sin historial</strong><small>Todavía no has terminado cuestionarios.</small></article>';
   }
 
-  function startTimer() {
+  function startTimer(preserveDeadline = false) {
     stopTimer();
     if (!currentQuiz || !currentQuiz.withTimer) return;
-    if (!currentQuiz.deadline || currentQuiz.mode === 'practice') currentQuiz.deadline = Date.now() + currentQuiz.timeLeft * 1000;
+    if (!currentQuiz.deadline || (currentQuiz.mode === 'practice' && !preserveDeadline)) currentQuiz.deadline = Date.now() + currentQuiz.timeLeft * 1000;
+    savePendingQuiz();
     const tick = () => {
       if (!currentQuiz || currentQuiz.submitted) return;
       currentQuiz.timeLeft = Math.max(0, Math.ceil((currentQuiz.deadline - Date.now()) / 1000));
@@ -913,6 +982,15 @@
       });
     });
 
+    refs.leaveExam.textContent = 'Guardar y salir';
+    document.getElementById('resumeExam').addEventListener('click', resumePendingQuiz);
+    document.getElementById('discardPendingExam').addEventListener('click', () => {
+      if (!confirm('¿Descartar el examen pendiente? No se podrá recuperar este intento.')) return;
+      clearPendingQuiz();
+    });
+    window.addEventListener('pagehide', savePendingQuiz);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') savePendingQuiz(); });
+
     const codeDialog = document.getElementById('codeDialog');
     document.getElementById('openCodeDialog').addEventListener('click', () => {
       if (!currentQuiz) return;
@@ -929,11 +1007,11 @@
     });
     document.getElementById('finishExam').addEventListener('click', requestFinish);
     refs.leaveExam.addEventListener('click', () => {
-      if (!confirm('¿Salir y descartar este intento sin guardarlo?')) return;
+      if (!savePendingQuiz()) return showToast('No se pudo guardar: mantén esta pestaña abierta');
       stopTimer();
       currentQuiz = null;
       navigate('configure');
-      showToast('Sesión cancelada');
+      showToast('Examen guardado. Puedes continuarlo después');
     });
 
     refs.prevQuestion.addEventListener('click', () => {
@@ -1008,6 +1086,7 @@
     renderMistakes();
     renderProgress();
     bindEvents();
+    updatePendingExam();
   }
 
   init();
