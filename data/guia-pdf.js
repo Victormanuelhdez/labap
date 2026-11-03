@@ -288,7 +288,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Given: What is the result?",
-    "code": "public class Test {\n  public static void main(String... arguments) {\n    final char a = ’A’, d = ’D’;\n    char grade = ’B’;\n    switch (grade) {\n      case a:\n      case ’B’: System.out.print(\"B\");\n      case ’C’: System.out.print(\"C\");\n      case d:\n      case ’F’: System.out.print(\"F\");\n    }\n  }\n}",
+    "code": "public class Test {\n  public static void main(String... arguments) {\n    final char a = 'A', d = 'D';\n    char grade = 'B';\n    switch (grade) {\n      case a:\n      case 'B': System.out.print(\"B\");\n      case 'C': System.out.print(\"C\");\n      case d:\n      case 'F': System.out.print(\"F\");\n    }\n  }\n}",
     "options": [
       "A. A",
       "B. BF",
@@ -304,7 +304,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: En Java, la declaración switch ejecuta las sentencias de los casos siguientes (\"fall-through\") si no encuentra una instrucción break. Como grade es ’B’, coincide con case ’B’: e imprime \"B\". Al no haber break, continúa al case ’C’: (imprime \"C\") y luego a los siguientes casos hasta el final, imprimiendo \"F\". Salida total: BCF.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 14",
     "origin": "guia2",
-    "pdfNumber": "14"
+    "pdfNumber": "14",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-15",
@@ -419,7 +420,7 @@ window.GUIDE2_QUESTIONS = [
     "topic": "colecciones",
     "type": "single",
     "difficulty": "Media",
-    "question": "Given: What is the given program’s output?",
+    "question": "Given (Java 17): What is the given program’s output?",
     "code": "import java.util.List;\nimport java.util.function.Predicate;\nclass Person {\n  String name;\n  public Person(String name) {\n    this .name = name;\n  }\n  @Override\n  public String toString() {\n    return name;\n  }\n}\npublic class Test {\n  static List<Person> filter(List<Person> input,\n                                  Predicate<Person> predicate) {\n    return input.stream().filter(predicate).toList();\n  }\n  public static void main(String[] args) {\n    var a = new Person(\"John\");\n    var b = new Person(\"Jane\");\n    var c = new Person(\"Mark\");\n    var input = List.of(a, b, c);\n    var output = filter(input, p -> !p.name.startsWith(\"J\"));\n    System.out.println(output);\n  }\n}",
     "options": [
       "A. [John, Jane, Mark]",
@@ -436,7 +437,9 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Esta pregunta evalúa el uso de flujos de datos (Streams), funciones lambda y expresiones de predicados funcionales en Java para filtrar colecciones.\n\n1. Inicialización de datos y método estático: El método main crea una lista inmutable con tres objetos de tipo Person: John, Jane y Mark. Luego invoca al método estático filter, pasándole la lista completa y una expresión lambda como predicado: p -> !p.name.startsWith(\"J\").\n\n2. Evaluación del predicado: La condición del predicado evalúa que el nombre de la persona no empiece con la letra \"J\" (utilizando el operador de negación ! combinado con startsWith(\"J\")):\n\n• Para John: startsWith(\"J\") es verdadero, al negarlo da falso (descartado).\n\n• Para Jane: startsWith(\"J\") es verdadero, al negarlo da falso (descartado).\n\n• Para Mark: startsWith(\"J\") es falso, al negarlo da verdadero (conservado).\n\n3. Resultado del flujo: La operación terminal toList() recolecta los elementos que superaron el filtro en una nueva lista y los imprime llamando implícitamente al método toString() sobrescrito en la clase Person, obteniendo como salida [Mark].",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 20",
     "origin": "guia2",
-    "pdfNumber": "20"
+    "pdfNumber": "20",
+    "javaVersion": 17,
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-21",
@@ -473,12 +476,13 @@ window.GUIDE2_QUESTIONS = [
       "D. Constructor with int argument: 10\nNo-argument constructor\nCalculate method with int argument: 5\nConstructor with int argument: 20\nNo-argument calculate method\nCalculate method with int argument: 15\nNo-argument calculate method"
     ],
     "answer": [
-      3
+      2
     ],
-    "explanation": "Según la guía: La creación de obj1 invoca al constructor vacío, el cual llama inmediatamente a this(10). Esto ejecuta primero el constructor con int y al regresar finaliza el constructor por defecto. Luego, las llamadas a calculate() y calculate(5) imprimen sus mensajes. Posteriormente, obj2 llama directamente al constructor con parámetro (imprimiendo el de 20), seguido por sus dos llamadas a calculate. El flujo corresponde a la opción D.",
+    "explanation": "Corrección verificada: La creación de obj1 invoca al constructor vacío, el cual llama inmediatamente a this(10). Esto ejecuta primero el constructor con int y al regresar finaliza el constructor por defecto. Luego, las llamadas a calculate() y calculate(5) imprimen sus mensajes. Posteriormente, obj2 llama directamente al constructor con parámetro (imprimiendo el de 20), seguido por sus dos llamadas a calculate. El flujo corresponde a la opción C.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 22",
     "origin": "guia2",
-    "pdfNumber": "22"
+    "pdfNumber": "22",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-23",
@@ -591,9 +595,9 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-28",
     "topic": "pruebas",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
-    "question": "¿Qué puede suceder al intentar ejecutar el siguiente código para establecer una conexión a una base de datos?",
+    "question": "¿Cuáles de estos resultados son posibles al intentar establecer la conexión del siguiente código? Selecciona dos.",
     "code": "public class TestJDBC {\n  public static void main(String[] args) {\n    String url = \"jdbc:mysql://localhost:3306/mydb\";\n    String user = \"user\";\n    String password = \"password\";\n    try {\n      Connection conn = DriverManager.getConnection(url, user, password);\n      System.out.println(\"Connection established successfully.\");\n    } catch (SQLException e) {\n      System.out.println(\"Failed to establish connection.\");\n      e.printStackTrace();\n    }\n  }\n}",
     "options": [
       "A. Establece la conexión exitosamente e imprime \"Connection established successfully\"",
@@ -602,12 +606,14 @@ window.GUIDE2_QUESTIONS = [
       "D. Falla al establecer la conexión e imprime \"Failed to establish connection.\""
     ],
     "answer": [
-      0
+      0,
+      3
     ],
-    "explanation": "Según la guía: Si la base de datos existe, el driver está presente y las credenciales son válidas, la conexión se establecerá imprimiendo el mensaje de éxito. Si hay un problema de acceso o red, DriverManager.getConnection lanzará una SQLException, entrando en el bloque catch e imprimiendo la falla. No arrojará excepciones ajenas como NullPointerException en estas condiciones.",
+    "explanation": "Corrección del contexto: La conexión puede establecerse y ejecutar el mensaje de éxito, o fallar con SQLException y ejecutar el mensaje de error. El resultado depende del driver y de la disponibilidad, credenciales y configuración de la base de datos. No se realizó una conexión externa para comprobar este ejercicio.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 28",
     "origin": "guia2",
-    "pdfNumber": "28"
+    "pdfNumber": "28",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-29",
@@ -1113,7 +1119,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "Dado el siguiente código: ¿Cuál es el tipo de retorno válido de punto flotante más restringido para el método?",
-    "code": "public class Test {\n  doMath( long l, short s) {\n    return s / (l * 10);\n  }\n}",
+    "code": "public class Test {\n  ___ doMath( long l, short s) {\n    return s / (l * 10);\n  }\n}",
     "options": [
       "A. long",
       "B. float",
@@ -1128,7 +1134,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: La división se realiza con un dividendo short y un divisor que termina siendo long (l * 10). El resultado interno que da Java será long. Si se nos pide la opción válida más restringida (narrowest) que sea de punto flotante para devolver ese valor convirtiéndolo, float (32 bits) abarca menos espacio de memoria que double (64 bits).",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 52",
     "origin": "guia2",
-    "pdfNumber": "52"
+    "pdfNumber": "52",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-53",
@@ -1180,7 +1187,7 @@ window.GUIDE2_QUESTIONS = [
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "¿Cuál de las siguientes sentencias compila dentro del métodotest()? 2 4 6 11 13",
+    "question": "¿Cuál de las siguientes sentencias compila dentro del método test()?",
     "code": "class Animal {\n    Animal() { }\n    Animal(String name) { }\n    void sound() {\n      System.out.println(\"Animal\");\n    }\n}\nclass Dog extends Animal {\n    void test() {\n      // Insert Code\n    }\n}",
     "options": [
       "A. super();",
@@ -1194,7 +1201,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Este reactivo evalúa el uso correcto de la palabra reservada super en Java y distingue entre sus dos aplicaciones principales: la invocación de constructores de la superclase y el acceso a miembros heredados. Un aspecto importante es que la sintaxis permitida depende del contexto en el que se utilice.\n\nOpción A (super();): Inválida. La expresión super() invoca un constructor de la superclase y únicamente puede aparecer como la primera sentencia dentro de un constructor. No puede utilizarse dentro de un método ordinario como test().\n\nOpción B (super(\"Dog\");): Inválida. Al igual que super(), esta sintaxis invoca un constructor específico de la superclase y está restringida exclusivamente a los constructores. Su uso dentro de un método provoca un error de compilación.\n\nOpción C (super.sound();): Correcta. Esta expresión invoca el método sound() definido en la superclase Animal, incluso cuando dicho método ha sido sobrescrito en la subclase. El acceso a métodos heredados mediante super es válido dentro de cualquier método de instancia.\n\nOpción D (this.super.sound();): Inválida. La sintaxis this.super no existe en Java. Las únicas formas válidas de utilizar super son para invocar un constructor mediante super(...) o para acceder directamente a miembros heredados, por ejemplo super.sound() o super.campo.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 55",
     "origin": "guia2",
-    "pdfNumber": "55"
+    "pdfNumber": "55",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-56",
@@ -1225,7 +1233,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\n  static int co = 0;\n  public static void main(String[] args) {\n    int x = 1;\n    for (test(’1’); test(’2’) && (x <= 2); test(’3’)) {\n       x++;\n       test(’4’);\n    }\n    System.out.println(\" The co value = \" + co);\n  }\n  static boolean test( char num) {\n    System.out.print(\"\" + num);\n    co++;\n    return true ;\n  }\n}",
+    "code": "public class Test {\n  static int co = 0;\n  public static void main(String[] args) {\n    int x = 1;\n    for (test('1'); test('2') && (x <= 2); test('3')) {\n       x++;\n       test('4');\n    }\n    System.out.println(\" The co value = \" + co);\n  }\n  static boolean test( char num) {\n    System.out.print(\"\" + num);\n    co++;\n    return true ;\n  }\n}",
     "options": [
       "A. 12432432 The co value = 8",
       "B. 1234 The co value = 4",
@@ -1240,7 +1248,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: El orden de ejecución de un bucle for es: iniciador, condición, cuerpo e incremento. 1. Llama a\n\ntest(’1’) (imprime 1). 2. Condición: llama a test(’2’) (imprime 2) y valida x <= 2. 3. Cuerpo: x++ y llama a test(’4’) (imprime 4). 4. Incremento: llama a test(’3’) (imprime 3). Esto se repite hasta que la condición (2) rompe el bucle, llevando el conteo total acumulado en co hasta 8.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 57",
     "origin": "guia2",
-    "pdfNumber": "57"
+    "pdfNumber": "57",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-58",
@@ -1269,7 +1278,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "import java.time.LocalDateTime;\nimport java.time.Period;\nimport java.time.format.DateTimeFormatter;\nimport java.time.format.FormatStyle;\npublic class Test {\n  public static void main(String[] argv) {\n    LocalDateTime d = LocalDateTime.of(1997, 5, 15, 23, 55, 30);\n    Period p = Period.of(1, 2, 3);\n    d = d.minus(p);\n    DateTimeFormatter f =\n      DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);\n    System.out.println(d.format(f));\n  }\n}",
+    "code": "import java.time.LocalDateTime;\nimport java.time.Period;\nimport java.time.format.DateTimeFormatter;\nimport java.time.format.FormatStyle;\npublic class Test {\n  public static void main(String[] argv) {\n    LocalDateTime d = LocalDateTime.of(1997, 5, 15, 23, 55, 30);\n    Period p = Period.of(1, 2, 3);\n    d = d.minus(p);\n    DateTimeFormatter f =\n      DateTimeFormatter.ofPattern(\"dd/MM/yy HH:mm\");\n    System.out.println(d.format(f));\n  }\n}",
     "options": [
       "A. 15/05/1997",
       "B. The code does not compile",
@@ -1282,10 +1291,11 @@ window.GUIDE2_QUESTIONS = [
     "answer": [
       6
     ],
-    "explanation": "Según la guía: Se crea una fecha para el 15 de mayo de 1997. Se le resta un periodo exacto de 1 año, 2 meses y 3 días utilizando el método minus(). La operación temporal es matemática: 1997 menos 1 año es 1996; mayo menos 2 meses es marzo; día 15 menos 3 días es 12. Resulta en el 12 de marzo de 1996 en un formateo corto de región hispana/europea.",
+    "explanation": "Según la guía: Se crea una fecha para el 15 de mayo de 1997. Se le resta un periodo exacto de 1 año, 2 meses y 3 días utilizando el método minus(). La operación temporal es matemática: 1997 menos 1 año es 1996; mayo menos 2 meses es marzo; día 15 menos 3 días es 12. Resulta en el 12 de marzo de 1996 en un formateo corto de región hispana/europea.\n\nEn este reactivo se fija el patrón dd/MM/yy HH:mm para que la opción correcta no dependa de la configuración regional del equipo.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 59",
     "origin": "guia2",
-    "pdfNumber": "59"
+    "pdfNumber": "59",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-60",
@@ -1389,12 +1399,13 @@ window.GUIDE2_QUESTIONS = [
       "E. Try finally"
     ],
     "answer": [
-      0
+      1
     ],
-    "explanation": "Según la guía: El flujo ejecuta el método a(), que imprime \"Try\" y luego, al pasar siempre por finally, imprime \"Finally\". Luego se llama al método b(), el cual levanta intencionalmente una nueva Exc2. El bloque catch de la clase main la atrapa y procede a imprimir \"Caught2\". El resultado final unido en consola será \"Try Finally Caught2\".",
+    "explanation": "Corrección verificada: La compilación falla. El bloque try del método a() solo ejecuta System.out.print y no puede lanzar la excepción comprobada Exc1 que intenta capturar su catch. Declarar throws Exc1 en la firma de a() no hace que ese bloque try lance Exc1.\n\nEste error es parte del ejercicio: se conserva el código y se corrige la clave de la guía.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 64",
     "origin": "guia2",
-    "pdfNumber": "64"
+    "pdfNumber": "64",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-65",
@@ -1407,7 +1418,7 @@ window.GUIDE2_QUESTIONS = [
       "A. this.<class_name>()",
       "B. super()",
       "C. new()",
-      "D. this"
+      "D. this()"
     ],
     "answer": [
       3
@@ -1415,7 +1426,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: La instrucción this() se usa dentro de un bloque constructor para mandar a llamar y ejecutar a otro constructor perteneciente a la misma clase. super() realizaría lo mismo pero delegando hacia el constructor de la clase superior o padre.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 65",
     "origin": "guia2",
-    "pdfNumber": "65"
+    "pdfNumber": "65",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-66",
@@ -1556,11 +1568,11 @@ window.GUIDE2_QUESTIONS = [
     "question": "Which of the following lines of code correctly uses a method from the String class to replace all occurrences of the character ’a’ with ’e’ in a given string in Java?",
     "code": "",
     "options": [
-      "A. String result = \"banana\".replace(’a’, ’e’);",
-      "B. String result = \"banana\".change(’a’, ’e’);",
-      "C. String result = \"banana\".modify(’a’, ’e’);",
-      "D. String result = \"banana\".substitute(’a’, ’e’);",
-      "E. String result = \"banana\".swap(’a’, ’e’);"
+      "A. String result = \"banana\".replace('a', 'e');",
+      "B. String result = \"banana\".change('a', 'e');",
+      "C. String result = \"banana\".modify('a', 'e');",
+      "D. String result = \"banana\".substitute('a', 'e');",
+      "E. String result = \"banana\".swap('a', 'e');"
     ],
     "answer": [
       0
@@ -1568,7 +1580,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: La clase String en Java provee el método replace(char oldChar, char newChar) para sustituir todas las ocurrencias de un carácter específico. Los métodos como change, modify, substitute o\n\nswap simplemente no existen dentro de la API oficial de String.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 72",
     "origin": "guia2",
-    "pdfNumber": "72"
+    "pdfNumber": "72",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-73",
@@ -1790,7 +1803,7 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-83",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
     "question": "Which of the following statements accurately describe the relationships that can exist between classes in Java?",
     "code": "",
@@ -1803,19 +1816,24 @@ window.GUIDE2_QUESTIONS = [
       "F. Composition should be preferred over inheritance to promote code reuse and flexibility."
     ],
     "answer": [
+      0,
+      1,
+      3,
+      4,
       5
     ],
     "explanation": "Según la guía: La herencia dicta que un objeto \"es un\" derivado de otro (is-a), mientras que la composición estipula que un objeto \"tiene a\" otro (has-a) e involucra la instanciación como propiedades. En el buen diseño orientado a objetos, se prefiere siempre la composición sobre la herencia para evitar acoplamiento vertical.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 83",
     "origin": "guia2",
-    "pdfNumber": "83"
+    "pdfNumber": "83",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-84",
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "What is the result? 3 6 8",
+    "question": "What is the result?",
     "code": "public class Test {\n    public static void main(String[] args) {\n         try (AutoCloseable resource =\n                  () -> System.out.print(\"Resource closed \")) {\n              System.out.print(\"Resource used \");\n         } catch (Exception e) {\n             e.printStackTrace();\n         }\n    }\n}",
     "options": [
       "A. Compilation error.",
@@ -1829,7 +1847,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Este reactivo evalúa el uso de expresiones lambda con la interfaz AutoCloseable y el funcionamiento de try-with-resources.\n\nOpción A (Compilation error): Inválida. AutoCloseable es una interfaz funcional, por lo que puede implementarse mediante una expresión lambda.\n\nOpción B (Resource used Resource closed): Correcta. Primero se ejecuta el cuerpo del bloque try, imprimiendo Resource used. Al finalizar el bloque, Java invoca automáticamente el método close(), imprimiendo Resource closed.\n\nOpción C (Resource closed Resource used): Inválida. El método close() se ejecuta únicamente al salir del bloque try, nunca antes.\n\nOpción D (Runtime error): Inválida. El código se ejecuta correctamente y el recurso se cierra de forma automática al finalizar el bloque.\n\nNota: Contrastar con ejercicio 67.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 84",
     "origin": "guia2",
-    "pdfNumber": "84"
+    "pdfNumber": "84",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-85",
@@ -1924,8 +1943,8 @@ window.GUIDE2_QUESTIONS = [
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "What will be the output of the following code snippet? str2).toString();",
-    "code": "public class StringConcatenationTest {\n  public static void main(String[] args) {\n    String str1 = \"Hello\";\n    String str2 = \"World\";\n    String str3 = str1 + \" \" + str2;\n    String str4 = str1.concat(\" \").concat(str2);\n    String str5 = new StringBuilder().append(str1).append(\" \").append(\n    System.out.print(str3.equals(str4) + \" \");\n    System.out.print(str4.equals(str5) + \" \");\n    System.out.print((str3 == str4) + \" \");\n    System.out.println(str4 == str5);\n  }\n}",
+    "question": "What will be the output of the following code snippet?",
+    "code": "public class StringConcatenationTest {\n  public static void main(String[] args) {\n    String str1 = \"Hello\";\n    String str2 = \"World\";\n    String str3 = str1 + \" \" + str2;\n    String str4 = str1.concat(\" \").concat(str2);\n    String str5 = new StringBuilder().append(str1).append(\" \").append(str2).toString();\n    System.out.print(str3.equals(str4) + \" \");\n    System.out.print(str4.equals(str5) + \" \");\n    System.out.print((str3 == str4) + \" \");\n    System.out.println(str4 == str5);\n  }\n}",
     "options": [
       "A. true true true true",
       "B. Compilation fails.",
@@ -1940,15 +1959,16 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Este ejercicio evalúa la diferencia crucial entre la comparación de contenido (equals()) y la comparación de referencias de memoria (==) cuando se construyen cadenas de texto dinámicamente en Java.\n\n1. Construcción de los objetos: Las variables str3, str4 y str5 utilizan enfoques distintos (el operador +, el método concat() y StringBuilder) para unir las cadenas. Dado que la concatenación involucra variables que se resuelven en tiempo de ejecución, Java no utiliza el String Pool para los resultados. En su lugar, crea tres objetos String completamente nuevos e independientes en la memoria Heap, aunque los tres guarden exactamente el mismo texto: \"Hello World\".\n\n2. Comparación de contenido (equals): Las instrucciones str3.equals(str4) y str4.equals(str5) evalúan el valor interno de las cadenas carácter por carácter. Como todas contienen \"Hello World\", ambas expresiones devuelven true.\n\n3. Comparación de referencias (==): Las instrucciones str3 == str4 y str4 == str5 verifican si las variables apuntan a la misma dirección física de memoria. Como vimos en el paso 1, cada operación de concatenación instanció un objeto distinto en el Heap. Al ser instancias diferentes, estas comparaciones devuelven false. Al concatenar los resultados en la salida estándar, el programa imprime de forma secuencial true true false false.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 89",
     "origin": "guia2",
-    "pdfNumber": "89"
+    "pdfNumber": "89",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-90",
     "topic": "pruebas",
     "type": "single",
     "difficulty": "Media",
-    "question": "What is the result? 1\");",
-    "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\npublic class TestJDBC {\n  public static void main(String[] args) {\n    String url = \"jdbc:mysql://localhost:3306/testdb\";\n    String user = \"testuser\";\n    String password = \"testpassword\";\n    try {\n      Connection conn = DriverManager.getConnection(url, user, password);\n      Statement stmt = conn.createStatement();\n      ResultSet rs = stmt.executeQuery(\"SELECT name FROM users WHERE id =\n      while (rs.next()) {\n          System.out.println(rs.getString(\"name\"));\n      }\n    } catch (SQLException e) {\n      e.printStackTrace();\n    }\n  }\n}",
+    "question": "Assume the database connection and query succeed and a user with id 1 exists. What does the following code print?",
+    "code": "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\npublic class TestJDBC {\n  public static void main(String[] args) {\n    String url = \"jdbc:mysql://localhost:3306/testdb\";\n    String user = \"testuser\";\n    String password = \"testpassword\";\n    try {\n      Connection conn = DriverManager.getConnection(url, user, password);\n      Statement stmt = conn.createStatement();\n      ResultSet rs = stmt.executeQuery(\"SELECT name FROM users WHERE id = 1\");\n      while (rs.next()) {\n          System.out.println(rs.getString(\"name\"));\n      }\n    } catch (SQLException e) {\n      e.printStackTrace();\n    }\n  }\n}",
     "options": [
       "A. It will throw a NullPointerException.",
       "B. It will print the name of the user with id 1.",
@@ -1961,7 +1981,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Asumiendo que tanto el servidor se encuentre habilitado, el origen de datos (testdb) sea accesible y la credencial no sea refutada, el ResultSet avanzará el puntero con el método rs.next() logrando\n\nextraer e imprimir correctamente el registro almacenado en la columna \"name\" del usuario requerido.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 90",
     "origin": "guia2",
-    "pdfNumber": "90"
+    "pdfNumber": "90",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-91",
@@ -2035,21 +2056,22 @@ window.GUIDE2_QUESTIONS = [
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "¿Cuál es la respuesta verdadera?",
+    "question": "¿Qué puede afirmarse con seguridad sobre la ejecución del siguiente código con hilos?",
     "code": "public class Test implements Runnable {\n  private int i;\n  @Override\n  public void run() {\n    if (i % 10 == 0) {\n      i++;\n    }\n    for ( int x = 0; x < 10; x++, i++) {\n      if (x == 4) {\n         Thread.yield();\n      }\n      System.out.println(i + \" \");\n    }\n  }\n  public static void main(String[] args) {\n    Test n = new Test();\n    for ( int x = 0; x < 100; x++) {\n      new Thread(n).start();\n    }\n  }\n}",
     "options": [
       "A. La salida nunca puede contener el valor 297.",
       "B. La salida nunca puede contener el valor 1020.",
       "C. La salida nunca puede contener el valor 1130.",
-      "D. La salida nunca puede contener el valor 30."
+      "D. No hay una secuencia de valores garantizada: i se comparte sin sincronización y yield() no fija turnos."
     ],
     "answer": [
       3
     ],
-    "explanation": "Según la guía: La variable i es compartida por los 100 hilos (ya que todos usan la misma instancia de Test). Debido a la condición if (i % 10 == 0) { i++; } que se ejecuta antes del bucle for, si i llega a ser un múltiplo exacto de 10 (como el 30), el hilo la incrementará inmediatamente. Esto asegura que ningún hilo inicie su ciclo de impresión con un valor exacto múltiplo de 10.",
+    "explanation": "Corrección verificada: Los 100 hilos comparten i sin sincronización. Las lecturas y los incrementos pueden intercalarse; i++ no es una operación atómica.\n\nThread.yield() no obliga a otro hilo concreto a ejecutarse ni establece un orden. La condición inicial tampoco impide que se impriman múltiplos de diez durante el bucle. Por eso no es válido garantizar las exclusiones numéricas de la guía.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 94",
     "origin": "guia2",
-    "pdfNumber": "94"
+    "pdfNumber": "94",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-95",
@@ -2184,8 +2206,8 @@ window.GUIDE2_QUESTIONS = [
     "topic": "colecciones",
     "type": "single",
     "difficulty": "Media",
-    "question": "What is the result? date\"); ).collect(Collectors.toList());",
-    "code": "import java.util.Arrays;\nimport java.util.List;\nimport java.util.stream.Collectors;\npublic class StreamTest {\n    public static void main(String[] args) {\n        List<String> items = Arrays.asList(\"apple\", \"banana\", \"cherry\", \"\n        List<String> result = items.stream().filter(s ->s.startsWith(\"a\")\n        System.out.println(result);\n        }\n    }",
+    "question": "What is the result?",
+    "code": "import java.util.Arrays;\nimport java.util.List;\nimport java.util.stream.Collectors;\npublic class StreamTest {\n    public static void main(String[] args) {\n        List<String> items = Arrays.asList(\"apple\", \"banana\", \"cherry\", \"date\");\n        List<String> result = items.stream().filter(s -> s.startsWith(\"a\")).collect(Collectors.toList());\n        System.out.println(result);\n        }\n    }",
     "options": [
       "A. [apple, banana]",
       "B. [banana, cherry]",
@@ -2198,7 +2220,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: El Stream evalúa cada elemento de la lista utilizando la función intermedia filter(), la cual verifica el predicado s.startsWith(\"a\"). De la lista provista, la única cadena de texto que comienza con la letra \"a\" minúscula es \"apple\". La recolección terminal lo depositará en una nueva lista con ese único valor.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 101",
     "origin": "guia2",
-    "pdfNumber": "101"
+    "pdfNumber": "101",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-102",
@@ -2209,9 +2232,9 @@ window.GUIDE2_QUESTIONS = [
     "code": "class ABC {\n    public String met() {\n        return \"snippet 1\";\n    }\n}\n    public class ABCD extends ABC {\n  // Insert code here\n}",
     "options": [
       "A. public String met() { return \"4\"; }",
-      "B. public char met(int i) { return ’3’; }",
+      "B. public char met(int i) { return '3'; }",
       "C. public String met(int i) { return \"5\"; }",
-      "D. public char met() { return ’2’; }"
+      "D. public char met() { return '2'; }"
     ],
     "answer": [
       3
@@ -2219,7 +2242,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Al tratar de sobrescribir un método padre (Override), no puedes alterar el tipo de dato de retorno por uno que no sea covariante (compatible). Declarar char en lugar de String pero manteniendo la firma vacía del método hace que el compilador arroje un error por incompatibilidad de retorno. Las otras opciones representan una sobrecarga (Overload) válida, no una sobrescritura.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 102",
     "origin": "guia2",
-    "pdfNumber": "102"
+    "pdfNumber": "102",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-103",
@@ -2316,7 +2340,7 @@ window.GUIDE2_QUESTIONS = [
       "B. A runtime exception is thrown.",
       "C. Compilation fails.",
       "D. true 9 FUNCTIONAL Hello, World!",
-      "E. true 10 FUNCTIONAL Hello, World!"
+      "E. true\n10\nFUNCTIONAL\nHello, world!"
     ],
     "answer": [
       4
@@ -2324,7 +2348,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Esta pregunta evalúa el uso de las interfaces funcionales básicas del paquete java.util.function y sus métodos abstractos principales: Predicate.test(), Function.apply(), Consumer.accept() y Supplier.get().\n\n1. Evaluación del Predicado (Predicate.test): Se define un predicado con la interfaz Predicate<String> para evaluar si la longitud de una cadena es mayor a 5. Al evaluar la cadena \"functional\" (que tiene 10 caracteres), el método p.test(testString) retorna true.\n\n2. Aplicación de la Función (Function.apply): Se utiliza una referencia a método (String::length) mediante la interfaz Function<String, Integer> para obtener la longitud de la cadena. Al invocar f.apply(testString), el resultado entero es 10.\n\n3. Consumo y transformación (Consumer.accept): La interfaz Consumer<String> recibe la cadena, la convierte a mayúsculas mediante s.toUpperCase() y la imprime en consola, mostrando FUNCTIONAL.\n\n4. Proveedor de datos (Supplier.get): La interfaz Supplier<String> provee un valor de cadena sin recibir argumentos. Al invocar s.get(), se obtiene y se imprime el texto Hello, world!.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 107",
     "origin": "guia2",
-    "pdfNumber": "107"
+    "pdfNumber": "107",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-108",
@@ -2529,7 +2554,7 @@ window.GUIDE2_QUESTIONS = [
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "¿Cuál es la salida del siguiente código?",
+    "question": "¿Cuál es el orden de las llamadas a print, sin considerar cómo se mezclan visualmente stdout y stderr?",
     "code": "public class Test {\n  public void run() {\n     try {\n       System.out.print(\"Running \");\n       throw new Exception();\n     } catch (Exception e) {\n       System.err.print(\"Problem\");\n     } finally {\n       System.out.print(\"Stopping\");\n     } }\n  public static void main(String[] args) {\n     new Test().run();\n  }}",
     "options": [
       "A. Running Stopping Problem",
@@ -2542,10 +2567,11 @@ window.GUIDE2_QUESTIONS = [
     "answer": [
       1
     ],
-    "explanation": "Según la guía: La sintaxis arrojará primero la cadena \"Running \". Al lanzar manualmente el error, el sistema colapsa dentro del try y entra en la ruta alterna del bloque catch, procesando \"Problem\". El camino llega finalmente a la rutina de limpieza finally imprimiendo \"Stopping\". Al unirse las salidas se observa la secuencia descrita.",
+    "explanation": "Según la guía: La sintaxis arrojará primero la cadena \"Running \". Al lanzar manualmente el error, el sistema colapsa dentro del try y entra en la ruta alterna del bloque catch, procesando \"Problem\". El camino llega finalmente a la rutina de limpieza finally imprimiendo \"Stopping\". Al unirse las salidas se observa la secuencia descrita.\n\nEl orden lógico es Running, Problem y Stopping. System.out y System.err son flujos distintos: su mezcla visual no tiene por qué reflejar ese orden. El enunciado pregunta por las llamadas, no por un orden visual garantizado.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 117",
     "origin": "guia2",
-    "pdfNumber": "117"
+    "pdfNumber": "117",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-118",
@@ -2795,19 +2821,20 @@ window.GUIDE2_QUESTIONS = [
     "question": "Which of the following class declarations is not correct?",
     "code": "",
     "options": [
-      "A. abstract class Person ()",
-      "B. final class Person ()",
-      "C. class Person ()",
-      "D. abstract final class Person ()",
-      "E. public abstract class Person ()"
+      "A. abstract class Person {}",
+      "B. final class Person {}",
+      "C. class Person {}",
+      "D. abstract final class Person {}",
+      "E. public abstract class Person {}"
     ],
     "answer": [
       3
     ],
-    "explanation": "Según la guía: La declaración abstract final constituye una contradicción técnica insalvable. El modificador abstract exige y diseña a la clase para que sea obligatoriamente heredada, mientras que el modificador final prohíbe absolutamente que la clase tenga descendencia o herencia.",
+    "explanation": "Según la guía: La declaración abstract final constituye una contradicción técnica insalvable. El modificador abstract exige y diseña a la clase para que sea obligatoriamente heredada, mientras que el modificador final prohíbe absolutamente que la clase tenga descendencia o herencia.\n\nSe corrigieron los delimitadores del cuerpo de las clases: {}. La opción D sigue siendo inválida por combinar abstract y final.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 128",
     "origin": "guia2",
-    "pdfNumber": "128"
+    "pdfNumber": "128",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-129",
@@ -3034,7 +3061,7 @@ window.GUIDE2_QUESTIONS = [
     "type": "single",
     "difficulty": "Media",
     "question": "What is the result?",
-    "code": "public class Test {\n  public static void main(String... arguments) {\n    final char a = ’A’, d = ’D’;\n    char grade = ’B’;\n    switch (grade) {\n      case a:\n      case ’B’:\n        System.out.print(\"B\");\n      case ’C’:\n        System.out.print(\"C\");\n        break ;\n      case d:\n      case ’F’:\n        System.out.print(\"F\");\n    }\n  }\n}",
+    "code": "public class Test {\n  public static void main(String... arguments) {\n    final char a = 'A', d = 'D';\n    char grade = 'B';\n    switch (grade) {\n      case a:\n      case 'B':\n        System.out.print(\"B\");\n      case 'C':\n        System.out.print(\"C\");\n        break ;\n      case d:\n      case 'F':\n        System.out.print(\"F\");\n    }\n  }\n}",
     "options": [
       "A. B",
       "B. Compilation fails",
@@ -3049,7 +3076,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: En las arquitecturas switch sin interrupciones, se activa la caída de cascada (fall-through). La instrucción entra en case ’B’, imprimiendo \"B\". Como no existe un break que la frene, continúa derramándose por la instrucción case ’C’ e imprime \"C\". Justamente ahí encuentra un break, abortando el resto e impidiendo que imprima \"F\".",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 139",
     "origin": "guia2",
-    "pdfNumber": "139"
+    "pdfNumber": "139",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-140",
@@ -3164,7 +3192,7 @@ window.GUIDE2_QUESTIONS = [
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "Given: What is the narrowest valid return type for the calculate Method?",
+    "question": "Given: What is the narrowest valid return type for the doMath method?",
     "code": "public class Test {\n  ___ doMath ( long l, short s) {\n    return s / (l * 10);\n  }\n}",
     "options": [
       "A. float",
@@ -3180,7 +3208,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Durante el cálculo, la expresión (l * 10) transforma la ecuación inferior a un valor de 64 bits (long). Al segmentar y dividir este número con la variable short, las reglas de promoción imponen que el resultado final completo sea asimilado como un dato long. Por lo tanto, el tipo mínimo o más restringido requerido en la firma para no desbordar variables es long.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 145",
     "origin": "guia2",
-    "pdfNumber": "145"
+    "pdfNumber": "145",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-146",
@@ -3270,8 +3299,8 @@ window.GUIDE2_QUESTIONS = [
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "¿Cuál será el resultado del siguiente fragmento de código? (); \"Alice\"); \"Bob\", 30);",
-    "code": "public class OverloadedConstructorsTest {\n  private String name;\n  private int age;\n  public OverloadedConstructorsTest() {\n    this (\"Unknown\", 0);\n    System.out.println(\"Default constructor called\");\n  }\n  public OverloadedConstructorsTest(String name) {\n    this (name, 0);\n    System.out.println(\"Constructor with name called\");\n  }\n  public OverloadedConstructorsTest(String name, int age) {\n    this .name = name;\n    this .age = age;\n    System.out.println(\"Constructor with name and age called\");\n  }\n  public static void main(String[] args) {\n    OverloadedConstructorsTest obj1 = new OverloadedConstructorsTest\n    OverloadedConstructorsTest obj2 = new OverloadedConstructorsTest(\n    OverloadedConstructorsTest obj3 = new OverloadedConstructorsTest(\n  }\n}",
+    "question": "¿Cuál será el resultado del siguiente fragmento de código?",
+    "code": "public class OverloadedConstructorsTest {\n  private String name;\n  private int age;\n  public OverloadedConstructorsTest() {\n    this (\"Unknown\", 0);\n    System.out.println(\"Default constructor called\");\n  }\n  public OverloadedConstructorsTest(String name) {\n    this (name, 0);\n    System.out.println(\"Constructor with name called\");\n  }\n  public OverloadedConstructorsTest(String name, int age) {\n    this .name = name;\n    this .age = age;\n    System.out.println(\"Constructor with name and age called\");\n  }\n  public static void main(String[] args) {\n    OverloadedConstructorsTest obj1 = new OverloadedConstructorsTest();\n    OverloadedConstructorsTest obj2 = new OverloadedConstructorsTest(\"Alice\");\n    OverloadedConstructorsTest obj3 = new OverloadedConstructorsTest(\"Bob\", 30);\n  }\n}",
     "options": [
       "A. Default constructor called\nConstructor with name and age called\nConstructor with name called\nConstructor with name and age called\nConstructor with name and age called",
       "B. Constructor with name and age called\nDefault constructor called\nConstructor with name called\nConstructor with name and age called",
@@ -3284,7 +3313,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Este código evalúa el concepto de encadenamiento de constructores (constructor chaining) usando la palabra clave this(). Cuando un constructor invoca a otro de la misma clase, el constructor llamado debe terminar toda su ejecución antes de devolver el control al constructor original.\n\n1. OverloadedConstructorsTest obj1 = new OverloadedConstructorsTest(); Se invoca el constructor sin parámetros. Su primera instrucción es this(\"Unknown\", 0), lo que transfiere el control al constructor principal (el que recibe String e int). Este último imprime Constructor with name and age called. Al terminar, regresa al constructor por defecto, el cual imprime Default constructor called.\n\n2. OverloadedConstructorsTest obj2 = new OverloadedConstructorsTest(\"Alice\"); Se invoca el constructor que recibe solo un String. Su primera línea es this(name, 0), transfiriendo el control nuevamente al constructor principal, el cual vuelve a imprimir Constructor with name and age called. Al regresar, el constructor actual imprime Constructor with name called.\n\n3. OverloadedConstructorsTest obj3 = new OverloadedConstructorsTest(\"Bob\", 30); Se invoca directamente el constructor principal (que recibe String e int). Al no haber redirección mediante this(), simplemente asigna los valores a las variables de instancia e imprime por última vez Constructor with name and age called. Concatenando todas las salidas en el orden de ejecución, obtenemos la secuencia descrita en C.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 150",
     "origin": "guia2",
-    "pdfNumber": "150"
+    "pdfNumber": "150",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-151",
@@ -3340,7 +3370,7 @@ window.GUIDE2_QUESTIONS = [
     "options": [
       "A. 147",
       "B. 123456789",
-      "C. 159",
+      "C. 1 5 9",
       "D. 159246837"
     ],
     "answer": [
@@ -3349,7 +3379,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: El algoritmo recorre una matriz bidimensional (3x3). La condición lógica if (i == j) filtra e imprime de manera exclusiva los elementos que conforman la diagonal principal de la matriz (posiciones 0,0 luego 1,1 y 2,2), los cuales corresponden a los valores 1, 5 y 9.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 153",
     "origin": "guia2",
-    "pdfNumber": "153"
+    "pdfNumber": "153",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-154",
@@ -3573,9 +3604,9 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-164",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
-    "question": "¿Cuál de las siguientes implementaciones de código utiliza correctamente una clase genérica en Java?",
+    "question": "¿Cuáles de estas implementaciones declaran correctamente una clase genérica en Java? Selecciona dos.",
     "code": "",
     "options": [
       "A. public class Box { private Object value; public Box(Object value) { this.value = value; } public Object getValue() { return value; } }",
@@ -3584,12 +3615,14 @@ window.GUIDE2_QUESTIONS = [
       "D. public class Box<T> { private T value; public Box(T value) { this.value = value; } public T getValue() { return value; } }"
     ],
     "answer": [
+      2,
       3
     ],
-    "explanation": "Según la guía: La programación Genérica (Generics) en Java se define acompañando la declaración de la clase con un parámetro de tipo, usualmente representado entre corchetes angulares como <T>. Esto permite que el marco de compilación construya una clase segura en tipos evitando moldes (casting) propensos a errores en ejecución.",
+    "explanation": "Corrección verificada: C y D declaran una clase genérica válida.\n\nC usa T extends Number, que restringe el parámetro de tipo a Number y sus subtipos.\n\nD usa T sin una cota explícita. Las opciones A y B compilan, pero sus clases no declaran un parámetro genérico.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 164",
     "origin": "guia2",
-    "pdfNumber": "164"
+    "pdfNumber": "164",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-165",
@@ -3873,7 +3906,7 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-178",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
     "question": "Which of the following are valid ways to initialize an array in Java?",
     "code": "",
@@ -3884,12 +3917,15 @@ window.GUIDE2_QUESTIONS = [
       "D. int[] arr = new int[3];"
     ],
     "answer": [
+      1,
+      2,
       3
     ],
     "explanation": "Según la guía: Las matrices pueden instanciarse de tres formas equivalentes en Java: de forma sintética apoyada por el compilador con literales {1,2,3}, de manera declarativa explícita mediante un bloque new int[]{1,2,3}, o pre-dimensionando sus espacios vírgenes con una métrica absoluta new int[3]. Los delimitadores por paréntesis redondos de la opción A provocan error en sintaxis de conjuntos.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 178",
     "origin": "guia2",
-    "pdfNumber": "178"
+    "pdfNumber": "178",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-179",
@@ -3981,7 +4017,7 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-183",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
     "question": "Which of the following are unchecked exceptions?",
     "code": "",
@@ -3994,12 +4030,16 @@ window.GUIDE2_QUESTIONS = [
       "F. InterruptedException"
     ],
     "answer": [
+      0,
+      2,
+      3,
       4
     ],
     "explanation": "Según la guía: Las excepciones \"Unchecked\" (no comprobadas por el compilador) son todas aquellas que heredan directamente de la clase RuntimeException. Esto incluye errores lógicos en tiempo de ejecución como salir de los límites de un arreglo (ArrayIndexOutOfBoundsException), proveer argumentos inválidos (IllegalArgumentException) o fallar al convertir un número (NumberFormatException).",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 183",
     "origin": "guia2",
-    "pdfNumber": "183"
+    "pdfNumber": "183",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-184",
@@ -4155,29 +4195,32 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-191",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
     "question": "Which of the following statements about the java -jar command are true?",
     "code": "",
     "options": [
       "A. The java -jar command can dynamically add libraries to the classpath using the -cp or -classpath options.",
       "B. The java -jar command ignores the CLASSPATH environment variable and command-line classpath settings.",
-      "C. Thejava -jar command can execute a JAR file without specifying the main class if the JAR file contains multiple main classes.",
-      "D. The java -jar command requires the JAR file to have aMETA-INF/MANIFEST.MF file specifying the main class.",
+      "C. The java -jar command can execute a JAR file without specifying the main class if the JAR file contains multiple main classes.",
+      "D. The java -jar command requires the JAR file to have a META-INF/MANIFEST.MF file specifying the main class.",
       "E. The java -jar command can only be used to execute JAR files that are executable JARs, i.e., those that contain the META-INF/MANIFEST.MF file with the Main-Class attribute."
     ],
     "answer": [
+      1,
+      3,
       4
     ],
     "explanation": "Según la guía: Opción A (Falsa): Es una trampa muy común. Cuando utilizas el comando java -jar, la JVM ignora por completo las banderas -cp o -classpath. Si tu JAR ejecutable depende de otras librerías externas, la única forma de enlazarlas es declarándolas internamente usando el atributo Class-Path dentro del archivo manifiesto del propio JAR.\n\nOpción B (Verdadera): Por diseño y seguridad, arrancar un programa con java -jar hace que la JVM anule cualquier configuración de classpath externa. Ignorará tanto la variable de entorno CLASSPATH del sistema operativo como los argumentos de línea de comandos. El archivo JAR\n\nencapsulado se convierte en la única fuente de verdad para cargar las clases.\n\nOpción C (Falsa): La JVM no tiene la capacidad de adivinar el punto de entrada. Incluso si tu proyecto tiene decenas de clases con un método main, al usar java -jar la JVM no te preguntará cuál ejecutar; simplemente fallará a menos que el manifiesto indique explícitamente a cuál debe dirigirse. Opciones D y E (Verdaderas): Ambas afirman el mismo principio técnico. Para que el comando java -jar funcione sin lanzar el error \"no main manifest attribute\", el archivo comprimido debe ser formalmente un \"JAR ejecutable\". Esto significa que requiere estrictamente incluir el archivo de metadatos en la ruta interna META-INF/MANIFEST.MF, y dicho archivo debe contener la declaración explícita del punto de arranque mediante el atributo Main-Class: nombre.de.tu.ClasePrincipal.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 191",
     "origin": "guia2",
-    "pdfNumber": "191"
+    "pdfNumber": "191",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-192",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
     "question": "Which two statements are true?",
     "code": "",
@@ -4189,12 +4232,14 @@ window.GUIDE2_QUESTIONS = [
       "E. An abstract class can be extended by a concrete class."
     ],
     "answer": [
+      3,
       4
     ],
     "explanation": "Según la guía: Una clase abstracta actúa como puente en la herencia: tiene toda la libertad de implementar una interfaz (total o parcialmente dejando métodos sin definir) y, simultáneamente, está diseñada ex profeso para ser extendida (heredada) por una clase concreta hija que proporcionará la implementación final de dichos métodos ausentes.\n\nabstract class     implements     interface interface   (No permitido)   abstract class interface       extends      interface abstract class       extends      abstract class",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 192",
     "origin": "guia2",
-    "pdfNumber": "192"
+    "pdfNumber": "192",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-193",
@@ -4328,8 +4373,8 @@ window.GUIDE2_QUESTIONS = [
     "topic": "colecciones",
     "type": "single",
     "difficulty": "Media",
-    "question": "What will be the output of the above code? ().count();",
-    "code": "import java.util.stream.Stream;\nimport java.util.Objects;\nclass Person {\n  public String name;\n  Person(String name) {\n    this .name = name;\n  }\n  @Override\n  public int hashCode() {\n    return Objects.hash(name);\n  }\n  @Override\n  public boolean equals(Object obj) {\n    if ( this == obj)\n      return true ;\n    if (obj == null )\n      return false ;\n    if (getClass() != obj.getClass())\n      return false ;\n    Person other = (Person) obj;\n    return Objects.equals(name, other.name);\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Person p1 = new Person(\"John\");\n    Person p2 = new Person(\"Jane\");\n    Person p3 = new Person(\"Jane\");\n    Person p4 = new Person(\"Mark\");\n    Stream<Person> stream = Stream.of(p1, p2, p3, p4);\n    long count = stream.filter(p -> p.name.startsWith(\"J\")).distinct\n    System.out.println(count);}}",
+    "question": "What will be the output of the above code?",
+    "code": "import java.util.stream.Stream;\nimport java.util.Objects;\nclass Person {\n  public String name;\n  Person(String name) {\n    this .name = name;\n  }\n  @Override\n  public int hashCode() {\n    return Objects.hash(name);\n  }\n  @Override\n  public boolean equals(Object obj) {\n    if ( this == obj)\n      return true ;\n    if (obj == null )\n      return false ;\n    if (getClass() != obj.getClass())\n      return false ;\n    Person other = (Person) obj;\n    return Objects.equals(name, other.name);\n  }\n}\npublic class Test {\n  public static void main(String[] args) {\n    Person p1 = new Person(\"John\");\n    Person p2 = new Person(\"Jane\");\n    Person p3 = new Person(\"Jane\");\n    Person p4 = new Person(\"Mark\");\n    Stream<Person> stream = Stream.of(p1, p2, p3, p4);\n    long count = stream.filter(p -> p.name.startsWith(\"J\")).distinct().count();\n    System.out.println(count);}}",
     "options": [
       "A. 2",
       "B. A runtime exception is thrown",
@@ -4345,7 +4390,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: El flujo del Stream evalúa a los cuatro objetos Person. El filtro elimina a \"Mark\" porque no empieza con \"J\", dejando a \"John\", \"Jane\" y \"Jane\". Posteriormente, el método distinct() elimina a los duplicados gracias a que la clase sobreescribió lógicamente equals() y hashCode(), dejando únicamente a un \"John\" y a un \"Jane\". El conteo final de elementos en la secuencia es 2.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 199",
     "origin": "guia2",
-    "pdfNumber": "199"
+    "pdfNumber": "199",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-200",
@@ -4371,9 +4417,9 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-201",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
-    "question": "Which of the following lines of code correctly defines the main method in a Java program?",
+    "question": "Which two declarations define a valid Java main entry point? Select two.",
     "code": "",
     "options": [
       "A. static void main(String args[]) {}",
@@ -4383,20 +4429,22 @@ window.GUIDE2_QUESTIONS = [
       "E. private static void main(String[] args) {}"
     ],
     "answer": [
+      2,
       3
     ],
-    "explanation": "Según la guía: Opción A: Inválida porque omite el modificador public. Al quedar con visibilidad packageprivate, la JVM no tiene permisos para invocarlo desde fuera.\n\nOpción B: Inválida porque el método main debe retornar estrictamente void. La JVM no espera recibir ningún valor (como un int) al terminar la ejecución.\n\nOpción C: En Java, String no es una palabra reservada, es solo el nombre de una clase. Por lo tanto, la sintaxis String... String (donde el segundo \"String\" es el nombre del arreglo varargs) sí compila y la JVM sí lo reconoce como un método main válido. Sin embargo, no sigue la convención estándar de usar args como nombre del parámetro.\n\nOpción E: Inválida porque el método está marcado como private, haciéndolo completamente invisible e inaccesible para la JVM.",
+    "explanation": "Corrección verificada: C y D son puntos de entrada válidos. Ambas declaran public static void main y reciben un arreglo de String: String... es una declaración varargs equivalente en la firma.\n\nEl nombre del parámetro puede ser String o args: no determina la validez del punto de entrada.\n\nA y E no son public. B declara un retorno int y además no devuelve un valor.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 201",
     "origin": "guia2",
-    "pdfNumber": "201"
+    "pdfNumber": "201",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-202",
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "What will be the result of attempting to compile and run the following code snippet? value);",
-    "code": "public class RecursiveConstructorTest {\n  private int value;\n  public RecursiveConstructorTest() {\n    this (10);\n    System.out.println(\"No-argument constructor called\");\n  }\n  public RecursiveConstructorTest( int value) {\n    this ();\n    this .value = value;\n    System.out.println(\"Constructor with int argument called: \" +\n  }\n  public static void main(String[] args) {\n    RecursiveConstructorTest obj = new RecursiveConstructorTest();\n  }\n}",
+    "question": "What will be the result of attempting to compile and run the following code snippet?",
+    "code": "public class RecursiveConstructorTest {\n  private int value;\n  public RecursiveConstructorTest() {\n    this (10);\n    System.out.println(\"No-argument constructor called\");\n  }\n  public RecursiveConstructorTest( int value) {\n    this ();\n    this .value = value;\n    System.out.println(\"Constructor with int argument called: \" + value);\n  }\n  public static void main(String[] args) {\n    RecursiveConstructorTest obj = new RecursiveConstructorTest();\n  }\n}",
     "options": [
       "A. Compilation error due to recursive constructor calls.",
       "B. Runtime error due to infinite recursion.",
@@ -4409,7 +4457,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: El constructor vacío envía el control hacia this(10), y este segundo constructor envía forzosamente el control de regreso hacia this(). Al no existir una vía de escape, se genera un bucle de dependencia cíclica infinita. El compilador inteligente de Java detecta esta recursividad a nivel de inicialización y aborta el proceso de empaquetado para evitar un StackOverflowError.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 202",
     "origin": "guia2",
-    "pdfNumber": "202"
+    "pdfNumber": "202",
+    "contentRevision": "20261103-code-audit"
   },
   {
     "id": "guia2-203",
@@ -4624,7 +4673,7 @@ window.GUIDE2_QUESTIONS = [
       "E. private",
       "F. public",
       "G. All the options are correct.",
-      "H. final APXAPX GUIDEGUIDE"
+      "H. final"
     ],
     "answer": [
       1,
@@ -4635,7 +4684,8 @@ window.GUIDE2_QUESTIONS = [
     "explanation": "Según la guía: Esta pregunta evalúa los modificadores de acceso y restricciones permitidos al declarar una clase de nivel superior (top-level class) en un archivo de Java.\n\n1. Modificadores de acceso permitidos: A nivel superior, una clase solo puede ser public (visible globalmente) o no tener modificador (package-private, visible solo en su paquete). Los modificadores de visibilidad restrictivos como private y protected están estrictamente prohibidos porque private y protected tienen sentido únicamente respecto a una clase contenedora. private significa solo la clase que la contiene puede verla. protected significa la clase que la contiene, sus subclases y el paquete. Pero una top-level class no está contenida dentro de otra clase, por lo que esos modificadores no tienen un contexto donde aplicar.\n\n2. Modificadores estructurales y de comportamiento:\n\n• abstract (B): Permitido. Define una clase incompleta que no puede ser instanciada directamente y está diseñada para ser extendida.\n\n• strictfp (C): Permitido. Aplica la semántica estricta de punto flotante IEEE 754 a todos los métodos y expresiones de la clase.\n\n• public (F): Permitido. Otorga visibilidad universal a la clase desde cualquier otro paquete.\n\n• final (H): Permitido. Indica que la clase está completa y no puede ser extendida (no se pueden crear subclases a partir de ella).\n\n• static (D): No permitido en clases de nivel superior (solo aplica para clases anidadas o miembros internos).\n\nNota: Contrastar con pregunta 86\n\nAPXAPX GUIDEGUIDE ClasificationofQuestions Classification of Questions A continuación, se presenta una clasificación temática de las preguntas con el propósito de orientar y estructurar el estudio por áreas específicas de conocimiento. 1. Fundamentos y Sintaxis de Java (Core Java)43 QS 006, QS 009, QS 014, QS 017, QS 019, QS 025, QS 026, QS 030, QS 039, QS 040, QS 041, QS 052, QS 056, QS 057, QS 059, QS 060, QS 070, QS 072, QS 075, QS 076, QS 079, QS 089, QS 092, QS 108, QS 109, QS 110, QS 111, QS 112, QS 113, QS 114, QS 120, QS 124, QS 129, QS 135, QS 138, QS 139, QS 145, QS 153, QS 161, QS 175, QS 178, QS 190, QS 201 2. Programación Orientada a Objetos (OOP)43 QS 010, QS 015, QS 021, QS 022, QS 029, QS 032, QS 038, QS 054, QS 055, QS 065, QS 073, QS 081, QS 083, QS 086, QS 088, QS 095, QS 102, QS 103, QS 115, QS 116, QS 118, QS 123, QS 127, QS 128, QS 131, QS 136, QS 140, QS 141, QS 143, QS 149, QS 150, QS 155, QS 157, QS 166, QS 181, QS 187, QS 189, QS 192, QS 202, QS 203, QS 206, QS 211, QS 212 3. Arquitectura y Ecosistema APX33 QS 013, QS 016, QS 031, QS 034, QS 042, QS 044, QS 066, QS 074, QS 080, QS 082, QS 098, QS 104, QS 106, QS 119, QS 125, QS 126, QS126b, QS 137, QS 159, QS 160, QS 165, QS 167, QS 168, QS 169, QS 170, QS 173, QS 174, QS 176, QS 177, QS 179, QS 182, QS 204, QS 208 4. Manejo de Excepciones y Errores16 QS 001, QS 035, QS 049, QS 064, QS 067, QS 071, QS 078, QS 084, QS 117, QS 133, QS 146, QS 156, QS 158, QS 163, QS 180, QS 183 5. Herramientas de Construcción y Gestión (Maven y JDK)18 QS 008, QS 024, QS 036, QS 037, QS 047, QS 050, QS 077, QS 091, QS 105, QS 121, QS 151, QS 154, QS 184, QS 185, QS 191, QS 196, QS 209, QS 210 6. Colecciones y Programación Funcional (Java 8+)18 QS 012, QS 020, QS 023, QS 051, QS 058, QS 063, QS 087, QS 097, QS 099, QS 101, QS 107, QS 130, QS 134, QS 144, QS 148, QS 152, QS 164, QS 199 7. DevOps, CI/CD y Control de Versiones9 QS 002, QS 003, QS 048, QS 096, QS 100, QS 186, QS 195, QS 200, QS 207 8. Patrones de Diseño y Antipatrones9 QS 011, QS 018, QS 033, QS 043, QS 046, QS 068, QS 142, QS 197, QS 205 9. Bases de Datos y Persistencia12 QS 007, QS 028, QS 045, QS 090, QS 093, QS 147, QS 194, QS 198 10. Pruebas Unitarias (Testing)5 QS 053, QS 061, QS 062, QS 188, QS 193 11. Protocolos, Web y Misceláneos11 QS 004, QS 005, QS 027, QS 069, QS 085, QS 094, QS 122, QS 132, QS 162, QS 171, QS 172 Basado en algunas experiencias de personas que han presentado el examen, si se quisiera hacer un simulacro de examen de 40 preguntas sugerimos hacer la siguiente distribución de preguntas por área temática: 5 p. de Core Java 5 p. de OOP 8 p. de Arquitectura y Ecosistema APX 5 p. de Manejo de Excepciones 2 p. de Maven y JDK 5 p. de Colecciones y Funcional 2 p. de DevOps y Control de Versiones 2 p. de Patrones de Diseño 2 p. de Bases de Datos y Persistencia 2 p. de Pruebas Unitarias 2 p. de Protocolos, Web y Misceláneos Como ejemplo se proporcionan 2 hojas de respuestas interactiva para un simulacro de examen de 40 preguntas, pueden ser utilizadas para practicar y familiarizarse con el formato del examen real. En el pie de página se encuentran las respuestas correctas para que puedas autoevaluarte. Hoja de Respuestas Interactiva - Simulación APX (Examen 1) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 014) para navegar a la pregunta. # A B C D E F G H 1. QS 014 2. QS 041 3. QS 075 4. QS 114 5. QS 190 6. QS 022 7. QS 083 8. QS 128 9. QS 157 10. QS 206 11. QS 031 12. QS 042 13. QS 080 14. QS 126b 15. QS 165 16. QS 169 17. QS 177 18. QS 204 19. QS 035 20. QS 067 # A B C D E F G H 21. QS 117 22. QS 156 23. QS 183 24. QS 037 25. QS 185 26. QS 020 27. QS 058 28. QS 099 29. QS 148 30. QS 199 31. QS 003 32. QS 195 33. QS 011 34. QS 142 35. QS 045 36. QS 194 37. QS 053 38. QS 188 39. QS 069 40. QS 172 Hoja de Respuestas Interactiva - Simulación APX (Examen 2) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 009) para navegar a la pregunta. # A B C D E F G H 1. QS 009 2. QS 039 3. QS 109 4. QS 129 5. QS 201 6. QS 015 7. QS 054 8. QS 116 9. QS 187 10. QS 212 11. QS 016 12. QS 066 13. QS 098 14. QS 125 15. QS 160 16. QS 170 17. QS 182 18. QS 208 19. QS 001 20. QS 049 # A B C D E F G H 21. QS 078 22. QS 146 23. QS 163 24. QS 024 25. QS 191 26. QS 023 27. QS 063 28. QS 101 29. QS 134 30. QS 164 31. QS 048 32. QS 207 33. QS 033 34. QS 197 35. QS 007 36. QS 093 37. QS 061 38. QS 193 39. QS 027 40. QS 122 Hoja de Respuestas Interactiva - Simulación APX (Examen 3) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 014) para navegar a la pregunta. # A B C D E F G H 1. QS 026 2. QS 041 3. QS 057 4. QS 112 5. QS 175 6. QS 015 7. QS 054 8. QS 102 9. QS 127 10. QS 203 11. QS 031 12. QS 044 13. QS 082 14. QS 106 15. QS 126b 16. QS 167 17. QS 173 18. QS 182 19. QS 035 20. QS 064 # A B C D E F G H 21. QS 078 22. QS 117 23. QS 156 24. QS 036 25. QS 184 26. QS 020 27. QS 058 28. QS 099 29. QS 134 30. QS 199 31. QS 003 32. QS 195 33. QS 011 34. QS 142 35. QS 045 36. QS 194 37. QS 053 38. QS 188 39. QS 069 40. QS 172 Hoja de Respuestas Interactiva - Simulación APX (Examen 4) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 014) para navegar a la pregunta. # A B C D E F G H 1. QS 009 2. QS 052 3. QS 076 4. QS 111 5. QS 161 6. QS 032 7. QS 088 8. QS 103 9. QS 140 10. QS 211 11. QS 016 12. QS 034 13. QS 074 14. QS 098 15. QS 125 16. QS 168 17. QS 176 18. QS 208 19. QS 049 20. QS 067 # A B C D E F G H 21. QS 084 22. QS 146 23. QS 183 24. QS 024 25. QS 050 26. QS 023 27. QS 063 28. QS 101 29. QS 130 30. QS 164 31. QS 048 32. QS 100 33. QS 018 34. QS 068 35. QS 007 36. QS 090 37. QS 061 38. QS 193 39. QS 004 40. QS 132 Hoja de Respuestas Interactiva - Simulación APX (Examen 5) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 014) para navegar a la pregunta. # A B C D E F G H 1. QS 178 2. QS 030 3. QS 009 4. QS 072 5. QS 060 6. QS 088 7. QS 055 8. QS 038 9. QS 181 10. QS 032 11. QS 176 12. QS 031 13. QS 013 14. QS 204 15. QS 066 16. QS 074 17. QS 126b 18. QS 160 19. QS 001 20. QS 117 # A B C D E F G H 21. QS 064 22. QS 156 23. QS 146 24. QS 210 25. QS 185 26. QS 097 27. QS 148 28. QS 099 29. QS 134 30. QS 144 31. QS 002 32. QS 048 33. QS 142 34. QS 068 35. QS 093 36. QS 028 37. QS 061 38. QS 062 39. QS 005 40. QS 172 Hoja de Respuestas Interactiva - Simulación APX (Examen 6) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 014) para navegar a la pregunta. # A B C D E F G H 1. QS 110 2. QS 109 3. QS 056 4. QS 161 5. QS 052 6. QS 088 7. QS 095 8. QS 055 9. QS 032 10. QS 102 11. QS 170 12. QS 044 13. QS 182 14. QS 160 15. QS 126 16. QS 066 17. QS 119 18. QS 169 19. QS 078 20. QS 158 # A B C D E F G H 21. QS 180 22. QS 071 23. QS 183 24. QS 077 25. QS 047 26. QS 148 27. QS 063 28. QS 107 29. QS 020 30. QS 130 31. QS 207 32. QS 003 33. QS 197 34. QS 068 35. QS 194 36. QS 007 37. QS 062 38. QS 053 39. QS 122 40. QS 069 Hoja de Respuestas Interactiva - 1. Fundamentos y Sintaxis de Java (Core Java) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 006) para navegar a la pregunta. # A B C D E F G H 1. QS 006 2. QS 009 3. QS 014 4. QS 017 5. QS 019 6. QS 025 7. QS 026 8. QS 030 9. QS 039 10. QS 040 11. QS 041 12. QS 052 13. QS 056 14. QS 057 15. QS 059 16. QS 060 17. QS 070 18. QS 072 19. QS 075 20. QS 076 21. QS 079 22. QS 089 # A B C D E F G H 23. QS 092 24. QS 108 25. QS 109 26. QS 110 27. QS 111 28. QS 112 29. QS 113 30. QS 114 31. QS 120 32. QS 124 33. QS 129 34. QS 135 35. QS 138 36. QS 139 37. QS 145 38. QS 153 39. QS 161 40. QS 175 41. QS 178 42. QS 190 43. QS 201 Hoja de Respuestas Interactiva - 2. Programación Orientada a Objetos (OOP) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 010) para navegar a la pregunta. # A B C D E F G H 1. QS 010 2. QS 015 3. QS 021 4. QS 022 5. QS 029 6. QS 032 7. QS 038 8. QS 054 9. QS 055 10. QS 065 11. QS 073 12. QS 081 13. QS 083 14. QS 086 15. QS 088 16. QS 095 17. QS 102 18. QS 103 19. QS 115 20. QS 116 21. QS 118 22. QS 123 # A B C D E F G H 23. QS 127 24. QS 128 25. QS 131 26. QS 136 27. QS 140 28. QS 141 29. QS 143 30. QS 149 31. QS 150 32. QS 155 33. QS 157 34. QS 166 35. QS 181 36. QS 187 37. QS 189 38. QS 192 39. QS 202 40. QS 203 41. QS 206 42. QS 211 43. QS 212 Hoja de Respuestas Interactiva - 3. Arquitectura y Ecosistema APX Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 013) para navegar a la pregunta. # A B C D E F G H 1. QS 013 2. QS 016 3. QS 031 4. QS 034 5. QS 042 6. QS 044 7. QS 066 8. QS 074 9. QS 080 10. QS 082 11. QS 098 12. QS 104 13. QS 106 14. QS 119 15. QS 125 16. QS 126 17. QS126b # A B C D E F G H 18. QS 137 19. QS 159 20. QS 160 21. QS 165 22. QS 167 23. QS 168 24. QS 169 25. QS 170 26. QS 173 27. QS 174 28. QS 176 29. QS 177 30. QS 179 31. QS 182 32. QS 204 33. QS 208 Hoja de Respuestas Interactiva - 4. Manejo de Excepciones y Errores Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 001) para navegar a la pregunta. # A B C D E F G H 1. QS 001 2. QS 035 3. QS 049 4. QS 064 5. QS 067 6. QS 071 7. QS 078 8. QS 084 # A B C D E F G H 9. QS 117 10. QS 133 11. QS 146 12. QS 156 13. QS 158 14. QS 163 15. QS 180 16. QS 183 Hoja de Respuestas Interactiva - 5. Herramientas de Construcción y Gestión (Maven y JDK) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 008) para navegar a la pregunta. # A B C D E F G H 1. QS 008 2. QS 024 3. QS 036 4. QS 037 5. QS 047 6. QS 050 7. QS 077 8. QS 091 9. QS 105 # A B C D E F G H 10. QS 121 11. QS 151 12. QS 154 13. QS 184 14. QS 185 15. QS 191 16. QS 196 17. QS 209 18. QS 210 Hoja de Respuestas Interactiva - 6. Colecciones y Programación Funcional (Java 8+) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 012) para navegar a la pregunta. # A B C D E F G H 1. QS 012 2. QS 020 3. QS 023 4. QS 051 5. QS 058 6. QS 063 7. QS 087 8. QS 097 9. QS 099 # A B C D E F G H 10. QS 101 11. QS 107 12. QS 130 13. QS 134 14. QS 144 15. QS 148 16. QS 152 17. QS 164 18. QS 199 Hoja de Respuestas Interactiva - 7. DevOps, CI/CD y Control de Versiones Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 002) para navegar a la pregunta. # A B C D E F G H 1. QS 002 2. QS 003 3. QS 048 4. QS 096 5. QS 100 # A B C D E F G H 6. QS 186 7. QS 195 8. QS 200 9. QS 207 Hoja de Respuestas Interactiva - 8. Patrones de Diseño y Antipatrones Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 011) para navegar a la pregunta. # A B C D E F G H 1. QS 011 2. QS 018 3. QS 033 4. QS 043 5. QS 046 # A B C D E F G H 6. QS 068 7. QS 142 8. QS 197 9. QS 205 Hoja de Respuestas Interactiva - 9. Bases de Datos y Persistencia Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 007) para navegar a la pregunta. # A B C D E F G H 1. QS 007 2. QS 028 3. QS 045 4. QS 090 # A B C D E F G H 5. QS 093 6. QS 147 7. QS 194 8. QS 198 Hoja de Respuestas Interactiva - 10. Pruebas Unitarias (Testing) Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 053) para navegar a la pregunta. # A B C D E F G H 1. QS 053 2. QS 061 3. QS 062 # A B C D E F G H 4. QS 188 5. QS 193 Hoja de Respuestas Interactiva - 11. Protocolos, Web y Misceláneos Instrucciones: Haz clic en las casillas para seleccionar tus respuestas. Puedes seleccionar más de una opción por pregunta si es necesario. Haz clic en el identificador (ej. QS 004) para navegar a la pregunta. # A B C D E F G H 1. QS 004 2. QS 005 3. QS 027 4. QS 069 5. QS 085 6. QS 094 # A B C D E F G H 7. QS 122 8. QS 132 9. QS 162 10. QS 171 11. QS 172",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 212",
     "origin": "guia2",
-    "pdfNumber": "212"
+    "pdfNumber": "212",
+    "contentRevision": "20261103-code-audit"
   }
 ];
 window.QUESTIONS.push(...window.GUIDE2_QUESTIONS);

@@ -181,17 +181,47 @@
     updatePendingExam();
   }
 
+  function updatePendingContent(quiz) {
+    let updated = 0;
+    quiz.questions = quiz.questions.map((saved, index) => {
+      const current = questionById[saved.id];
+      if (!current?.contentRevision || current.contentRevision === saved.contentRevision) return saved;
+      if (saved.options.length !== current.options.length) return saved;
+      // Conservar la posición de cada opción y, por tanto, los índices elegidos.
+      const order = saved.options.map(option => {
+        const label = current.origin === 'guia2' && option.match(/^([A-H])\.\s*/);
+        return current.options.findIndex(text => label
+          ? text.startsWith(label[1] + '. ')
+          : sameTextIgnoringSpacing(option, text));
+      });
+      if (order.some(i => i < 0) || new Set(order).size !== current.options.length) return saved;
+      const refreshed = { ...current, options: order.map(i => current.options[i]),
+        answer: order.map((i, position) => current.answer.includes(i) ? position : -1).filter(i => i >= 0) };
+      const response = quiz.responses[index];
+      if (response.checked) {
+        // Una clave corregida debe volver a poder comprobarse en práctica.
+        response.checked = false;
+        response.correct = false;
+        response.auto = false;
+      }
+      updated += 1;
+      return refreshed;
+    });
+    return updated;
+  }
+
   function resumePendingQuiz() {
     const quiz = readPendingQuiz();
     if (!quiz) { updatePendingExam(); return showToast('No se encontró un examen pendiente válido'); }
     stopTimer();
+    const updated = updatePendingContent(quiz);
     currentQuiz = quiz;
     navigate('exam');
     renderQuestion();
     const checkedPractice = currentQuiz.mode === 'practice' && currentQuiz.responses[currentQuiz.index].checked;
     if (currentQuiz.withTimer && !checkedPractice) startTimer(true);
     else stopTimer();
-    if (!currentQuiz.submitted) showToast('Examen recuperado');
+    if (!currentQuiz.submitted) showToast(updated ? `Examen recuperado: ${updated} preguntas actualizadas; revisa sus respuestas` : 'Examen recuperado');
   }
 
   function showToast(message) {
@@ -541,6 +571,7 @@
     document.getElementById('finishExam').hidden = currentQuiz.mode === 'practice';
     refs.questionText.textContent = q.question;
     document.getElementById('codeExpandControls').hidden = !q.code;
+    document.getElementById('javaCodeContext').textContent = `En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java ${q.javaVersion || 11}), salvo que la pregunta evalúe explícitamente la compilación.`;
     if (q.code) {
       refs.questionCode.querySelector('code').textContent = q.code;
       refs.questionCode.classList.remove('hidden');

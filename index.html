@@ -5,7 +5,7 @@ html
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Prepárate para APX: temario, tarjetas y simulador de 58 preguntas. Aprobación del 80%, mínimo 47 aciertos." name="description"/>
 <title>APX · Study Lab</title>
-<link href="css/styles.css?v=20261103-parrafos" rel="stylesheet"/>
+<link href="css/styles.css?v=20261103-codigo-completo" rel="stylesheet"/>
 </head>
 <body>
 <div class="noise"></div>
@@ -323,7 +323,7 @@ html
 <span class="muted-strong" id="questionType"></span>
 </div>
 <h1 id="questionText"></h1>
-<p class="muted">En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java 11), salvo que la pregunta evalúe explícitamente la compilación.</p><div class="code-expand-controls" id="codeExpandControls" hidden><button class="ghost-btn" id="openCodeDialog" type="button" aria-haspopup="dialog" aria-controls="codeDialog">Ampliar código ↗</button></div><pre class="question-code hidden" id="questionCode"><code></code></pre>
+<p class="muted" id="javaCodeContext">En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java 11), salvo que la pregunta evalúe explícitamente la compilación.</p><div class="code-expand-controls" id="codeExpandControls" hidden><button class="ghost-btn" id="openCodeDialog" type="button" aria-haspopup="dialog" aria-controls="codeDialog">Ampliar código ↗</button></div><pre class="question-code hidden" id="questionCode"><code></code></pre>
 <form class="answer-grid" id="answerForm"></form>
 <div aria-live="polite" class="timer-box exam-timer-inline hidden" id="examTimer">01:15</div>
 <div class="feedback-box hidden" id="feedbackBox">
@@ -445,8 +445,8 @@ html
 <div class="toast" id="toast"></div>
 <script src="data/topics.js"></script>
 <script src="data/questions.js"></script>
-<script src="data/guia-pdf.js?v=20261103-parrafos"></script>
+<script src="data/guia-pdf.js?v=20261103-codigo-completo"></script>
 <script src="data/exam-sets.js"></script>
-<script src="js/app.js?v=20261103-parrafos"></script>
+<script src="js/app.js?v=20261103-codigo-completo"></script>
 </body>
 </html>
