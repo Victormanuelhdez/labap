@@ -512,6 +512,21 @@
     });
   }
 
+  function sameTextIgnoringSpacing(a, b) {
+    return typeof a === 'string' && typeof b === 'string' && a.replace(/\s+/g, '') === b.replace(/\s+/g, '');
+  }
+
+  function readableExplanation(item) {
+    const current = questionById[item.id ?? item.questionId];
+    return current && sameTextIgnoringSpacing(item.explanation, current.explanation)
+      ? current.explanation : item.explanation;
+  }
+
+  function readableOption(item, option) {
+    const current = questionById[item.id ?? item.questionId];
+    return current?.options.find(text => sameTextIgnoringSpacing(option, text)) ?? option;
+  }
+
   function renderQuestion() {
     if (!currentQuiz) return;
     const q = currentQuiz.questions[currentQuiz.index];
@@ -542,7 +557,7 @@
       return `
         <label class="answer-option ${response.selected.includes(i) ? 'is-selected' : ''}">
           <input type="${type}" name="answer" value="${i}" ${checked}>
-          <span>${escapeHtml(option)}</span>
+          <span>${escapeHtml(readableOption(q, option))}</span>
         </label>
       `;
     }).join('');
@@ -561,7 +576,7 @@
       if (currentQuiz.mode === 'practice') {
         refs.feedbackBox.classList.remove('hidden');
         refs.feedbackTitle.textContent = response.correct ? 'Correcta' : response.auto ? 'Tiempo agotado' : 'Incorrecta';
-        refs.feedbackText.textContent = q.explanation;
+        refs.feedbackText.textContent = readableExplanation(q);
         refs.feedbackSource.textContent = `Fuente: ${q.source}`;
       }
     }
@@ -611,7 +626,7 @@
     if (currentQuiz.mode === 'practice') {
       refs.feedbackBox.classList.remove('hidden');
       refs.feedbackTitle.textContent = response.correct ? 'Correcta' : auto ? 'Tiempo agotado' : 'Incorrecta';
-      refs.feedbackText.textContent = q.explanation;
+      refs.feedbackText.textContent = readableExplanation(q);
       refs.feedbackSource.textContent = `Fuente: ${q.source}`;
     }
   }
@@ -734,15 +749,15 @@
     }
 
     refs.answerReview.innerHTML = attempt.details.map((item, index) => {
-      const correctOptions = item.answer.map(i => item.options[i]).join(' · ');
-      const selectedOptions = item.selected.length ? item.selected.map(i => item.options[i]).join(' · ') : 'Sin respuesta';
+      const correctOptions = item.answer.map(i => readableOption(item, item.options[i])).join(' · ');
+      const selectedOptions = item.selected.length ? item.selected.map(i => readableOption(item, item.options[i])).join(' · ') : 'Sin respuesta';
       return `
         <article class="review-item ${item.correct ? 'correct' : 'wrong'}">
           <strong>${index + 1}. ${escapeHtml(item.question)}</strong>
           ${item.code ? `<pre class="question-code review-code"><code>${escapeHtml(item.code)}</code></pre>` : ''}
           <p><strong>Tu respuesta:</strong> ${escapeHtml(selectedOptions)}</p>
           <p><strong>Correcta:</strong> ${escapeHtml(correctOptions)}</p>
-          <p>${escapeHtml(item.explanation)}</p>
+          <p>${escapeHtml(readableExplanation(item))}</p>
           <small>Fuente: ${escapeHtml(item.source)}</small>
         </article>
       `;
@@ -759,7 +774,7 @@
       <article class="mistake-card">
         <span class="section-kicker">${topicById[q.topic]?.title || q.topic}</span>
         <h3>${escapeHtml(q.question)}</h3>
-        <p>${escapeHtml(q.explanation)}</p>
+        <p>${escapeHtml(readableExplanation(q))}</p>
       </article>
     `).join('');
   }
