@@ -3454,7 +3454,7 @@ body.dark .material-mini-review {
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* Vista ampliada del código de la pregunta. */
-.code-expand-controls { display: flex; justify-content: flex-end; margin: 0 0 12px; }
+.code-expand-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; margin: 0 0 12px; }
 .code-dialog { width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 0; border: 0; border-radius: 20px; background: #11141d; color: #f4f5f8; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
 .code-dialog::backdrop { background: rgba(0,0,0,.72); }
 .code-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1px solid #3f4655; }
@@ -3472,3 +3472,5 @@ body.dark .material-mini-review {
 .pending-exam p { margin:8px 0; }.pending-exam-actions { display:flex; flex-wrap:wrap; gap:10px; flex-shrink:0; }
 #examSaveStatus { display:block; margin-top:8px; font-size:.8rem; font-weight:400; }
 @media(max-width:650px) { .pending-exam { flex-direction:column; align-items:stretch; }.pending-exam-actions { justify-content:flex-start; } }
+
+@media (max-width: 600px) { .code-dialog-heading { flex-wrap: wrap; } }

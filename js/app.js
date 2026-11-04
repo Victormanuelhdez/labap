@@ -1046,6 +1046,41 @@
       codeDialog.showModal();
     });
     document.getElementById('closeCodeDialog').addEventListener('click', () => codeDialog.close());
+    async function copyCurrentCode() {
+      const code = currentQuiz?.questions[currentQuiz.index]?.code;
+      if (!code) return;
+      try {
+        let copied = false;
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(code);
+            copied = true;
+          }
+        } catch (_) { /* Try the local-file compatible fallback below. */ }
+        if (!copied) {
+          const previousFocus = document.activeElement;
+          const field = document.createElement('textarea');
+          field.value = code;
+          field.setAttribute('aria-label', 'Código para copiar');
+          field.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+          (codeDialog.open ? codeDialog : document.body).appendChild(field);
+          try {
+            field.focus({ preventScroll: true });
+            field.select();
+            copied = document.execCommand('copy');
+          } finally {
+            field.remove();
+            previousFocus?.focus({ preventScroll: true });
+          }
+        }
+        showToast(copied ? 'Código copiado' : 'No se pudo copiar. Selecciona el código y cópialo manualmente');
+      } catch (_) {
+        showToast('No se pudo copiar. Selecciona el código y cópialo manualmente');
+      }
+    }
+    document.getElementById('copyQuestionCode').addEventListener('click', copyCurrentCode);
+    document.getElementById('copyDialogCode').addEventListener('click', copyCurrentCode);
+
 
     document.getElementById('flagQuestion').addEventListener('click', () => {
       if (!currentQuiz) return;
