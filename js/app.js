@@ -413,7 +413,7 @@
     const count = mode === 'real' ? 58 : Number(form.get('count'));
     const topic = mode === 'real' ? 'all' : refs.quizTopic.value;
     const modeLabel = mode === 'practice' ? 'Práctica' : mode === 'real' ? 'Como el real' : 'Simulación';
-    const topicLabel = topic === 'all' ? 'Todos los temas' : topic === 'weak' ? 'Temas débiles' : topic === 'guia2' ? 'Solo MiGuiaAPX 2' : 'Solo errores';
+    const topicLabel = topic === 'all' ? 'Todos los temas' : topic === 'weak' ? 'Temas débiles' : topic === 'guia2' ? 'Solo MiGuiaAPX 2' : topic === 'original' ? 'Banco original' : topic === 'word' ? 'Banco de trabajo' : topic === 'code-word' ? 'Código de Banco de trabajo' : 'Solo errores';
     refs.configTitle.textContent = `${modeLabel} de ${count} preguntas`;
     refs.configText.textContent = `${topicLabel} · ${mode === 'practice' ? 'explicación inmediata' : 'sin retroalimentación hasta el final'}`;
     refs.configGoal.textContent = `Meta: ${Math.ceil(count * .8)} de ${count} · 80%`;
@@ -444,7 +444,13 @@
   function pickQuestionPool(topicMode) {
     let pool = [...QUESTIONS];
     if (topicMode === 'code-guide' || topicMode === 'code-general') {
-      pool = QUESTIONS.filter(q => typeof q.code === 'string' && q.code.trim() && (topicMode === 'code-guide' ? q.origin === 'guia2' : q.origin !== 'guia2'));
+      pool = QUESTIONS.filter(q => typeof q.code === 'string' && q.code.trim() && (topicMode === 'code-guide' ? q.origin === 'guia2' : !q.origin));
+    } else if (topicMode === 'original') {
+      pool = QUESTIONS.filter(q => !q.origin);
+    } else if (topicMode === 'word' || topicMode === 'code-word' || topicMode.startsWith('word:')) {
+      const setId = topicMode.startsWith('word:') ? topicMode.slice(5) : 'all';
+      const ids = new Set((window.WORK_QUESTION_SETS || []).filter(s => setId === 'all' || s.id === setId).flatMap(s => s.questionIds));
+      pool = QUESTIONS.filter(q => ids.has(q.id) && (topicMode !== 'code-word' || !!q.code));
     } else if (topicMode === 'guia2') {
       pool = QUESTIONS.filter(q => q.origin === 'guia2');
     } else if (topicMode === 'mistakes') {
@@ -457,7 +463,7 @@
         .map(x => x.topicId);
       pool = topicStats.length ? QUESTIONS.filter(q => topicStats.includes(q.topic)) : [...QUESTIONS];
     }
-    if (!pool.length && !['guia2', 'code-guide', 'code-general'].includes(topicMode)) pool = [...QUESTIONS];
+    if (!pool.length && !['original', 'word', 'code-word', 'guia2', 'code-guide', 'code-general'].includes(topicMode) && !topicMode.startsWith('word:')) pool = [...QUESTIONS];
     return shuffle(uniqueQuestionPool(pool));
   }
 
@@ -487,6 +493,7 @@
       } else questions = selectQuestions(pool, count);
     }
 
+    if (!questions.length) return showToast('No hay preguntas validadas disponibles para este filtro');
     questions = questions.map(q => {
       if (q.origin === 'guia2') return { ...q, options: [...q.options], answer: [...q.answer] };
       const order = shuffle(q.options.map((_, i) => i));
@@ -927,6 +934,20 @@
         startQuiz({ mode: count === 58 ? 'simulation' : 'practice', count, topicMode: 'all', withTimer: false });
       }
 
+      const workButton = e.target.closest('[data-work-set]');
+      if (workButton) {
+        const set = workButton.dataset.workSet;
+        startQuiz({ mode: workButton.dataset.workMode, count: Number(document.getElementById(`workCount-${set}`).value), topicMode: set === 'all' ? 'word' : set === 'code' ? 'code-word' : `word:${set}`, withTimer: false });
+      }
+      const reviewCode = e.target.closest('[data-work-review-code]');
+      if (reviewCode) {
+        const item = (window.WORK_REVIEW_QUESTIONS || []).find(q => q.id === reviewCode.dataset.workReviewCode);
+        if (item?.code) {
+          document.getElementById('dialogCode').textContent = item.code;
+          document.getElementById('codeDialog').showModal();
+        }
+      }
+
       const guideButton = e.target.closest('[data-guide-quiz]');
       if (guideButton) {
         const practice = guideButton.dataset.guideQuiz === 'practice';
@@ -1046,8 +1067,8 @@
       codeDialog.showModal();
     });
     document.getElementById('closeCodeDialog').addEventListener('click', () => codeDialog.close());
-    async function copyCurrentCode() {
-      const code = currentQuiz?.questions[currentQuiz.index]?.code;
+    async function copyCurrentCode(codeOverride) {
+      const code = codeOverride || currentQuiz?.questions[currentQuiz.index]?.code;
       if (!code) return;
       try {
         let copied = false;
@@ -1078,8 +1099,8 @@
         showToast('No se pudo copiar. Selecciona el código y cópialo manualmente');
       }
     }
-    document.getElementById('copyQuestionCode').addEventListener('click', copyCurrentCode);
-    document.getElementById('copyDialogCode').addEventListener('click', copyCurrentCode);
+    document.getElementById('copyQuestionCode').addEventListener('click', () => copyCurrentCode());
+    document.getElementById('copyDialogCode').addEventListener('click', () => copyCurrentCode(document.getElementById('dialogCode').textContent));
 
 
     document.getElementById('flagQuestion').addEventListener('click', () => {

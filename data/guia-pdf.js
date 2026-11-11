@@ -2576,7 +2576,7 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-118",
     "topic": "java",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
     "question": "Which two options are true about the default constructor?",
     "code": "",
@@ -2588,12 +2588,14 @@ window.GUIDE2_QUESTIONS = [
       "E. The default constructor inherits the arguments of the superclass constructor."
     ],
     "answer": [
-      0
+      0,
+      3
     ],
-    "explanation": "Según la guía: El constructor predeterminado por el compilador solo existe y es insertado si el desarrollador no provee de manera explícita un solo constructor para la clase. Este constructor invisible está programado además para lanzar siempre la directriz super() hacia la clase padre.",
+    "explanation": "El compilador genera el constructor por defecto únicamente si la clase no declara ningún constructor. Invoca implícitamente super(), el constructor sin argumentos de la superclase. Su visibilidad coincide con la de la clase.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 118",
     "origin": "guia2",
-    "pdfNumber": "118"
+    "pdfNumber": "118",
+    "contentRevision": "20261110-contraste-word"
   },
   {
     "id": "guia2-119",
@@ -2927,7 +2929,7 @@ window.GUIDE2_QUESTIONS = [
     "topic": "java",
     "type": "multiple",
     "difficulty": "Media",
-    "question": "Which three of the following options are considered bad practices in software development in Java?",
+    "question": "Which four of the following options are considered bad practices in software development in Java? Select four.",
     "code": "",
     "options": [
       "A. Ignoring exceptions instead of handling them properly.",
@@ -2939,19 +2941,21 @@ window.GUIDE2_QUESTIONS = [
     "answer": [
       0,
       1,
-      2
+      2,
+      3
     ],
-    "explanation": "Según la guía: Omitir el tratamiento de excepciones o capturarlas con bloques vacíos (sin arrojar logs o alertas) oculta errores críticos del sistema convirtiéndolos en \"fallos silenciosos\", lo cual imposibilita su diagnóstico. Por otro lado, la duplicación de código dispara directamente la deuda técnica, haciendo el sistema inmanejable.",
+    "explanation": "Ignorar excepciones, dejar catch vacíos sin documentar, duplicar código y omitir pruebas porque el código es difícil de probar son malas prácticas. Usar convenciones de nombres adecuadas es una buena práctica.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 133",
     "origin": "guia2",
-    "pdfNumber": "133"
+    "pdfNumber": "133",
+    "contentRevision": "20261110-contraste-word"
   },
   {
     "id": "guia2-134",
     "topic": "java",
     "type": "single",
     "difficulty": "Media",
-    "question": "¿Qué clase puede proveer las siguientes capacidades?: no permitir valores duplicados, mantener el orden en el cual los elementos fueron insertados, proveer iteración rápida y acceso aleatorio eficiente.",
+    "question": "¿Qué clase no permite valores duplicados y mantiene el orden en el que se insertaron los elementos?",
     "code": "",
     "options": [
       "A. TreeSet",
@@ -2963,10 +2967,11 @@ window.GUIDE2_QUESTIONS = [
     "answer": [
       1
     ],
-    "explanation": "Según la guía: El conjunto de características requeridas define a la perfección a LinkedHashSet. Al implementar Set rechaza la inserción de duplicados. Sin embargo, su virtud radica en que implementa internamente una lista doblemente enlazada, lo que le permite garantizar y mantener un estricto orden cronológico de cómo fueron insertados los datos.",
+    "explanation": "LinkedHashSet mantiene el orden de inserción y evita duplicados. No ofrece acceso aleatorio por índice; se eliminó esa propiedad contradictoria del enunciado.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 134",
     "origin": "guia2",
-    "pdfNumber": "134"
+    "pdfNumber": "134",
+    "contentRevision": "20261110-contraste-word"
   },
   {
     "id": "guia2-135",
@@ -3014,9 +3019,9 @@ window.GUIDE2_QUESTIONS = [
   {
     "id": "guia2-137",
     "topic": "batch",
-    "type": "single",
+    "type": "multiple",
     "difficulty": "Media",
-    "question": "¿Cuál de las siguientes opciones es verdadera acerca de Spring Batch?",
+    "question": "¿Cuáles dos afirmaciones describen correctamente Spring Batch? Selecciona dos.",
     "code": "",
     "options": [
       "A. Marco de trabajo basado en jobs y steps.",
@@ -3026,12 +3031,14 @@ window.GUIDE2_QUESTIONS = [
       "E. Marco de trabajo para lotes diseñado para permitir el desarrollo de aplicaciones por lotes."
     ],
     "answer": [
+      0,
       4
     ],
-    "explanation": "Según la guía: Spring Batch es el framework insignia de Java diseñado ex profeso para crear aplicaciones de alto rendimiento enfocadas en procesar volúmenes masivos de datos fuera de línea (Batch). Para lograrlo, su esquema arquitectónico se sostiene en la subdivisión lógica de tareas utilizando agrupadores maestros (Jobs) segmentados en ejecuciones individuales (Steps).",
+    "explanation": "Spring Batch es un framework para procesamiento por lotes basado en Jobs y Steps. Ambas descripciones del framework son verdaderas; las demás describen componentes individuales.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 137",
     "origin": "guia2",
-    "pdfNumber": "137"
+    "pdfNumber": "137",
+    "contentRevision": "20261110-contraste-word"
   },
   {
     "id": "guia2-138",
@@ -3257,7 +3264,7 @@ window.GUIDE2_QUESTIONS = [
     "topic": "colecciones",
     "type": "single",
     "difficulty": "Media",
-    "question": "¿Cuál es la característica que comparten Array y ArrayList?",
+    "question": "Respecto a la repetición de valores, ¿qué propiedad comparten Array y ArrayList?",
     "code": "",
     "options": [
       "A. Pueden almacenar valores nulos.",
@@ -3268,10 +3275,11 @@ window.GUIDE2_QUESTIONS = [
     "answer": [
       2
     ],
-    "explanation": "Según la guía: A distinción directa con los arreglos de tipo Set, ambas estructuras de recolección de memoria (los Arrays estáticos primitivos y las ArrayLists dinámicas orientadas a objetos) pueden acomodar y guardar réplicas exactas del mismo objeto o variable cuantas veces se requiera en ubicaciones o índices distintos sin ocasionar problemas en tiempo de ejecución.",
+    "explanation": "Ambos permiten valores duplicados. El enunciado se concreta en la repetición de valores para evitar la ambigüedad sobre nulos (un array de primitivos no admite null) y orden de inserción frente a ordenación.",
     "source": "MiGuiaAPX 2 (1).pdf · pregunta 148",
     "origin": "guia2",
-    "pdfNumber": "148"
+    "pdfNumber": "148",
+    "contentRevision": "20261110-contraste-word"
   },
   {
     "id": "guia2-149",

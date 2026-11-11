@@ -3474,3 +3474,11 @@ body.dark .material-mini-review {
 @media(max-width:650px) { .pending-exam { flex-direction:column; align-items:stretch; }.pending-exam-actions { justify-content:flex-start; } }
 
 @media (max-width: 600px) { .code-dialog-heading { flex-wrap: wrap; } }
+
+.work-source-card { margin-bottom: 16px; align-items: center; }
+.work-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.work-pending { margin-top: 24px; }
+.work-pending details { margin: 18px 0; padding: 12px 0; border-bottom: 1px solid var(--border, #ddd); }
+.work-pending summary { cursor: pointer; font-weight: 700; }
+.work-pending p, .work-pending li { white-space: pre-wrap; }
+@media (max-width: 600px) { .work-source-card { display: flex; flex-direction: column; align-items: stretch; } }
