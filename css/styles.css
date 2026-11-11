@@ -3475,10 +3475,80 @@ body.dark .material-mini-review {
 
 @media (max-width: 600px) { .code-dialog-heading { flex-wrap: wrap; } }
 
-.work-source-card { margin-bottom: 16px; align-items: center; }
-.work-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-.work-pending { margin-top: 24px; }
-.work-pending details { margin: 18px 0; padding: 12px 0; border-bottom: 1px solid var(--border, #ddd); }
+
+.work-bank-heading { margin-bottom: 20px; }
+.work-bank-heading h2 {
+  margin: 10px 0 6px;
+  font-size: clamp(1.75rem, 3vw, 2.7rem);
+  letter-spacing: -.045em;
+  line-height: 1.1;
+}
+.work-bank-heading p { margin: 0; color: var(--muted); }
+.work-source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.work-source-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-strong);
+  min-width: 0;
+}
+.work-source-featured { border-top: 3px solid var(--accent); }
+.work-source-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.16rem;
+  letter-spacing: -.02em;
+}
+.work-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: .82rem;
+}
+.work-card-meta span {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 3px 9px;
+}
+.work-count {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: .86rem;
+}
+.work-count select {
+  max-width: 100%;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  color: var(--text);
+}
+.work-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.work-actions button { min-height: 40px; padding: 8px 14px; font-size: .88rem; }
+.work-pending {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.work-pending details { padding: 12px 0; border-top: 1px solid var(--line); }
 .work-pending summary { cursor: pointer; font-weight: 700; }
 .work-pending p, .work-pending li { white-space: pre-wrap; }
-@media (max-width: 600px) { .work-source-card { display: flex; flex-direction: column; align-items: stretch; } }
+@media (max-width: 640px) {
+  .work-source-grid { grid-template-columns: 1fr; gap: 10px; }
+  .work-source-card { padding: 14px; }
+}

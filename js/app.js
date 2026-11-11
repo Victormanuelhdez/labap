@@ -413,7 +413,7 @@
     const count = mode === 'real' ? 58 : Number(form.get('count'));
     const topic = mode === 'real' ? 'all' : refs.quizTopic.value;
     const modeLabel = mode === 'practice' ? 'Práctica' : mode === 'real' ? 'Como el real' : 'Simulación';
-    const topicLabel = topic === 'all' ? 'Todos los temas' : topic === 'weak' ? 'Temas débiles' : topic === 'guia2' ? 'Solo MiGuiaAPX 2' : topic === 'original' ? 'Banco original' : topic === 'word' ? 'Banco de trabajo' : topic === 'code-word' ? 'Código de Banco de trabajo' : 'Solo errores';
+    const topicLabel = topic === 'all' ? 'Todos los temas' : topic === 'weak' ? 'Temas débiles' : topic === 'guia2' ? 'Solo MiGuiaAPX 2' : topic === 'original' ? 'Banco original' : topic === 'word' ? 'Banco de formularios' : topic === 'code-word' ? 'Código de formularios' : 'Solo errores';
     refs.configTitle.textContent = `${modeLabel} de ${count} preguntas`;
     refs.configText.textContent = `${topicLabel} · ${mode === 'practice' ? 'explicación inmediata' : 'sin retroalimentación hasta el final'}`;
     refs.configGoal.textContent = `Meta: ${Math.ceil(count * .8)} de ${count} · 80%`;
@@ -615,7 +615,7 @@
         refs.feedbackBox.classList.remove('hidden');
         refs.feedbackTitle.textContent = response.correct ? 'Correcta' : response.auto ? 'Tiempo agotado' : 'Incorrecta';
         refs.feedbackText.textContent = readableExplanation(q);
-        refs.feedbackSource.textContent = `Fuente: ${q.source}`;
+        refs.feedbackSource.textContent = `Fuente: ${q.source.replace(/^Banco de trabajo\.docx/, 'Formularios')}`;
       }
     }
 
@@ -665,7 +665,7 @@
       refs.feedbackBox.classList.remove('hidden');
       refs.feedbackTitle.textContent = response.correct ? 'Correcta' : auto ? 'Tiempo agotado' : 'Incorrecta';
       refs.feedbackText.textContent = readableExplanation(q);
-      refs.feedbackSource.textContent = `Fuente: ${q.source}`;
+      refs.feedbackSource.textContent = `Fuente: ${q.source.replace(/^Banco de trabajo\.docx/, 'Formularios')}`;
     }
   }
 
@@ -796,7 +796,7 @@
           <p><strong>Tu respuesta:</strong> ${escapeHtml(selectedOptions)}</p>
           <p><strong>Correcta:</strong> ${escapeHtml(correctOptions)}</p>
           <p>${escapeHtml(readableExplanation(item))}</p>
-          <small>Fuente: ${escapeHtml(item.source)}</small>
+          <small>Fuente: ${escapeHtml(item.source.replace(/^Banco de trabajo\.docx/, 'Formularios'))}</small>
         </article>
       `;
     }).join('');
