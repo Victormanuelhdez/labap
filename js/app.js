@@ -467,10 +467,17 @@
     return shuffle(uniqueQuestionPool(pool));
   }
 
+  function isJavaOrCode(question) {
+    return ['java', 'colecciones'].includes(question.topic) || Boolean(question.code?.trim());
+  }
+
   function selectQuestions(pool, requestedCount) {
-    const uniquePool = uniqueQuestionPool(pool);
+    const uniquePool = shuffle(uniqueQuestionPool(pool));
     const count = Math.min(requestedCount, uniquePool.length);
-    return shuffle(uniquePool).slice(0, count);
+    const priority = uniquePool.filter(isJavaOrCode);
+    const other = uniquePool.filter(question => !isJavaOrCode(question));
+    const priorityCount = Math.min(priority.length, Math.max(Math.ceil(count * .60), count - other.length));
+    return shuffle([...priority.slice(0, priorityCount), ...other.slice(0, count - priorityCount)]);
   }
 
   function startQuiz({ mode, count, topicMode, withTimer, exactSetId = null }) {
@@ -487,10 +494,7 @@
       withTimer = refs.timerCheck.checked;
     } else {
       const pool = pickQuestionPool(topicMode);
-      if (mode === 'real') {
-        const quotas = { online:9, cli:8, batch:9, java:13, colecciones:8, patrones:6, pruebas:5 };
-        questions = shuffle(Object.entries(quotas).flatMap(([topic, n]) => selectQuestions(pool.filter(q => q.topic === topic), n)));
-      } else questions = selectQuestions(pool, count);
+      questions = selectQuestions(pool, count);
     }
 
     if (!questions.length) return showToast('No hay preguntas validadas disponibles para este filtro');
@@ -555,8 +559,25 @@
 
   function readableExplanation(item) {
     const current = questionById[item.id ?? item.questionId];
-    return current && sameTextIgnoringSpacing(item.explanation, current.explanation)
+    const text = current && sameTextIgnoringSpacing(item.explanation, current.explanation)
       ? current.explanation : item.explanation;
+    return String(text ?? '')
+      .split(/\s+APXAPX GUIDEGUIDE ClasificationofQuestions/)[0]
+      .replace(/([.!?]) +(?=(?:[A-H](?:[.)]| corresponde| es incorrecta| es correcta)|\d{1,2}[.)] |(?:Por qué no|Nota|Resultado|Conclusión):))/g, '$1\n\n')
+      .split(/\n\s*\n/)
+      .flatMap(paragraph => {
+        if (paragraph.length < 430 || paragraph.includes('\n')) return [paragraph];
+        const blocks = [];
+        let start = 0;
+        for (const match of paragraph.matchAll(/[.!?] +(?=[A-ZÁÉÍÓÚÑ¿¡][a-záéíóúñ])/g)) {
+          if (match.index - start < 260) continue;
+          blocks.push(paragraph.slice(start, match.index + 1));
+          start = match.index + match[0].length;
+        }
+        blocks.push(paragraph.slice(start));
+        return blocks;
+      })
+      .join('\n\n').trim();
   }
 
   function readableOption(item, option) {
@@ -578,7 +599,9 @@
     document.getElementById('finishExam').hidden = currentQuiz.mode === 'practice';
     refs.questionText.textContent = q.question;
     document.getElementById('codeExpandControls').hidden = !q.code;
-    document.getElementById('javaCodeContext').textContent = `En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java ${q.javaVersion || 11}), salvo que la pregunta evalúe explícitamente la compilación.`;
+    const javaCodeContext = document.getElementById('javaCodeContext');
+    javaCodeContext.hidden = !q.code?.trim() || !(['java', 'colecciones'].includes(q.topic) || /\b(?:class|System\.out|import java)\b/.test(q.code));
+    javaCodeContext.textContent = `En fragmentos de Java, supone los imports necesarios y el contexto indicado (Java ${q.javaVersion || 11}), salvo que la pregunta evalúe explícitamente la compilación.`;
     if (q.code) {
       refs.questionCode.querySelector('code').textContent = q.code;
       refs.questionCode.classList.remove('hidden');
@@ -787,14 +810,16 @@
     }
 
     refs.answerReview.innerHTML = attempt.details.map((item, index) => {
-      const correctOptions = item.answer.map(i => readableOption(item, item.options[i])).join(' · ');
-      const selectedOptions = item.selected.length ? item.selected.map(i => readableOption(item, item.options[i])).join(' · ') : 'Sin respuesta';
+      const correctOptions = item.answer.map(i => readableOption(item, item.options[i])).join('\n\n');
+      const selectedOptions = item.selected.length ? item.selected.map(i => readableOption(item, item.options[i])).join('\n\n') : 'Sin respuesta';
       return `
         <article class="review-item ${item.correct ? 'correct' : 'wrong'}">
           <strong>${index + 1}. ${escapeHtml(item.question)}</strong>
           ${item.code ? `<pre class="question-code review-code"><code>${escapeHtml(item.code)}</code></pre>` : ''}
-          <p><strong>Tu respuesta:</strong> ${escapeHtml(selectedOptions)}</p>
-          <p><strong>Correcta:</strong> ${escapeHtml(correctOptions)}</p>
+          <p><strong>Tu respuesta:</strong>
+${escapeHtml(selectedOptions)}</p>
+          <p><strong>${item.answer.length > 1 ? 'Respuestas correctas:' : 'Respuesta correcta:'}</strong>
+${escapeHtml(correctOptions)}</p>
           <p>${escapeHtml(readableExplanation(item))}</p>
           <small>Fuente: ${escapeHtml(item.source.replace(/^Banco de trabajo\.docx/, 'Formularios'))}</small>
         </article>

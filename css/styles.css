@@ -3552,3 +3552,28 @@ body.dark .material-mini-review {
   .work-source-grid { grid-template-columns: 1fr; gap: 10px; }
   .work-source-card { padding: 14px; }
 }
+
+/* Readable answer options and feedback in both themes. */
+.question-card::before { content: none; }
+.question-card h1 { overflow-wrap: anywhere; }
+.answer-grid { max-width: none; }
+.answer-option {
+  min-height: 48px;
+  align-items: start;
+  line-height: 1.5;
+}
+.answer-option > span { min-width: 0; }
+.answer-option:focus-within { outline: 2px solid var(--accent); outline-offset: -2px; }
+body.dark .answer-option.is-correct { color: #073d25; background: #d9f6e7; }
+body.dark .answer-option.is-wrong { color: #5a1717; background: #f8dddd; }
+.feedback-box { max-width: none; }
+#feedbackText, .review-item p, .mistake-card p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.editorial-config .choice-block > span > small,
+.editorial-config .switch-row > span > small {
+  display: block;
+  margin-top: 3px;
+}
