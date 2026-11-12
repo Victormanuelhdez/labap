@@ -815,7 +815,7 @@
       return `
         <article class="review-item ${item.correct ? 'correct' : 'wrong'}">
           <strong>${index + 1}. ${escapeHtml(item.question)}</strong>
-          ${item.code ? `<pre class="question-code review-code"><code>${escapeHtml(item.code)}</code></pre>` : ''}
+          ${item.code ? `<pre class="question-code review-code" tabindex="0" role="button" aria-label="Ampliar código" aria-haspopup="dialog" aria-controls="codeDialog"><code>${escapeHtml(item.code)}</code></pre>` : ''}
           <p><strong>Tu respuesta:</strong>
 ${escapeHtml(selectedOptions)}</p>
           <p><strong>${item.answer.length > 1 ? 'Respuestas correctas:' : 'Respuesta correcta:'}</strong>
@@ -939,8 +939,24 @@ ${escapeHtml(correctOptions)}</p>
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 
+  function openExpandedCode(code) {
+    const dialog = document.getElementById('codeDialog');
+    if (!code?.trim() || dialog.open) return;
+    document.getElementById('dialogCode').textContent = code;
+    dialog.showModal();
+  }
+
   function bindEvents() {
     document.addEventListener('click', e => {
+      const codeBlock = e.target.closest('pre.question-code');
+      if (codeBlock) {
+        const selection = window.getSelection?.();
+        if (!selection || selection.isCollapsed || !codeBlock.contains(selection.anchorNode)) {
+          openExpandedCode(codeBlock.querySelector('code')?.textContent);
+        }
+        return;
+      }
+
       const routeBtn = e.target.closest('[data-route]');
       if (routeBtn) {
         e.preventDefault();
@@ -967,10 +983,7 @@ ${escapeHtml(correctOptions)}</p>
       const reviewCode = e.target.closest('[data-work-review-code]');
       if (reviewCode) {
         const item = (window.WORK_REVIEW_QUESTIONS || []).find(q => q.id === reviewCode.dataset.workReviewCode);
-        if (item?.code) {
-          document.getElementById('dialogCode').textContent = item.code;
-          document.getElementById('codeDialog').showModal();
-        }
+        openExpandedCode(item?.code);
       }
 
       const guideButton = e.target.closest('[data-guide-quiz]');
@@ -1085,11 +1098,23 @@ ${escapeHtml(correctOptions)}</p>
 
     const codeDialog = document.getElementById('codeDialog');
     document.getElementById('openCodeDialog').addEventListener('click', () => {
-      if (!currentQuiz) return;
-      const code = currentQuiz.questions[currentQuiz.index].code;
-      if (!code) return;
-      document.getElementById('dialogCode').textContent = code;
-      codeDialog.showModal();
+      openExpandedCode(currentQuiz?.questions[currentQuiz.index]?.code);
+    });
+    document.addEventListener('keydown', e => {
+      if (!e.target.matches?.('pre.question-code') || !['Enter', ' '].includes(e.key)) return;
+      e.preventDefault();
+      openExpandedCode(e.target.querySelector('code')?.textContent);
+    });
+    const isOutsideCodeDialog = e => {
+      if (e.target !== codeDialog) return false;
+      const { left, right, top, bottom } = codeDialog.getBoundingClientRect();
+      return e.clientX < left || e.clientX > right || e.clientY < top || e.clientY > bottom;
+    };
+    let pressedOutside = false;
+    codeDialog.addEventListener('pointerdown', e => { pressedOutside = isOutsideCodeDialog(e); });
+    codeDialog.addEventListener('click', e => {
+      if (pressedOutside && isOutsideCodeDialog(e)) codeDialog.close();
+      pressedOutside = false;
     });
     document.getElementById('closeCodeDialog').addEventListener('click', () => codeDialog.close());
     async function copyCurrentCode(codeOverride) {

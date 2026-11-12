@@ -3577,3 +3577,6 @@ body.dark .answer-option.is-wrong { color: #5a1717; background: #f8dddd; }
   display: block;
   margin-top: 3px;
 }
+
+pre.question-code[role="button"] { cursor: zoom-in; }
+pre.question-code[role="button"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
